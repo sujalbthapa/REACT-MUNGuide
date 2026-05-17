@@ -5,7 +5,7 @@ import {
   ChevronRight, Search, LayoutGrid, Info, 
   ShieldCheck, MapPin, Activity,
   Landmark, History, Flag, FileText,
-  Briefcase, Layers, ExternalLink,
+  Briefcase, Layers, ExternalLink, Menu,
   Coins, Users as UserGroupIcon, ShieldAlert as ShieldX, Globe as Network
 } from 'lucide-react';
 import { matrixData } from '../data/mockData';
@@ -13,6 +13,7 @@ import { matrixData } from '../data/mockData';
 export default function CommitteeMatrix() {
   const [selectedActor, setSelectedActor] = useState(matrixData && matrixData.length > 0 ? matrixData[0] : null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isRosterOpen, setIsRosterOpen] = useState(false);
 
   const filteredActors = (matrixData || []).filter(actor => 
     actor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -26,7 +27,7 @@ export default function CommitteeMatrix() {
 
   const RosterItem = ({ actor }) => (
     <button
-      onClick={() => setSelectedActor(actor)}
+      onClick={() => { setSelectedActor(actor); setIsRosterOpen(false); }}
       className={`w-full text-left px-5 py-3.5 transition-all border-l-4 flex flex-col gap-1 relative group ${
         selectedActor && selectedActor.id === actor.id 
         ? 'bg-[#009EDB]/5 border-[#009EDB] text-[#001E3D]' 
@@ -52,43 +53,47 @@ export default function CommitteeMatrix() {
     <div className="h-screen flex flex-col bg-white overflow-hidden selection:bg-[#009EDB]/10">
       
       {/* --- HEADER --- */}
-      <div className="bg-white p-4 border-b border-slate-100 flex items-center justify-between px-8 shrink-0 shadow-sm">
-        <div className="flex items-center gap-5">
-           <div className="flex items-center gap-3">
+      <div className="bg-white p-4 border-b border-slate-100 flex items-center justify-between px-4 sm:px-8 shrink-0 gap-4">
+        <div className="flex items-center gap-4">
+           {/* Global Nav Burger (would be linked to Sidebar toggle) */}
+           <button onClick={() => window.location.href='/'} className="p-2 sm:hidden text-slate-400">
+             <Menu className="w-5 h-5" />
+           </button>
+           <div className="flex items-center gap-2">
               <div className="p-1.5 bg-slate-50 border border-slate-100 shadow-sm">
                  <LayoutGrid className="w-4 h-4 text-[#009EDB]" />
               </div>
-              <h3 className="font-black text-base uppercase tracking-tighter text-[#001E3D] italic leading-none">
+              <h3 className="font-black text-sm sm:text-base uppercase tracking-tighter text-[#001E3D] italic leading-none">
                  Committee<span className="text-[#009EDB]">_Matrix</span>
               </h3>
            </div>
-           <div className="h-6 w-[1px] bg-slate-200 mx-4" />
-           <p className="text-[8px] font-black uppercase text-slate-400 tracking-[0.3em] mt-0.5 italic">
-              Regional Security Alignment Database
-           </p>
         </div>
         <div className="flex items-center gap-4">
-           <div className="w-7 h-7 bg-white p-1 border border-slate-100 shadow-sm">
+           <button onClick={() => setIsRosterOpen(!isRosterOpen)} className="md:hidden p-2 text-[#009EDB] border border-slate-100 shadow-sm">
+              <Menu className="w-5 h-5" />
+           </button>
+           <div className="hidden sm:block w-7 h-7 bg-white p-1 border border-slate-100 shadow-sm">
               <img src="https://www.un.org/sites/un2.un.org/files/un_logo.png" className="w-full h-full object-contain" />
            </div>
         </div>
       </div>
 
-      <div className="flex-1 flex overflow-hidden min-h-0 bg-slate-50/20">
+      <div className="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0 bg-slate-50/20">
         
         {/* --- ROSTER --- */}
-        <aside className="w-[300px] flex flex-col bg-white border-r border-slate-100 shrink-0 overflow-hidden shadow-sm">
-           <div className="p-5 bg-white border-b border-slate-50">
-              <div className="relative group">
+        <aside className={`${isRosterOpen ? 'fixed inset-0 z-50 pt-20' : 'hidden'} md:block md:w-[300px] flex flex-col bg-white border-b md:border-b-0 md:border-r border-slate-100 shrink-0 overflow-hidden shadow-sm`}>
+           <div className="p-4 bg-white border-b border-slate-50 flex items-center justify-between">
+              <div className="relative group flex-1">
                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-300 group-focus-within:text-[#009EDB] transition-colors" />
                  <input 
                    type="text"
                    value={searchTerm}
                    onChange={(e) => setSearchTerm(e.target.value)}
                    placeholder="SEARCH ACTORS..."
-                   className="w-full bg-slate-50 border border-slate-100 pl-10 pr-4 py-2.5 text-[10px] font-black uppercase tracking-widest text-[#001E3D] outline-none focus:bg-white transition-all shadow-inner"
+                   className="w-full bg-slate-50 border border-slate-100 pl-10 pr-4 py-2 text-[10px] font-black uppercase tracking-widest text-[#001E3D] outline-none focus:bg-white transition-all shadow-inner"
                  />
               </div>
+              <button onClick={() => setIsRosterOpen(false)} className="md:hidden ml-4 p-2"><X className="w-5 h-5 text-slate-400"/></button>
            </div>
 
            <div className="flex-1 overflow-y-auto custom-scrollbar">
@@ -150,7 +155,7 @@ export default function CommitteeMatrix() {
                            src={`https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${selectedActor.iso.toLowerCase()}/vector.svg`} 
                            alt="" 
                            className="w-full h-full object-contain filter invert opacity-90 transition-transform duration-1000 group-hover/map:scale-110"
-                           onError={(e) => { e.target.src = selectedActor.flag; }}
+                           onError={(e) => { e.target.onerror = null; e.target.src = selectedActor.flag; e.target.classList.remove('filter', 'invert'); }}
                          />
                          <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-[#009EDB] rounded-full animate-pulse" />
                          <p className="text-[8px] font-black text-white/40 uppercase tracking-[0.3em] italic">Geo_Vector</p>
@@ -162,10 +167,8 @@ export default function CommitteeMatrix() {
                       {[
                         { label: 'Area', val: selectedActor.stats?.area, icon: Globe },
                         { label: 'Population', val: selectedActor.stats?.population, icon: Users },
-                        { label: 'Joined UN', val: selectedActor.stats?.joined_un, icon: Landmark },
-                        { label: 'Economy', val: selectedActor.stats?.economy, icon: Coins }
-                      ].map((stat, i) => (
-                        <div key={i} className="p-6 bg-slate-50 border border-slate-100 flex flex-col gap-2 shadow-sm">
+                        { label: 'Joined UN', val: selectedActor.stats?.joined_un, icon: Landmark }
+                      ].map((stat, i) => (                        <div key={i} className="p-6 bg-slate-50 border border-slate-100 flex flex-col gap-2 shadow-sm">
                            <div className="flex items-center gap-3 text-[#009EDB]">
                               <stat.icon className="w-3.5 h-3.5" />
                               <span className="text-[8px] font-black uppercase text-slate-400 tracking-widest">{stat.label}</span>

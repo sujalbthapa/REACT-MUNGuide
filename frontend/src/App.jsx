@@ -115,10 +115,10 @@ export default function App() {
 
       <main className="flex-1 flex flex-col lg:flex-row h-screen overflow-hidden bg-slate-50/30">
         <div className={`flex-1 overflow-y-auto custom-scrollbar transition-all duration-300 ${
-          isHome ? 'p-6 lg:p-10 space-y-10' : 'p-0'
+          isHome ? 'p-4 sm:p-6 lg:p-10 space-y-6 sm:space-y-10' : 'p-0'
         }`}>
           
-          <div className={`lg:hidden flex justify-between items-center mb-6 ${!isHome ? 'px-6 pt-6' : ''}`}>
+          <div className={`lg:hidden flex justify-between items-center mb-4 ${!isHome ? 'px-4 pt-4' : 'px-4 pt-4'}`}>
             <button onClick={() => setIsSidebarOpen(true)} className="p-2.5 bg-white border border-slate-100 shadow-sm rounded-none">
               <Menu className="w-5 h-5 text-navy-900" />
             </button>
@@ -134,24 +134,24 @@ export default function App() {
             <Routes location={location} key={location.pathname}>
               <Route path="/" element={
                 <SectionWrapper>
-                  <div className="p-10 lg:p-12 border-l-4 border-[#009EDB] mb-10 relative overflow-hidden bg-white shadow-sm">
+                  <div className="p-6 sm:p-10 lg:p-12 border-l-4 border-[#009EDB] mb-6 sm:mb-10 relative overflow-hidden bg-white shadow-sm">
                     <div className="absolute -top-10 -right-10 opacity-[0.02] pointer-events-none">
-                       <img src="https://www.un.org/sites/un2.un.org/files/un_logo.png" className="w-96 h-96 object-contain" />
+                       <img src="https://www.un.org/sites/un2.un.org/files/un_logo.png" className="w-64 h-64 sm:w-96 sm:h-96 object-contain" />
                     </div>
 
                     <div className="relative z-10">
-                      <div className="flex items-center gap-8 mb-10 pb-8 border-b border-slate-100">
-                         <div className="w-24 h-24 bg-white p-3 border border-slate-100 shadow-sm shrink-0">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 mb-6 sm:mb-10 pb-6 sm:pb-8 border-b border-slate-100">
+                         <div className="w-16 h-16 sm:w-24 sm:h-24 bg-white p-2 sm:p-3 border border-slate-100 shadow-sm shrink-0">
                             <img src="https://www.un.org/sites/un2.un.org/files/un_logo.png" className="w-full h-full object-contain" />
                          </div>
                          <div className="flex flex-col gap-1">
-                            <h2 className="text-4xl lg:text-5xl font-black tracking-tighter uppercase text-navy-900 italic leading-none">
+                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tighter uppercase text-navy-900 italic leading-none">
                                Welcome, <span className="text-[#009EDB]">Delegate</span>
                             </h2>
-                            <div className="flex flex-col gap-0.5 mt-4">
-                               <h1 className="text-base font-black uppercase tracking-[0.2em] text-navy-900">United Nations Security Council</h1>
+                            <div className="flex flex-col gap-0.5 mt-2 sm:mt-4">
+                               <h1 className="text-xs sm:text-base font-black uppercase tracking-[0.2em] text-navy-900">United Nations Security Council</h1>
                                <div className="bg-[#001E3D] text-[#009EDB] py-1 px-3 w-fit">
-                                  <p className="text-[12px] font-black uppercase tracking-[0.2em] italic">Agenda : Situation in the Middle East</p>
+                                  <p className="text-[10px] sm:text-[12px] font-black uppercase tracking-[0.2em] italic">Agenda : Situation in the Middle East</p>
                                </div>
                             </div>
                          </div>

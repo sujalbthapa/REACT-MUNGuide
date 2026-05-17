@@ -20,18 +20,18 @@ export default function RulesLibrary() {
     <div className="h-screen flex flex-col bg-white overflow-hidden selection:bg-[#009EDB]/10">
       
       {/* --- HEADER --- */}
-      <div className="bg-white p-4 border-b border-slate-100 flex items-center justify-between px-8 shrink-0">
-        <div className="flex items-center gap-5">
+      <div className="bg-white p-4 border-b border-slate-100 flex flex-col sm:flex-row items-center justify-between px-4 sm:px-8 shrink-0 gap-4">
+        <div className="flex items-center gap-2 sm:gap-5 w-full sm:w-auto">
            <div className="flex items-center gap-3">
               <div className="p-1.5 bg-slate-50 border border-slate-100 shadow-sm">
                 <Scale className="w-4 h-4 text-[#009EDB]" />
               </div>
-              <h3 className="font-black text-base uppercase tracking-tighter text-[#001E3D] italic leading-none">
+              <h3 className="font-black text-sm sm:text-base uppercase tracking-tighter text-[#001E3D] italic leading-none">
                 International<span className="text-[#009EDB]">_Law</span>
               </h3>
            </div>
-           <div className="h-6 w-[1px] bg-slate-200 mx-4" />
-           <p className="text-[8px] font-black uppercase text-slate-400 tracking-[0.3em] mt-0.5 italic">
+           <div className="hidden sm:block h-6 w-[1px] bg-slate-200 mx-4" />
+           <p className="hidden sm:block text-[8px] font-black uppercase text-slate-400 tracking-[0.3em] mt-0.5 italic">
               Official Treaties & Binding Resolutions
            </p>
         </div>
@@ -43,27 +43,27 @@ export default function RulesLibrary() {
       </div>
 
       <div className="flex-1 overflow-y-auto custom-scrollbar bg-slate-50/20">
-        <div className="p-8 lg:p-12 space-y-10">
+        <div className="p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-10">
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div className="relative group">
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 group-focus-within:text-[#009EDB] transition-colors" />
+              <Search className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-slate-300 group-focus-within:text-[#009EDB] transition-colors" />
               <input 
                 type="text" 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="SEARCH LEGAL ARCHIVE..." 
-                className="w-full bg-white border border-slate-100 pl-16 pr-6 py-5 text-[11px] font-black uppercase tracking-widest outline-none text-navy-900 placeholder:text-slate-300 focus:border-[#009EDB]/30 transition-all shadow-sm"
+                placeholder="SEARCH ARCHIVE..." 
+                className="w-full bg-white border border-slate-100 pl-12 sm:pl-16 pr-4 py-4 sm:py-5 text-[10px] sm:text-[11px] font-black uppercase tracking-widest outline-none text-navy-900 placeholder:text-slate-300 focus:border-[#009EDB]/30 transition-all shadow-sm"
               />
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="text-[9px] font-black uppercase text-slate-400 tracking-widest mr-2">Legal Tier:</span>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <span className="text-[8px] sm:text-[9px] font-black uppercase text-slate-400 tracking-widest mr-1 sm:mr-2">Legal Tier:</span>
               {['all', 'treaty', 'unres'].map(f => (
                 <button
                   key={f}
                   onClick={() => setActiveFilter(f)}
-                  className={`px-6 py-2 text-[9px] font-black uppercase tracking-widest transition-all ${
+                  className={`px-4 sm:px-6 py-2 text-[8px] sm:text-[9px] font-black uppercase tracking-widest transition-all ${
                     activeTab === f ? 'bg-[#001E3D] text-white' : 'bg-white text-slate-500 border border-slate-100 hover:text-navy-900'
                   }`}
                 >
@@ -74,7 +74,7 @@ export default function RulesLibrary() {
           </div>
 
           {/* --- GRID --- */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-8">
             {filteredRules.map((rule) => (
               <motion.div 
                 key={rule.id}
@@ -135,48 +135,48 @@ export default function RulesLibrary() {
                   </div>
                </div>
 
-               <div className="flex-1 overflow-y-auto p-12 custom-scrollbar bg-white space-y-12">
-                  <div className="bg-slate-50 p-10 border-l-8 border-navy-900 italic shadow-inner">
-                     <h4 className="font-black text-[10px] uppercase tracking-widest text-[#009EDB] mb-6">Executive Summary</h4>
-                     <p className="text-2xl font-medium text-navy-900 leading-relaxed italic">
+               <div className="flex-1 overflow-y-auto p-4 sm:p-8 lg:p-12 custom-scrollbar bg-white space-y-8 sm:space-y-12">
+                  <div className="bg-slate-50 p-6 sm:p-10 border-l-4 sm:border-l-8 border-navy-900 italic shadow-inner">
+                     <h4 className="font-black text-[9px] sm:text-[10px] uppercase tracking-widest text-[#009EDB] mb-4 sm:mb-6">Executive Summary</h4>
+                     <p className="text-base sm:text-2xl font-medium text-navy-900 leading-relaxed italic">
                         "{selectedRule.body}"
                      </p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="p-8 bg-white border border-slate-100 shadow-sm">
-                       <div className="flex items-center gap-3 mb-6">
-                          <Calendar className="w-4 h-4 text-[#009EDB]" />
-                          <p className="text-[9px] font-black uppercase text-slate-400 tracking-widest">Enactment Data</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
+                    <div className="p-6 sm:p-8 bg-white border border-slate-100 shadow-sm">
+                       <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                          <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-[#009EDB]" />
+                          <p className="text-[8px] sm:text-[9px] font-black uppercase text-slate-400 tracking-widest">Enactment Data</p>
                        </div>
-                       <p className="text-xl font-black text-navy-900 uppercase italic">{selectedRule.briefing?.signed || 'N/A'}</p>
+                       <p className="text-lg sm:text-xl font-black text-navy-900 uppercase italic">{selectedRule.briefing?.signed || 'N/A'}</p>
                     </div>
-                    <div className="p-8 bg-white border border-slate-100 shadow-sm">
-                       <div className="flex items-center gap-3 mb-6">
-                          <Users className="w-4 h-4 text-slate-400" />
-                          <p className="text-[9px] font-black uppercase text-slate-400 tracking-widest">Scope of Accession</p>
+                    <div className="p-6 sm:p-8 bg-white border border-slate-100 shadow-sm">
+                       <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                          <Users className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
+                          <p className="text-[8px] sm:text-[9px] font-black uppercase text-slate-400 tracking-widest">Scope of Accession</p>
                        </div>
-                       <p className="text-lg font-black text-navy-900 uppercase italic opacity-80">{selectedRule.briefing?.parties || 'International Community'}</p>
+                       <p className="text-base sm:text-lg font-black text-navy-900 uppercase italic opacity-80">{selectedRule.briefing?.parties || 'International Community'}</p>
                     </div>
                   </div>
 
-                  <div className="p-10 bg-navy-900 text-white border-l-[10px] border-[#009EDB] shadow-xl italic">
-                     <h4 className="font-black text-sm uppercase tracking-widest text-[#009EDB] mb-6 flex items-center gap-4">
-                        <Target className="w-5 h-5" />
+                  <div className="p-6 sm:p-10 bg-navy-900 text-white border-l-[6px] sm:border-l-[10px] border-[#009EDB] shadow-xl italic">
+                     <h4 className="font-black text-[10px] sm:text-sm uppercase tracking-widest text-[#009EDB] mb-4 sm:mb-6 flex items-center gap-3 sm:gap-4">
+                        <Target className="w-4 h-4 sm:w-5 sm:h-5" />
                         Strategic Applicability
                      </h4>
-                     <p className="text-2xl font-black uppercase tracking-tight leading-relaxed pl-8 border-l border-white/10 opacity-90">
+                     <p className="text-lg sm:text-2xl font-black uppercase tracking-tight leading-relaxed pl-4 sm:pl-8 border-l border-white/10 opacity-90">
                         "{selectedRule.briefing?.summary || 'Standard legal framework for simulation context.'}"
                      </p>
                   </div>
                </div>
 
-               <div className="p-6 border-t border-slate-50 bg-slate-50/80 flex justify-between items-center">
+               <div className="p-4 sm:p-6 border-t border-slate-50 bg-slate-50/80 flex flex-col sm:flex-row justify-between items-center gap-4">
                   <div className="flex items-center gap-3">
-                     <img src="https://www.un.org/sites/un2.un.org/files/un_logo.png" className="w-8 h-8 object-contain grayscale opacity-30" />
-                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest italic">Research Bureau // 2026.LEGAL</p>
+                     <img src="https://www.un.org/sites/un2.un.org/files/un_logo.png" className="w-6 h-6 sm:w-8 sm:h-8 object-contain grayscale opacity-30" />
+                     <p className="text-[8px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest italic">Research Bureau // 2026.LEGAL</p>
                   </div>
-                  <button onClick={() => setSelectedRule(null)} className="px-10 py-3 bg-navy-900 text-white text-[10px] font-black uppercase tracking-widest hover:bg-[#009EDB] transition-all italic">Terminate View</button>
+                  <button onClick={() => setSelectedRule(null)} className="w-full sm:w-auto px-6 sm:px-10 py-3 bg-navy-900 text-white text-[9px] sm:text-[10px] font-black uppercase tracking-widest hover:bg-[#009EDB] transition-all italic">Terminate View</button>
                </div>
             </motion.div>
           </div>
