@@ -11,7 +11,7 @@ const getFlagUrl = (countryName) => {
     const key = Object.keys(flagMapping).find(k => countryName.includes(k) || k.includes(countryName));
     if (key) iso = flagMapping[key];
   }
-  if (iso) return `https://flagsapi.com/${iso.toUpperCase()}/flat/64.png`;
+  if (iso) return `/flags/${iso.toLowerCase()}.svg`;
   return null;
 };
 

@@ -1,125 +1,201 @@
 export const flagMapping = {
-    "United States": "US",
-    "USA": "US",
-    "United Kingdom": "GB",
-    "UK": "GB",
-    "Russia": "RU",
-    "Russian Federation": "RU",
-    "China": "CN",
-    "People\u2019s Republic of China": "CN",
-    "France": "FR",
-    "Germany": "DE",
-    "Japan": "JP",
-    "Bahrain": "BH",
-    "South Africa": "ZA",
-    "Turkey": "TR",
-    "T\u00fcrkiye": "TR",
-    "Republic of T\u00fcrkiye": "TR",
-    "Algeria": "DZ",
-    "Syria": "SY",
-    "Syrian Arab Republic": "SY",
-    "Egypt": "EG",
-    "Qatar": "QA",
-    "India": "IN",
-    "Israel": "IL",
-    "State of Israel": "IL",
-    "United Arab Emirates": "AE",
-    "UAE": "AE",
-    "Palestine": "PS",
-    "State of Palestine": "PS",
-    "Iran": "IR",
-    "Islamic Republic of Iran": "IR",
-    "Saudi Arabia": "SA",
-    "Kingdom of Saudi Arabia": "SA",
-    "Italy": "IT",
-    "Canada": "CA",
-    "Argentina": "AR",
+    "Antigua and Barbuda": "AG",
+    "Arab Republic of Egypt": "EG",
+    "Argentine Republic": "AR",
     "Australia": "AU",
-    "Brazil": "BR",
-    "Indonesia": "ID",
-    "Mexico": "MX",
-    "South Korea": "KR",
-    "European Union": "EU",
-    "EU": "EU",
-    "African Union": "UN",
-    "Ethiopia": "ET",
-    "Spain": "ES",
-    "Poland": "PL",
-    "Netherlands": "NL",
-    "Norway": "NO",
-    "Belgium": "BE",
-    "Greece": "GR",
+    "Barbados": "BB",
+    "Belize": "BZ",
+    "Bolivarian Republic of Venezuela": "VE",
+    "Bosnia and Herzegovina": "BA",
+    "Brunei Darussalam": "BN",
+    "Burkina Faso": "BF",
+    "Canada": "CA",
+    "Central African Republic": "CF",
+    "Commonwealth of Dominica": "DM",
+    "Commonwealth of the Bahamas": "BS",
+    "Czech Republic": "CZ",
+    "Democratic People's Republic of Korea": "KP",
+    "Democratic Republic of Sao Tome and Principe": "ST",
+    "Democratic Republic of the Congo": "CD",
+    "Democratic Republic of Timor-Leste": "TL",
+    "Democratic Socialist Republic of Sri Lanka": "LK",
+    "Dominican Republic": "DO",
+    "Eastern Republic of Uruguay": "UY",
+    "Eritrea": "ER",
+    "Federal Democratic Republic of Ethiopia": "ET",
+    "Federal Democratic Republic of Nepal": "NP",
+    "Federal Republic of Germany": "DE",
+    "Federal Republic of Nigeria": "NG",
+    "Federated States of Micronesia": "FM",
+    "Federative Republic of Brazil": "BR",
+    "French Republic": "FR",
+    "Gabonese Republic": "GA",
+    "Georgia": "GE",
+    "Grand Duchy of Luxembourg": "LU",
+    "Grenada": "GD",
+    "Hashemite Kingdom of Jordan": "JO",
+    "Hellenic Republic": "GR",
     "Hungary": "HU",
-    "Portugal": "PT",
-    "Sweden": "SE",
-    "Finland": "FI",
-    "Denmark": "DK",
-    "Czechia": "CZ",
-    "Romania": "RO",
-    "Bulgaria": "BG",
-    "Slovakia": "SK",
-    "Croatia": "HR",
-    "Lithuania": "LT",
-    "Slovenia": "SI",
-    "Latvia": "LV",
-    "Estonia": "EE",
-    "Montenegro": "ME",
-    "Luxembourg": "LU",
-    "Iceland": "IS",
-    "Albania": "AL",
-    "North Macedonia": "MK",
-    "Austria": "AT",
-    "Cyprus": "CY",
+    "Independent State of Samoa": "WS",
     "Ireland": "IE",
-    "Malta": "MT",
+    "Islamic Republic of Iran": "IR",
+    "Islamic Republic of Mauritania": "MR",
+    "Islamic Republic of Pakistan": "PK",
+    "Jamaica": "JM",
+    "Japan": "JP",
+    "Kingdom of Bahrain": "BH",
+    "Kingdom of Belgium": "BE",
+    "Kingdom of Bhutan": "BT",
+    "Kingdom of Cambodia": "KH",
+    "Kingdom of Denmark": "DK",
+    "Kingdom of Eswatini": "SZ",
+    "Kingdom of Lesotho": "LS",
+    "Kingdom of Morocco": "MA",
+    "Kingdom of Norway": "NO",
+    "Kingdom of Saudi Arabia": "SA",
+    "Kingdom of Spain": "ES",
+    "Kingdom of Sweden": "SE",
+    "Kingdom of Thailand": "TH",
+    "Kingdom of the Netherlands": "NL",
+    "Kingdom of Tonga": "TO",
+    "Kyrgyz Republic": "KG",
+    "Lao People's Democratic Republic": "LA",
+    "Lebanese Republic": "LB",
     "Libya": "LY",
-    "Morocco": "MA",
-    "Nigeria": "NG",
-    "Sudan": "SD",
-    "Tunisia": "TN",
-    "Kenya": "KE",
-    "Ghana": "GH",
-    "Kuwait": "KW",
-    "Oman": "OM",
-    "Jordan": "JO",
-    "Somalia": "SO",
-    "Mauritania": "MR",
-    "Djibouti": "DJ",
-    "Comoros": "KM",
-    "Yemen": "YE",
-    "Afghanistan": "AF",
-    "Bangladesh": "BD",
-    "Bhutan": "BT",
-    "Maldives": "MV",
-    "Nepal": "NP",
-    "Pakistan": "PK",
-    "Sri Lanka": "LK",
-    "Venezuela": "VE",
-    "Gabon": "GA",
-    "Congo": "CG",
-    "Kazakhstan": "KZ",
-    "Kyrgyzstan": "KG",
-    "Tajikistan": "TJ",
-    "Uzbekistan": "UZ",
-    "Belarus": "BY",
-    "Thailand": "TH",
-    "Vietnam": "VN",
-    "Singapore": "SG",
     "Malaysia": "MY",
-    "Philippines": "PH",
-    "Myanmar": "MM",
-    "Cambodia": "KH",
-    "Laos": "LA",
-    "Brunei": "BN",
-    "Iraq": "IQ",
-    "Lebanon": "LB",
-    "Equatorial Guinea": "GQ",
-    "Angola": "AO",
+    "Mongolia": "MN",
+    "Montenegro": "ME",
+    "New Zealand": "NZ",
+    "Palestine": "PS",
+    "Papua New Guinea": "PG",
+    "People's Democratic Republic of Algeria": "DZ",
+    "People's Republic of Bangladesh": "BD",
+    "People's Republic of China": "CN",
+    "Plurinational State of Bolivia": "BO",
+    "Portuguese Republic": "PT",
+    "Principality of Andorra": "AD",
+    "Principality of Liechtenstein": "LI",
+    "Principality of Monaco": "MC",
+    "Republic of Albania": "AL",
+    "Republic of Angola": "AO",
+    "Republic of Armenia": "AM",
+    "Republic of Austria": "AT",
+    "Republic of Azerbaijan": "AZ",
+    "Republic of Belarus": "BY",
+    "Republic of Benin": "BJ",
+    "Republic of Botswana": "BW",
+    "Republic of Bulgaria": "BG",
+    "Republic of Burundi": "BI",
+    "Republic of Cameroon": "CM",
+    "Republic of Cape Verde": "CV",
+    "Republic of Chad": "TD",
+    "Republic of Chile": "CL",
+    "Republic of China": "TW",
+    "Republic of Colombia": "CO",
+    "Republic of Costa Rica": "CR",
+    "Republic of Côte d'Ivoire": "CI",
+    "Republic of Croatia": "HR",
+    "Republic of Cuba": "CU",
+    "Republic of Cyprus": "CY",
+    "Republic of Djibouti": "DJ",
+    "Republic of Ecuador": "EC",
+    "Republic of El Salvador": "SV",
+    "Republic of Equatorial Guinea": "GQ",
+    "Republic of Estonia": "EE",
+    "Republic of Fiji": "FJ",
+    "Republic of Finland": "FI",
+    "Republic of Ghana": "GH",
+    "Republic of Guatemala": "GT",
+    "Republic of Guinea": "GN",
+    "Republic of Guinea-Bissau": "GW",
+    "Republic of Guyana": "GY",
+    "Republic of Haiti": "HT",
+    "Republic of Honduras": "HN",
+    "Republic of Iceland": "IS",
+    "Republic of India": "IN",
+    "Republic of Indonesia": "ID",
+    "Republic of Iraq": "IQ",
+    "Republic of Italy": "IT",
+    "Republic of Kazakhstan": "KZ",
+    "Republic of Kenya": "KE",
+    "Republic of Kiribati": "KI",
+    "Republic of Korea": "KR",
+    "Republic of Kosovo": "XK",
+    "Republic of Latvia": "LV",
+    "Republic of Liberia": "LR",
+    "Republic of Lithuania": "LT",
+    "Republic of Madagascar": "MG",
+    "Republic of Malawi": "MW",
+    "Republic of Maldives": "MV",
+    "Republic of Mali": "ML",
+    "Republic of Malta": "MT",
+    "Republic of Mauritius": "MU",
+    "Republic of Moldova": "MD",
+    "Republic of Mozambique": "MZ",
+    "Republic of Namibia": "NA",
+    "Republic of Nauru": "NR",
+    "Republic of Nicaragua": "NI",
+    "Republic of Palau": "PW",
+    "Republic of Panama": "PA",
+    "Republic of Paraguay": "PY",
+    "Republic of Peru": "PE",
+    "Republic of Poland": "PL",
+    "Republic of Rwanda": "RW",
+    "Republic of Senegal": "SN",
+    "Republic of Serbia": "RS",
+    "Republic of Seychelles": "SC",
+    "Republic of Sierra Leone": "SL",
+    "Republic of Singapore": "SG",
+    "Republic of Slovenia": "SI",
+    "Republic of South Africa": "ZA",
+    "Republic of South Sudan": "SS",
+    "Republic of Suriname": "SR",
+    "Republic of Tajikistan": "TJ",
+    "Republic of the Congo": "CG",
+    "Republic of the Gambia": "GM",
+    "Republic of the Marshall Islands": "MH",
+    "Republic of the Niger": "NE",
+    "Republic of the Philippines": "PH",
+    "Republic of the Sudan": "SD",
+    "Republic of the Union of Myanmar": "MM",
+    "Republic of Trinidad and Tobago": "TT",
+    "Republic of Tunisia": "TN",
+    "Republic of Turkey": "TR",
+    "Republic of Uganda": "UG",
+    "Republic of Uzbekistan": "UZ",
+    "Republic of Vanuatu": "VU",
+    "Republic of Yemen": "YE",
+    "Republic of Zambia": "ZM",
+    "Republic of Zimbabwe": "ZW",
+    "Romania": "RO",
+    "Russian Federation": "RU",
+    "Saint Kitts and Nevis": "KN",
+    "Saint Lucia": "LC",
+    "Saint Vincent and the Grenadines": "VC",
+    "Slovak Republic": "SK",
+    "Socialist Republic of Viet Nam": "VN",
+    "Solomon Islands": "SB",
+    "Somali Republic": "SO",
+    "State of Israel": "IL",
+    "State of Kuwait": "KW",
+    "State of Qatar": "QA",
+    "Sultanate of Oman": "OM",
+    "Swiss Confederation": "CH",
+    "Syrian Arab Republic": "SY",
+    "The Islamic Republic of Afghanistan": "AF",
+    "The Republic of North Macedonia": "MK",
+    "Togolese Republic": "TG",
+    "Turkmenistan": "TM",
+    "Tuvalu": "TV",
     "Ukraine": "UA",
-    "Switzerland": "CH",
-    "Taiwan": "TW",
-    "New Zealand": "NZ"
+    "Union of the Comoros": "KM",
+    "United Arab Emirates": "AE",
+    "United Kingdom of Great Britain and Northern Ireland": "GB",
+    "United Mexican States": "MX",
+    "United Republic of Tanzania": "TZ",
+    "United States of America": "US"
 };
+
 
 export const frontData = {
     "iran": {
@@ -133,30 +209,34 @@ export const frontData = {
             "UNSC Res 1540 (WMD)",
             "UNSC Res 1737 (Sanctions)"
         ],
-        "summary": "The shadow war erupted into direct conventional warfare following the crossing of nuclear enrichment 'red lines'. The conflict features high-intensity missile exchanges and a total blockade of the Strait of Hormuz.",
-        "context": "Initiated after a massive aerial strike on Natanz infrastructure. The current stalemate is defined by a nuclear threshold crisis and constant maritime friction.",
-        "history": "The 1979 Revolution transformed Iran into the anchor of anti-Western regional strategy. Decades of proxy warfare culminated in the direct 2024 exchanges.",
-        "damages": "Natanz facility 60% disabled; major Israeli industrial hubs damaged; regional energy exports down 40%.",
-        "study_note": "Analyze the legality of preemptive strikes on nuclear facilities under Article 51.",
+        "summary": "The shadow war erupted into direct conventional warfare following the crossing of nuclear enrichment 'red lines'. The conflict features high-intensity missile exchanges and a total blockade of the Strait of Hormuz, cutting off 20% of global oil flow and triggering a worldwide energy crisis.",
+        "context": "Initiated after a massive aerial strike on Natanz infrastructure. In response, Tehran launched 'True Promise III,' utilizing drone swarms and hypersonic missiles. The current stalemate is defined by a nuclear threshold crisis and constant maritime friction.",
+        "history": "The 1979 Revolution shifted Iran to an anti-Western stance. Decades of proxy warfare culminated in the direct 2024 exchanges. 2026 marks the first direct state-on-state war in the Levant in over 50 years.",
+        "damages": "Natanz facility 60% disabled; major Israeli industrial hubs damaged; regional energy exports down 40%; catastrophic damage to IRGC command hubs.",
+        "study_note": "Analyze the legality of preemptive strikes on nuclear facilities under Article 51, and evaluate the environmental obligations under IHL.",
         "study_links": [
             {
                 "label": "UNSC Resolution 2231 (Full Text)",
                 "url": "https://undocs.org/en/S/RES/2231(2015)"
             },
             {
-                "label": "IAEA: Iran Safeguards Report 2026",
-                "url": "https://www.iaea.org/newscenter/focus/iran"
+                "label": "UNSC Resolution 1540 (Full Text)",
+                "url": "https://undocs.org/en/S/RES/1540(2004)"
             },
             {
-                "label": "Reuters: Maritime Energy Security Maps",
-                "url": "https://www.reuters.com/graphics/IRAN-OIL/HORMUZ/lbvgnzngvpq/"
+                "label": "IAEA: Iran Safeguards Report 2026",
+                "url": "https://www.iaea.org/newscenter/focus/iran"
             },
             {
                 "label": "CFR: Israel-Iran Conflict Deep-Dive",
                 "url": "https://www.cfr.org/backgrounder/israel-iran-conflict-direct-warfare"
             },
             {
-                "label": "IISS: Iran's Missile Arsenal",
+                "label": "Reuters: Maritime Energy Security Maps",
+                "url": "https://www.reuters.com/graphics/IRAN-OIL/HORMUZ/lbvgnzngvpq/"
+            },
+            {
+                "label": "IISS: Iran's Ballistic Missile Arsenal",
                 "url": "https://www.iiss.org/research-paper/2021/01/iran-missile-programme/"
             },
             {
@@ -169,10 +249,10 @@ export const frontData = {
             "adversaries": "Iran, IRGC, Iraqi Militias (KH)",
             "fronts": "Hormuz, Natanz, Tel Aviv",
             "effects": "Global Energy Shock",
-            "damages": "Grid disruption"
+            "damages": "Refinery collapse; Grid disruption"
         },
         "intensity": 88,
-        "location": "Tehran / Natanz / Hormuz",
+        "location": "Tehran / Natanz",
         "coordinates": "35.68 N, 51.38 E"
     },
     "lebanon": {
@@ -185,11 +265,11 @@ export const frontData = {
             "UNSC Res 1701 (Buffer Zone)",
             "UNSC Res 2790 (2025 Extension)"
         ],
-        "summary": "Israel has initiated a ground incursion to enforce a buffer zone south of the Litani River and dismantle Hezbollah's missile infrastructure.",
-        "context": "Operation 'Roaring Lion' launched after the collapse of the 1701 framework. Hezbollah utilize extensive tunnel infrastructure to bypass monitors.",
-        "history": "1982: First War. 2006: Second War. 2026: Third War. Since 2006, Hezbollah has integrated military command into civilian areas.",
-        "damages": "1.2M Lebanese displaced; 200 villages leveled; Haifa industrial port disabled.",
-        "study_note": "Study the failure of the 1701 mandate and propose a '1701-Plus' framework.",
+        "summary": "Israel enforces a buffer zone south of the Litani River after the total collapse of the 2006 framework. The goal is the dismantlement of Hezbollah's 'Ring of Fire' missile infrastructure targeting the Galilee.",
+        "context": "Operation 'Roaring Lion' launched after a year of attrition. Hezbollah utilized extensive tunnel infrastructure to bypass UNIFIL observation posts, resulting in the collapse of the 1701 security framework.",
+        "history": "1982: First War. 2006: Second War. 2026: Third War. Since 2006, Hezbollah has integrated military command into civilian infrastructure, creating a 'human shield' doctrine that complicates legal assessments.",
+        "damages": "1.2M displaced; 200 villages leveled; Haifa industrial port disabled; UNIFIL infrastructure hit multiple times.",
+        "study_note": "Study the failure of the 1701 mandate and propose a '1701-Plus' framework with actual enforcement powers.",
         "study_links": [
             {
                 "label": "UNSC Resolution 1701 (Full Text)",
@@ -206,6 +286,14 @@ export const frontData = {
             {
                 "label": "Chatham House: Hezbollah Strategic Shift",
                 "url": "https://www.chathamhouse.org/topics/lebanon"
+            },
+            {
+                "label": "HRW: South Lebanon Humanitarian Report",
+                "url": "https://www.hrw.org/middle-east/north-africa/lebanon"
+            },
+            {
+                "label": "Crisis Group: Avoiding a Wider Lebanon War",
+                "url": "https://www.crisisgroup.org/middle-east-north-africa/east-mediterranean/lebanon"
             }
         ],
         "detailed": {
@@ -213,7 +301,7 @@ export const frontData = {
             "adversaries": "Hezbollah, Amal, IRGC-QF",
             "fronts": "Blue Line, Litani, Beirut",
             "effects": "State collapse; refugee crisis",
-            "damages": "Power grid failure"
+            "damages": "Urban leveling; Power grid failure"
         },
         "intensity": 94,
         "location": "Litani River Basin",
@@ -229,18 +317,18 @@ export const frontData = {
             "UNSC Res 242 (Withdrawal)",
             "UNSC Res 2735 (2024 Peace Plan)"
         ],
-        "summary": "Multi-year urban stabilization mission aiming to neutralize non-state governance. Israel maintains military control over the Philadelphi Axis.",
-        "context": "Post-war transition phase. Total destruction of civilian infrastructure remains the primary hurdle for any transition.",
-        "history": "Occupied since 1967. The most destructive phase in Palestinian history, with higher casualty rates than all previous conflicts.",
-        "damages": "85% housing units destroyed; 2.1M at famine risk; total collapse of medical networks.",
-        "study_note": "Examine the 'Board of Peace' transitional governance model.",
+        "summary": "What began as a response to the Oct 7 attacks has evolved into a multi-year urban stabilization mission. Israel maintains military control over the Philadelphi Axis while Hamas operates via residual tunnel cells.",
+        "context": "The conflict is in a 'Post-War' transition phase. The international community is debating the deployment of Arab peacekeepers, but infrastructure destruction remains the primary hurdle for governance transition.",
+        "history": "Occupied since 1967. The most destructive phase in 70 years, with higher casualty rates and structural damage than all previous conflicts combined since 1948.",
+        "damages": "85% housing destroyed; 2.1M at famine risk; collapse of aid systems; sewage and water networks 90% non-functional.",
+        "study_note": "Examine the 'Board of Peace' transitional model and the requirements for an 'Occupation by Proxy' under Geneva IV.",
         "study_links": [
             {
                 "label": "UNSC Resolution 242 (Full Text)",
                 "url": "https://undocs.org/en/S/RES/242(1967)"
             },
             {
-                "label": "UN OCHA: Gaza Situation Data",
+                "label": "UN OCHA: Integrated Situation Reports",
                 "url": "https://www.ochaopt.org/"
             },
             {
@@ -248,16 +336,24 @@ export const frontData = {
                 "url": "https://www.icj-cij.org/case/192"
             },
             {
-                "label": "WHO: Health Sector Breakdown",
+                "label": "WHO: Gaza Health Sector Breakdown",
                 "url": "https://www.who.int/emergencies/situations/conflict-in-Israel-and-oPt"
+            },
+            {
+                "label": "Amnesty: Human Rights Documentation",
+                "url": "https://www.amnesty.org/en/location/middle-east-and-north-africa/israel-and-occupied-palestinian-territories/"
+            },
+            {
+                "label": "WFP: Famine Risk Assessment 2026",
+                "url": "https://www.wfp.org/countries/palestine"
             }
         ],
         "detailed": {
             "allies": "UNRWA, International NGOs",
             "adversaries": "Israel, Hamas, PIJ",
             "fronts": "Rafah, Philadelphi",
-            "effects": "Generational trauma; famine",
-            "damages": "100% loss of higher education"
+            "effects": "Total famine; generational trauma",
+            "damages": "100% loss of university infrastructure"
         },
         "intensity": 72,
         "location": "Gaza City / Rafah",
@@ -266,18 +362,18 @@ export const frontData = {
     "proxy": {
         "id": "proxy",
         "title": "Red Sea Blockade",
-        "subtitle": "Maritime Trade Denial Front",
+        "subtitle": "Maritime Trade Front",
         "status": "Active Trade Denial",
         "engaged": "Nov 19, 2023",
         "resolutions": [
             "UNSC Res 2722 (Red Sea)",
             "UNCLOS (International Law)"
         ],
-        "summary": "Houthi maritime blockade using anti-ship ballistic missiles, effectively closing the Suez trade artery to Western vessels.",
-        "context": "Operation Prosperity Guardian struggling against mobile launch platforms. Rerouting vessels increases costs by M per voyage.",
-        "history": "2014 takeover of Sana'a led to maritime offensive in 2023. Non-state actors have disrupted a global economic chokepoint.",
-        "damages": "12 merchant vessels sunk or damaged; 15% global shipping inflation; radar systems 70% destroyed.",
-        "study_note": "Analyze the legal definition of 'Piracy' vs 'Belligerent Blockade' under UNCLOS.",
+        "summary": "The Houthi movement has implemented a maritime blockade using anti-ship ballistic missiles and suicide drones, effectively closing the Suez Canal to Western-linked shipping.",
+        "context": "Operation 'Prosperity Guardian' has struggled to neutralize mobile platforms. The blockade has forced global shipping to reroute, increasing global transit times by 14 days and adding massive costs.",
+        "history": "2014 takeover of Sana'a led to maritime offensive in 2023. Non-state actors have successfully disrupted a global economic chokepoint using asymmetrical 'high-tech' munitions.",
+        "damages": "12 vessels sunk; 15% global shipping inflation; radar systems destroyed; damage to critical port infrastructure.",
+        "study_note": "Analyze 'Piracy' vs 'Belligerent Blockade' under UNCLOS and the proportionality of retaliatory strikes.",
         "study_links": [
             {
                 "label": "UNSC Resolution 2722 (Full Text)",
@@ -292,16 +388,24 @@ export const frontData = {
                 "url": "https://www.imo.org/en/MediaCentre/HotTopics/Pages/MaritimeSecurity.aspx"
             },
             {
-                "label": "CSIS: Trade Route Vulnerability",
+                "label": "CSIS: Maritime Trade Vulnerabilities",
                 "url": "https://www.csis.org/analysis/houthi-attacks-red-sea"
+            },
+            {
+                "label": "Bloomberg: Shipping Cost Index 2026",
+                "url": "https://www.bloomberg.com/search?query=Red%20Sea"
+            },
+            {
+                "label": "MEI: Houthi Asymmetrical Capability",
+                "url": "https://www.mei.edu/publications/houthi-capabilities-and-red-sea-security"
             }
         ],
         "detailed": {
             "allies": "US CENTCOM, Royal Navy, EU Aspides",
-            "adversaries": "Houthis, IRGC-N",
+            "adversaries": "Houthis (Ansar Allah), IRGC-N",
             "fronts": "Bab al-Mandab, Aden",
             "effects": "Supply chain hyper-inflation",
-            "damages": "15 major vessels lost"
+            "damages": "15 major container vessels lost"
         },
         "intensity": 81,
         "location": "Strait of Bab al-Mandab",
@@ -310,18 +414,18 @@ export const frontData = {
     "syria": {
         "id": "syria",
         "title": "Syrian Proxy Theater",
-        "subtitle": "Levant Interior Strategic Front",
+        "subtitle": "Levant Interior Front",
         "status": "Sustained Air Campaign",
         "engaged": "Sept 15, 2025",
         "resolutions": [
             "UNSC Res 2254 (Syria Peace)",
             "UNSC Res 2401 (Ceasefire)"
         ],
-        "summary": "The 'War between Wars' has entered a high-velocity phase. Israel conducts strikes targeting the Iranian 'Land Bridge' corridor.",
-        "context": "Meeting point for IRGC, Hezbollah, and Russian Aerospace Forces. Territory used as a springboard for multi-front attacks.",
-        "history": "Since 2011, civil war has fragmented the state. Focus has shifted to regional proxy consolidation under a Russian umbrella.",
-        "damages": "Damascus and Aleppo Airports disabled; 40+ logistical hubs destroyed; severe damage to state air defenses.",
-        "study_note": "Evaluate sovereignty challenges when state territory is used as a military corridor by third parties.",
+        "summary": "The 'War between Wars' has entered a high-velocity phase. Israel conducts air strikes targeting the 'Land Bridge' corridor through which Iran transfers munitions to Hezbollah.",
+        "context": "Syria is theMeeting point for IRGC, Hezbollah, and Russian Aerospace Forces. While the state remains 'frozen,' its territory is used as a springboard for multi-front attacks.",
+        "history": "Since 2011, civil war has fragmented the state. In 2026, the focus has shifted from internal rebellion to regional proxy consolidation under a Russian strategic umbrella.",
+        "damages": "Damascus and Aleppo Airports repeatedly disabled; 40+ logistical hubs destroyed; severe damage to state air defense network.",
+        "study_note": "Evaluate sovereignty challenges when state territory is used as a military corridor, and the legality of cross-border strikes.",
         "study_links": [
             {
                 "label": "UNSC Resolution 2254 (Full Text)",
@@ -336,8 +440,16 @@ export const frontData = {
                 "url": "https://etanasyria.org/"
             },
             {
-                "label": "Foreign Policy: Levant Struggles",
+                "label": "Foreign Policy: Levant Power Struggles",
                 "url": "https://foreignpolicy.com/category/syria/"
+            },
+            {
+                "label": "Washington Institute: IRGC Land Bridge",
+                "url": "https://www.washingtoninstitute.org/policy-analysis/syria-war-between-wars"
+            },
+            {
+                "label": "Enab Baladi: Independent Syrian Voice",
+                "url": "https://english.enabbaladi.net/"
             }
         ],
         "detailed": {
@@ -345,7 +457,7 @@ export const frontData = {
             "adversaries": "Israel, USA, Turkey",
             "fronts": "Damascus, Aleppo",
             "effects": "State fragmentation",
-            "damages": "75% of airfields disabled"
+            "damages": "75% of state airfields disabled"
         },
         "intensity": 65,
         "location": "Damascus / Aleppo",
@@ -354,18 +466,18 @@ export const frontData = {
     "westbank": {
         "id": "westbank",
         "title": "West Bank Escalation",
-        "subtitle": "Civilian-Military Internal Front",
+        "subtitle": "Civilian-Military Front",
         "status": "Internal Insurgency",
         "engaged": "March 2025",
         "resolutions": [
             "UNSC Res 2334 (Settlements)",
             "UNSC Res 242 (Withdrawal)"
         ],
-        "summary": "Collapse of PA security control leading to decentralized resistance cells in Jenin and Nablus.",
-        "context": "Israel has responded with Operation 'Shield and Arrow II'. Vacuum created by economic collapse of central governance.",
-        "history": "Occupied since 1967. 2025-2026 marks the formal end of the Oslo era and the emergence of localized insurgency.",
-        "damages": "Jenin refugee camp 60% destroyed; movement restriction for 3.1M Palestinians; record settler violence.",
-        "study_note": "Investigate legal implications of 'Authority Collapse' and occupier responsibilities.",
+        "summary": "The collapse of PA security control has led to decentralized resistance. Local militant groups in Jenin and Nablus operate independently of any central political command.",
+        "context": "Israel has responded with the largest military operation since 2002. Economic collapse of the PA created a vacuum where informal security cells have replaced municipal governance.",
+        "history": "Occupied since 1967. The 2025-2026 period represents the formal end of the Oslo era and the emergence of a multi-polar, localized insurgency.",
+        "damages": "Jenin refugee camp 60% destroyed; total movement restriction for 3.1M; record levels of civilian and settler violence.",
+        "study_note": "Investigate legal implications of 'Authority Collapse' and responsibilities of the occupying power for civil services.",
         "study_links": [
             {
                 "label": "UNSC Resolution 2334 (Full Text)",
@@ -376,20 +488,28 @@ export const frontData = {
                 "url": "https://www.btselem.org/"
             },
             {
-                "label": "Peace Now: Settlement Data",
+                "label": "Peace Now: Settlement Expansion Data",
                 "url": "https://peacenow.org.il/en/"
             },
             {
                 "label": "Palestinian Authority: Wafa Archive",
                 "url": "https://www.wafanews.ps/en/"
+            },
+            {
+                "label": "Breaking the Silence: IDF Testimonies",
+                "url": "https://www.breakingthesilence.org.il/"
+            },
+            {
+                "label": "OCHA: Settlement Reports",
+                "url": "https://www.ochaopt.org/reports/situation-reports"
             }
         ],
         "detailed": {
             "allies": "UN, EU (Humanitarian)",
             "adversaries": "IDF, Militant Cells",
             "fronts": "Jenin, Nablus, Hebron",
-            "effects": "Governance collapse",
-            "damages": "Camp infrastructure leveled"
+            "effects": "Governance collapse; Third Intifada",
+            "damages": "Refugee camp infrastructure leveled"
         },
         "intensity": 58,
         "location": "Jenin / Nablus",
@@ -402,26 +522,29 @@ export const matrixData = [
         "id": "usa",
         "name": "United States of America",
         "type": "Permanent Member (P5)",
-        "alignment": "Side A",
+        "alignment": "Side A (Western/Pro-Israel)",
         "color": "bg-blue-600",
-        "detail": "The United States maintains a decisive military posture defending Israeli sovereignty and maritime freedom. Leads the 'Prosperity Guardian' coalition in the Red Sea. US policy focuses on preventing nuclear breakout while managing a multi-front containment strategy.",
-        "flag": "https://flagsapi.com/US/flat/64.png",
+        "detail": "The United States maintains a decisive military and diplomatic posture anchored in the defense of Israeli sovereignty and the preservation of global maritime freedom. As the primary veto power for the Western bloc, the US leads the 'Prosperity Guardian' coalition in the Red Sea, directly engaging Ansar Allah forces to secure the Suez trade artery. US policy is currently focused on preventing a regional nuclear breakout while managing a multi-front containment strategy against the Axis of Resistance. Domestically, the administration faces significant pressure regarding the conditions of arms exports.",
+        "flag": "/flags/us.svg",
         "iso": "US",
         "stats": {
-            "area": "9.8M km\u00b2",
+            "area": "9,833,517 km\u00b2",
             "population": "333 Million",
-            "joined_un": "Oct 24, 1945",
-            "economy": "7.3 Trillion",
+            "joined_un": "Oct 24, 1945 (Founder)",
+            "economy": "7.3 Trillion (World Leader)",
             "allies": [
                 "Israel",
                 "UK",
                 "Germany",
                 "Japan",
-                "Bahrain"
+                "Bahrain",
+                "Jordan"
             ],
             "adversaries": [
                 "Iran",
-                "Houthis"
+                "IRGC",
+                "Houthis",
+                "Hezbollah"
             ],
             "groups": [
                 "G7",
@@ -433,7 +556,7 @@ export const matrixData = [
         },
         "links": [
             {
-                "label": "State Dept",
+                "label": "Department of State",
                 "url": "https://www.state.gov/"
             },
             {
@@ -446,21 +569,22 @@ export const matrixData = [
         "id": "uk",
         "name": "United Kingdom",
         "type": "Permanent Member (P5)",
-        "alignment": "Side A",
+        "alignment": "Side A (Western/Pro-Israel)",
         "color": "bg-blue-800",
-        "detail": "Coordinates high-intensity maritime enforcement with the US. Policy prioritizes UNSC maritime safety resolutions and protecting the Bab al-Mandab strait. Londres maintains a rigid stance on naval escalations.",
-        "flag": "https://flagsapi.com/GB/flat/64.png",
+        "detail": "The United Kingdom coordinates a high-intensity maritime enforcement strategy in close synchronization with the US. UK policy prioritizes the enforcement of UNSC maritime safety resolutions and the protection of global trade supply chains through the Bab al-Mandab strait. London maintains a rigid stance on IRGC naval escalations and serves as a key architect of targeted strike protocols against non-state blockade actors. The UK also plays a critical role in Jordan's security architecture.",
+        "flag": "/flags/gb.svg",
         "iso": "GB",
         "stats": {
-            "area": "242K km\u00b2",
+            "area": "242,495 km\u00b2",
             "population": "67 Million",
-            "joined_un": "Oct 24, 1945",
-            "economy": ".3 Trillion",
+            "joined_un": "Oct 24, 1945 (Founder)",
+            "economy": ".3 Trillion (Services Giant)",
             "allies": [
                 "USA",
                 "Israel",
                 "EU",
-                "Australia"
+                "Australia",
+                "Oman"
             ],
             "adversaries": [
                 "Iran",
@@ -470,13 +594,18 @@ export const matrixData = [
                 "G7",
                 "G20",
                 "NATO",
-                "AUKUS"
+                "AUKUS",
+                "Commonwealth"
             ]
         },
         "links": [
             {
                 "label": "Gov.UK Portal",
                 "url": "https://www.gov.uk/"
+            },
+            {
+                "label": "Foreign Office",
+                "url": "https://www.gov.uk/government/organisations/foreign-commonwealth-development-office"
             }
         ]
     },
@@ -484,30 +613,33 @@ export const matrixData = [
         "id": "russia",
         "name": "Russian Federation",
         "type": "Permanent Member (P5)",
-        "alignment": "Side B",
+        "alignment": "Side B (Axis/Global South Critic)",
         "color": "bg-red-800",
-        "detail": "Acts as the primary geopolitical counterweight to Western influence. Maintains deep strategic ties with Tehran and Damascus. Moscow viewing current shift as pivot toward multi-polar world order.",
-        "flag": "https://flagsapi.com/RU/flat/64.png",
+        "detail": "The Russian Federation acts as the primary geopolitical counterweight to Western influence in the Levant. Moscow maintains deep strategic and military intelligence ties with Tehran and Damascus, viewing the current regional shift as a pivot toward a multi-polar world order. Russia's primary objective is the preservation of the Syrian state framework and the disruption of US-led security architectures. Moscow utilizes its Tartus naval base as a logistical hub for Axis operations.",
+        "flag": "/flags/ru.svg",
         "iso": "RU",
         "stats": {
-            "area": "17M km\u00b2",
+            "area": "17,098,246 km\u00b2",
             "population": "144 Million",
-            "joined_un": "Oct 24, 1945",
-            "economy": ".2 Trillion",
+            "joined_un": "Oct 24, 1945 (as USSR)",
+            "economy": ".2 Trillion (Resource Leader)",
             "allies": [
                 "Iran",
                 "Syria",
                 "China",
-                "Belarus"
+                "Belarus",
+                "Algeria"
             ],
             "adversaries": [
                 "USA",
-                "NATO"
+                "NATO",
+                "EU"
             ],
             "groups": [
                 "G20",
                 "BRICS+",
                 "SCO",
+                "CSTO",
                 "UNSC"
             ]
         },
@@ -515,6 +647,10 @@ export const matrixData = [
             {
                 "label": "MFA Russia",
                 "url": "https://www.mid.ru/en/"
+            },
+            {
+                "label": "Kremlin English",
+                "url": "http://en.kremlin.ru/"
             }
         ]
     },
@@ -522,28 +658,30 @@ export const matrixData = [
         "id": "china",
         "name": "People\u2019s Republic of China",
         "type": "Permanent Member (P5)",
-        "alignment": "Side C",
+        "alignment": "Side C (Neutral/Balancer)",
         "color": "bg-red-600",
-        "detail": "Strategic Neutrality focusing heavily on regional economic stability. Advocates for non-interventionist approach while implementing 'Belt and Road' safeguards.",
-        "flag": "https://flagsapi.com/CN/flat/64.png",
+        "detail": "China maintains a strategy of 'Strategic Neutrality,' focusing heavily on regional economic stability and energy security. As a major consumer of Persian Gulf energy, Beijing advocates for a non-interventionist, multi-aligned approach. China's primary diplomatic vector is the mediation of trade protections and the implementation of 'Belt and Road' safeguards. Beijing continues to position itself as the 'Reasonable Power' following the 2023 Iran-Saudi normalization.",
+        "flag": "/flags/cn.svg",
         "iso": "CN",
         "stats": {
-            "area": "9.6M km\u00b2",
+            "area": "9,596,961 km\u00b2",
             "population": "1.41 Billion",
             "joined_un": "Oct 24, 1945",
-            "economy": "7.7 Trillion",
+            "economy": "7.7 Trillion (Manufacturing)",
             "allies": [
                 "Russia",
                 "Iran",
-                "Pakistan"
+                "Pakistan",
+                "Global South"
             ],
             "adversaries": [
-                "None"
+                "None (Formal)"
             ],
             "groups": [
                 "G20",
                 "BRICS+",
                 "SCO",
+                "AIIB",
                 "UNSC"
             ]
         },
@@ -551,6 +689,10 @@ export const matrixData = [
             {
                 "label": "Gov.CN Portal",
                 "url": "http://english.www.gov.cn/"
+            },
+            {
+                "label": "MFA China",
+                "url": "https://www.fmprc.gov.cn/mfa_eng/"
             }
         ]
     },
@@ -558,21 +700,22 @@ export const matrixData = [
         "id": "france",
         "name": "France",
         "type": "Permanent Member (P5)",
-        "alignment": "Side C",
+        "alignment": "Side C (Neutral/Balancer)",
         "color": "bg-indigo-600",
-        "detail": "Emphasizes state-led diplomacy and prevention of institutional collapse in Lebanon. Revitalization of UNIFIL mandate is primary 2026 focus.",
-        "flag": "https://flagsapi.com/FR/flat/64.png",
+        "detail": "France maintains an independent diplomatic position, emphasizing state-led diplomacy and the prevention of total institutional collapse in Lebanon. Paris frequently acts as a bridge between the Western security framework and regional Arab sentiment. France's primary focus in 2026 is the revitalization of the UNIFIL mandate and the stabilization of the Levant through humanitarian-focused legal frameworks.",
+        "flag": "/flags/fr.svg",
         "iso": "FR",
         "stats": {
-            "area": "551K km\u00b2",
+            "area": "551,695 km\u00b2",
             "population": "68 Million",
-            "joined_un": "Oct 24, 1945",
-            "economy": ".0 Trillion",
+            "joined_un": "Oct 24, 1945 (Founder)",
+            "economy": ".0 Trillion (High-Tech)",
             "allies": [
                 "USA",
                 "EU",
                 "Lebanon",
-                "Germany"
+                "Germany",
+                "Morocco"
             ],
             "adversaries": [
                 "Non-State Militants"
@@ -589,6 +732,10 @@ export const matrixData = [
             {
                 "label": "Diplomatie",
                 "url": "https://www.diplomatie.gouv.fr/en/"
+            },
+            {
+                "label": "\u00c9lys\u00e9e English",
+                "url": "https://www.elysee.fr/en/"
             }
         ]
     },
@@ -596,23 +743,25 @@ export const matrixData = [
         "id": "germany",
         "name": "Germany",
         "type": "Non-Permanent Member",
-        "alignment": "Side A",
+        "alignment": "Side A (Western/Pro-Israel)",
         "color": "bg-amber-600",
-        "detail": "Aligns with Western security framework prioritizing maritime safety and defensive arms provision to regional allies.",
-        "flag": "https://flagsapi.com/DE/flat/64.png",
+        "detail": "Germany strongly aligns with the Western security framework, prioritizing maritime safety, counter-terrorism, and the continuous provision of defensive arms. Berlin's policy is anchored in the 'Responsibility to Protect' (R2P) norm and the rigorous enforcement of trade protocols. Germany acts as a primary advocate for G7 solidarity against proxy escalations.",
+        "flag": "/flags/de.svg",
         "iso": "DE",
         "stats": {
-            "area": "357K km\u00b2",
+            "area": "357,022 km\u00b2",
             "population": "84 Million",
-            "joined_un": "1973",
-            "economy": ".4 Trillion",
+            "joined_un": "Sept 18, 1973",
+            "economy": ".4 Trillion (EU Engine)",
             "allies": [
                 "USA",
                 "Israel",
-                "EU"
+                "EU",
+                "France"
             ],
             "adversaries": [
-                "Hezbollah"
+                "Hezbollah",
+                "IRGC"
             ],
             "groups": [
                 "G7",
@@ -623,8 +772,12 @@ export const matrixData = [
         },
         "links": [
             {
-                "label": "Auswaertiges Amt",
+                "label": "Foreign Office",
                 "url": "https://www.auswaertiges-amt.de/en"
+            },
+            {
+                "label": "Bundestag",
+                "url": "https://www.bundestag.de/en"
             }
         ]
     },
@@ -632,23 +785,25 @@ export const matrixData = [
         "id": "japan",
         "name": "Japan",
         "type": "Non-Permanent Member",
-        "alignment": "Side A",
+        "alignment": "Side A (Western/Pro-Israel)",
         "color": "bg-red-500",
-        "detail": "Structural reliance on regional energy. Tokyo focuses heavily on UNCLOS and G7 coordination to secure supply chain resilience.",
-        "flag": "https://flagsapi.com/JP/flat/64.png",
+        "detail": "Japan's diplomatic vector is defined by a structural reliance on regional energy and the absolute necessity of securing trade routes through the Red Sea and Hormuz. Tokyo focuses heavily on UNCLOS and G7 coordination. Japan provides critical logistical and intelligence support to maritime coalitions while championing supply chain resilience.",
+        "flag": "/flags/jp.svg",
         "iso": "JP",
         "stats": {
-            "area": "377K km\u00b2",
+            "area": "377,975 km\u00b2",
             "population": "125 Million",
-            "joined_un": "1956",
-            "economy": ".2 Trillion",
+            "joined_un": "Dec 18, 1956",
+            "economy": ".2 Trillion (Advanced Tech)",
             "allies": [
                 "USA",
                 "G7",
-                "GCC"
+                "GCC",
+                "Australia",
+                "India"
             ],
             "adversaries": [
-                "Blockaders"
+                "Trade Blockaders"
             ],
             "groups": [
                 "G7",
@@ -667,23 +822,25 @@ export const matrixData = [
         "id": "bahrain",
         "name": "Bahrain",
         "type": "Non-Permanent Member",
-        "alignment": "Side A",
+        "alignment": "Side A (Western/Pro-Israel)",
         "color": "bg-red-700",
-        "detail": "Only Arab nation to explicitly join the US Red Sea coalition. Protects regional financial hub status against IRGC influence.",
-        "flag": "https://flagsapi.com/BH/flat/64.png",
+        "detail": "Bahrain is the only Arab nation to explicitly join the US-led maritime coalition. Manama's policy is defined by a need to secure internal sovereignty against IRGC-linked influence and protect its status as a regional financial hub. Bahrain serves as a tactical bridge between Western security and the GCC.",
+        "flag": "/flags/bh.svg",
         "iso": "BH",
         "stats": {
             "area": "765 km\u00b2",
             "population": "1.5 Million",
-            "joined_un": "1971",
-            "economy": "4 Billion",
+            "joined_un": "Sept 21, 1971",
+            "economy": "4 Billion (Banking / Oil)",
             "allies": [
                 "USA",
                 "Saudi Arabia",
-                "UAE"
+                "UAE",
+                "UK"
             ],
             "adversaries": [
-                "Houthis"
+                "Houthis",
+                "IRGC Proxy Nodes"
             ],
             "groups": [
                 "GCC",
@@ -702,16 +859,16 @@ export const matrixData = [
         "id": "southafrica",
         "name": "South Africa",
         "type": "Non-Permanent Member",
-        "alignment": "Side B",
+        "alignment": "Side B (Axis/Global South Critic)",
         "color": "bg-green-600",
-        "detail": "Drives legal debate utilizing ICJ genocide litigation. Pretoria champions sovereign rights of the Global South.",
-        "flag": "https://flagsapi.com/ZA/flat/64.png",
+        "detail": "South Africa drives the legal and judicial debate, utilizing international frameworks and ICJ litigation to challenge regional occupations. Pretoria advocates for a radical shift in Council power dynamics, frequently critiquing Western 'double standards' and championing the sovereign rights of the Global South.",
+        "flag": "/flags/za.svg",
         "iso": "ZA",
         "stats": {
-            "area": "1.2M km\u00b2",
+            "area": "1,221,037 km\u00b2",
             "population": "60 Million",
-            "joined_un": "1945",
-            "economy": "80 Billion",
+            "joined_un": "Nov 7, 1945",
+            "economy": "80 Billion (Mining Hub)",
             "allies": [
                 "Palestine",
                 "BRICS",
@@ -730,6 +887,10 @@ export const matrixData = [
             {
                 "label": "Gov.ZA Portal",
                 "url": "https://www.gov.za/"
+            },
+            {
+                "label": "DIRCO",
+                "url": "http://www.dirco.gov.za/"
             }
         ]
     },
@@ -737,23 +898,24 @@ export const matrixData = [
         "id": "turkiye",
         "name": "Republic of T\u00fcrkiye",
         "type": "Non-Permanent Member",
-        "alignment": "Side B",
+        "alignment": "Side B (Axis/Global South Critic)",
         "color": "bg-red-600",
-        "detail": "NATO wildcard critiquing Western policy. Advocates for humanitarian corridors and regional Islamic coalition-building.",
-        "flag": "https://flagsapi.com/TR/flat/64.png",
+        "detail": "T\u00fcrkiye acts as a NATO wildcard, fiercely critiquing Western regional policy while advocating for a regional Islamic security coalition. Ankara's focus is on humanitarian corridors and protecting territorial integrity. T\u00fcrkiye maintains a high-intensity air campaign while serving as a regional logistics mediator.",
+        "flag": "/flags/tr.svg",
         "iso": "TR",
         "stats": {
-            "area": "783K km\u00b2",
+            "area": "783,356 km\u00b2",
             "population": "85 Million",
-            "joined_un": "1945",
-            "economy": ".1 Trillion",
+            "joined_un": "Oct 24, 1945",
+            "economy": ".1 Trillion (Logistics Hub)",
             "allies": [
+                "Azerbaijan",
                 "Qatar",
                 "Somalia",
                 "Libya"
             ],
             "adversaries": [
-                "Militant Groups"
+                "Militant Separatists"
             ],
             "groups": [
                 "G20",
@@ -765,6 +927,10 @@ export const matrixData = [
             {
                 "label": "MFA T\u00fcrkiye",
                 "url": "https://www.mfa.gov.tr/"
+            },
+            {
+                "label": "Presidency",
+                "url": "https://www.tccb.gov.tr/en/"
             }
         ]
     },
@@ -772,19 +938,20 @@ export const matrixData = [
         "id": "algeria",
         "name": "Algeria",
         "type": "Non-Permanent Member",
-        "alignment": "Side B",
+        "alignment": "Side B (Axis/Global South Critic)",
         "color": "bg-emerald-600",
-        "detail": "Hardline anti-normalization stance in Arab League. Champions anti-imperialist rhetoric and sovereignty.",
-        "flag": "https://flagsapi.com/DZ/flat/64.png",
+        "detail": "Algeria represents the hardline anti-normalization stance within the Arab League. Algiers utilize its position to champion anti-imperialist rhetoric and challenge foreign military presence. Algeria's policy is anchored in the 'National Sovereignty' doctrine, acting as a diplomatic voice for the Axis in Africa.",
+        "flag": "/flags/dz.svg",
         "iso": "DZ",
         "stats": {
-            "area": "2.3M km\u00b2",
+            "area": "2,381,741 km\u00b2",
             "population": "45 Million",
-            "joined_un": "1962",
-            "economy": "40 Billion",
+            "joined_un": "Oct 8, 1962",
+            "economy": "40 Billion (Energy)",
             "allies": [
                 "Palestine",
                 "Russia",
+                "South Africa",
                 "Syria"
             ],
             "adversaries": [
@@ -793,7 +960,8 @@ export const matrixData = [
             "groups": [
                 "Arab League",
                 "AU",
-                "OPEC"
+                "OPEC",
+                "OIC"
             ]
         },
         "links": [
@@ -807,20 +975,21 @@ export const matrixData = [
         "id": "syria",
         "name": "Syrian Arab Republic",
         "type": "Non-Permanent Member",
-        "alignment": "Side B",
+        "alignment": "Side B (Axis/Global South Critic)",
         "color": "bg-red-500",
-        "detail": "Primary theater of spillover; transit corridor for Axis resistance network and IRGC command logistics.",
-        "flag": "https://flagsapi.com/SY/flat/64.png",
+        "detail": "The Syrian Arab Republic is a primary theater of spillover, serving as a transit corridor for the Axis network. Damascus maintains a deep structural alliance with Moscow and Tehran, focusing its policy on the restoration of territorial control and removal of foreign forces targeting its infrastructure.",
+        "flag": "/flags/sy.svg",
         "iso": "SY",
         "stats": {
-            "area": "185K km\u00b2",
+            "area": "185,180 km\u00b2",
             "population": "23 Million",
-            "joined_un": "1945",
-            "economy": "5 Billion",
+            "joined_un": "Oct 24, 1945",
+            "economy": "5 Billion (Est.)",
             "allies": [
                 "Russia",
                 "Iran",
-                "Hezbollah"
+                "Hezbollah",
+                "Algeria"
             ],
             "adversaries": [
                 "Israel",
@@ -843,20 +1012,21 @@ export const matrixData = [
         "id": "egypt",
         "name": "Egypt",
         "type": "Non-Permanent Member",
-        "alignment": "Side C",
+        "alignment": "Side C (Neutral/Balancer)",
         "color": "bg-green-700",
-        "detail": "Manages Rafah border and humanitarian logistics while protecting peace treaty with Israel.",
-        "flag": "https://flagsapi.com/EG/flat/64.png",
+        "detail": "Egypt manages the critical Rafah border and humanitarian logistics while protecting its peace treaty with Israel. Cairo's policy focuses on containment of war spillover and prevention of mass displacement. Egypt acts as a primary mediator for hostage negotiations and regional ceasefire frameworks.",
+        "flag": "/flags/eg.svg",
         "iso": "EG",
         "stats": {
-            "area": "1M km\u00b2",
+            "area": "1,010,408 km\u00b2",
             "population": "112 Million",
-            "joined_un": "1945",
-            "economy": "00 Billion",
+            "joined_un": "Oct 24, 1945",
+            "economy": "00 Billion (Suez Logistics)",
             "allies": [
                 "Saudi Arabia",
                 "USA",
-                "Jordan"
+                "Jordan",
+                "UAE"
             ],
             "adversaries": [
                 "Border Destabilization"
@@ -864,7 +1034,8 @@ export const matrixData = [
             "groups": [
                 "BRICS+",
                 "Arab League",
-                "AU"
+                "AU",
+                "OIC"
             ]
         },
         "links": [
@@ -878,19 +1049,20 @@ export const matrixData = [
         "id": "qatar",
         "name": "Qatar",
         "type": "Non-Permanent Member",
-        "alignment": "Side C",
+        "alignment": "Side C (Neutral/Balancer)",
         "color": "bg-purple-700",
-        "detail": "Ultimate diplomatic backchannel for hostage releases and regional de-escalation mediation.",
-        "flag": "https://flagsapi.com/QA/flat/64.png",
+        "detail": "Qatar serves as the ultimate diplomatic backchannel for the negotiation of hostage releases and brokers regional ceasefires. Doha utilizes its financial leverage and media influence to maintain communication between all parties, while hosting critical US military infrastructure.",
+        "flag": "/flags/qa.svg",
         "iso": "QA",
         "stats": {
-            "area": "11K km\u00b2",
+            "area": "11,586 km\u00b2",
             "population": "2.7 Million",
-            "joined_un": "1971",
-            "economy": "35 Billion",
+            "joined_un": "Sept 21, 1971",
+            "economy": "35 Billion (LNG Global Leader)",
             "allies": [
                 "Turkey",
-                "USA (MNNA)"
+                "USA (MNNA)",
+                "Gaza (Mediation)"
             ],
             "adversaries": [
                 "Regional Polarization"
@@ -912,20 +1084,21 @@ export const matrixData = [
         "id": "india",
         "name": "India",
         "type": "Non-Permanent Member",
-        "alignment": "Side C",
+        "alignment": "Side C (Neutral/Balancer)",
         "color": "bg-orange-600",
-        "detail": "Balances defense partnership with Israel vs structural reliance on Arab energy and diaspora.",
-        "flag": "https://flagsapi.com/IN/flat/64.png",
+        "detail": "India balances strategic defense with Israel against structural reliance on Arab energy. New Delhi's policy emphasizes 'Stability and Rule-Based Order' in maritime trade while avoiding direct military alignment. India focuses on protecting its citizens and securing Arabian Sea routes.",
+        "flag": "/flags/in.svg",
         "iso": "IN",
         "stats": {
-            "area": "3.2M km\u00b2",
+            "area": "3,287,263 km\u00b2",
             "population": "1.43 Billion",
-            "joined_un": "1945",
-            "economy": ".7 Trillion",
+            "joined_un": "Oct 30, 1945",
+            "economy": ".7 Trillion (Service Hub)",
             "allies": [
                 "USA",
                 "Israel",
-                "Russia"
+                "Russia",
+                "UAE"
             ],
             "adversaries": [
                 "Maritime Terrorists"
@@ -948,16 +1121,16 @@ export const matrixData = [
         "id": "israel",
         "name": "State of Israel",
         "type": "Observer State",
-        "alignment": "Side A",
+        "alignment": "Side A (Western/Pro-Israel)",
         "color": "bg-blue-500",
-        "detail": "Direct combatant focusing on survival and existential defense under UN Charter Article 51.",
-        "flag": "https://flagsapi.com/IL/flat/64.png",
+        "detail": "Direct combatant focusing on sovereign survival and existential defense under UN Charter Article 51. Israel's policy is defined by neutralizing the 'Ring of Fire' and eliminating non-state governance on its borders, prioritizing military objectives over multi-lateral compromises.",
+        "flag": "/flags/il.svg",
         "iso": "IL",
         "stats": {
-            "area": "22K km\u00b2",
+            "area": "22,072 km\u00b2",
             "population": "9.8 Million",
-            "joined_un": "1949",
-            "economy": "20 Billion",
+            "joined_un": "May 11, 1949",
+            "economy": "20 Billion (High-Tech Hub)",
             "allies": [
                 "USA",
                 "Germany",
@@ -966,6 +1139,7 @@ export const matrixData = [
             ],
             "adversaries": [
                 "Iran",
+                "Hezbollah",
                 "Hamas"
             ],
             "groups": [
@@ -983,29 +1157,31 @@ export const matrixData = [
         "id": "uae",
         "name": "United Arab Emirates",
         "type": "Observer State",
-        "alignment": "Side A",
+        "alignment": "Side A (Western/Pro-Israel)",
         "color": "bg-emerald-500",
-        "detail": "Abraham Accords signatory; modernized regional stabilization via high-tech economic diversification.",
-        "flag": "https://flagsapi.com/AE/flat/64.png",
+        "detail": "Signatory of the Abraham Accords; champions a pragmatic, modernized vision for regional stabilization. Abu Dhabi focuses on protecting maritime trade hubs and expanding economic cooperation as a path to peace, aligning with Western security frameworks.",
+        "flag": "/flags/ae.svg",
         "iso": "AE",
         "stats": {
-            "area": "83K km\u00b2",
+            "area": "83,600 km\u00b2",
             "population": "9.5 Million",
-            "joined_un": "1971",
-            "economy": "00 Billion",
+            "joined_un": "Dec 9, 1971",
+            "economy": "00 Billion (Trade Hub)",
             "allies": [
                 "Saudi Arabia",
                 "USA",
-                "Israel"
+                "Israel",
+                "Egypt"
             ],
             "adversaries": [
-                "Extremist Movements"
+                "Extremist Ideologies"
             ],
             "groups": [
                 "BRICS+",
                 "GCC",
                 "Arab League",
-                "OPEC"
+                "OPEC",
+                "OIC"
             ]
         },
         "links": [
@@ -1019,20 +1195,21 @@ export const matrixData = [
         "id": "palestine",
         "name": "State of Palestine",
         "type": "Observer State",
-        "alignment": "Side B",
+        "alignment": "Side B (Axis/Global South Critic)",
         "color": "bg-green-800",
-        "detail": "Direct combatant; relief, occupation law, and statehood recognition focus in UN diplomacy.",
-        "flag": "https://flagsapi.com/PS/flat/64.png",
+        "detail": "Direct combatant focusing on immediate relief, occupation law, and statehood recognition. Ramallah advocates for UNSC Res 242 and protection of civilian infrastructure. Palestine's diplomatic vector centers on self-determination and legal challenges at the UN.",
+        "flag": "/flags/ps.svg",
         "iso": "PS",
         "stats": {
-            "area": "6K km\u00b2",
+            "area": "6,020 km\u00b2",
             "population": "5.5 Million",
-            "joined_un": "Observer (2012)",
-            "economy": "9 Billion",
+            "joined_un": "Observer Status (2012)",
+            "economy": "9 Billion (Aid Dependent)",
             "allies": [
                 "Algeria",
                 "South Africa",
-                "Arab League"
+                "Arab League",
+                "OIC"
             ],
             "adversaries": [
                 "Israeli Occupation"
@@ -1054,20 +1231,21 @@ export const matrixData = [
         "id": "iran",
         "name": "Islamic Republic of Iran",
         "type": "Observer State",
-        "alignment": "Side B",
+        "alignment": "Side B (Axis/Global South Critic)",
         "color": "bg-green-700",
-        "detail": "Strategic godfather to the regional resistance network; asserts sovereign rights to nuclear development.",
-        "flag": "https://flagsapi.com/IR/flat/64.png",
+        "detail": "Strategic godfather to the regional resistance network, actively challenging Western military presence. Tehran's policy centers on asserting sovereign rights to nuclear development and protecting its 'Strategic Depth' through non-state partners.",
+        "flag": "/flags/ir.svg",
         "iso": "IR",
         "stats": {
-            "area": "1.6M km\u00b2",
+            "area": "1,648,195 km\u00b2",
             "population": "89 Million",
-            "joined_un": "1945",
-            "economy": "25 Billion",
+            "joined_un": "Oct 24, 1945",
+            "economy": "25 Billion (Energy Leader)",
             "allies": [
                 "Russia",
                 "Syria",
-                "Hezbollah"
+                "Hezbollah",
+                "Houthis"
             ],
             "adversaries": [
                 "USA",
@@ -1092,29 +1270,32 @@ export const matrixData = [
         "id": "saudi",
         "name": "Kingdom of Saudi Arabia",
         "type": "Observer State",
-        "alignment": "Side C",
+        "alignment": "Side C (Neutral/Balancer)",
         "color": "bg-green-600",
-        "detail": "Regional economic powerhouse balancing structural defense rivalries with Iran vs Vision 2030 goals.",
-        "flag": "https://flagsapi.com/SA/flat/64.png",
+        "detail": "Major regional economic powerhouse balancing structural defense rivalries against Iran with consensus of the Arab street. Saudi policy centers on 'Stabilization Through Leadership,' navigating the divide between US security and Chinese trade.",
+        "flag": "/flags/sa.svg",
         "iso": "SA",
         "stats": {
-            "area": "2.1M km\u00b2",
+            "area": "2,149,690 km\u00b2",
             "population": "36 Million",
-            "joined_un": "1945",
-            "economy": ".1 Trillion",
+            "joined_un": "Oct 24, 1945",
+            "economy": ".1 Trillion (G20 Engine)",
             "allies": [
                 "USA",
                 "UAE",
-                "Egypt"
+                "Egypt",
+                "Bahrain"
             ],
             "adversaries": [
-                "Iranian Hegemony"
+                "Iranian Hegemony (Rivalry)"
             ],
             "groups": [
                 "G20",
+                "BRICS+",
                 "GCC",
                 "Arab League",
-                "OPEC"
+                "OPEC",
+                "OIC"
             ]
         },
         "links": [
@@ -1132,10 +1313,10 @@ export const blocData = [
         "name": "G7 (Group of Seven)",
         "group": "Global Coalitions",
         "color": "bg-indigo-600",
-        "briefing": "The Group of Seven (G7) is an intergovernmental political forum consisting of Canada, France, Germany, Italy, Japan, the United Kingdom, and the United States. It serves as a steering committee for global economic and security policy, focusing on defending democratic values and maintaining market stability.",
+        "briefing": "Political forum consisting of the world's most advanced economies, focusing on global economic steering and the defense of democratic security values.",
         "objectives": [
-            "Economic synchronization",
-            "Maritime protection",
+            "Economic stability",
+            "Protection of maritime assets",
             "Intelligence sharing"
         ],
         "red_lines": [
@@ -1168,13 +1349,15 @@ export const blocData = [
         "name": "G20",
         "group": "Global Coalitions",
         "color": "bg-slate-700",
-        "briefing": "The G20 is the premier forum for international economic cooperation. It brings together industrialized and emerging economies to coordinate on global financial stability and sustainable development, representing over 80% of global GDP.",
+        "briefing": "The premier forum for international economic cooperation, bringing together industrialized and emerging economies to coordinate on global financial stability.",
         "objectives": [
             "Financial coordination",
-            "Sustainable reconstruction"
+            "Sustainable reconstruction",
+            "Sanction mitigation"
         ],
         "red_lines": [
-            "Unilateral de-coupling"
+            "Unilateral de-coupling",
+            "Weaponization of SWIFT"
         ],
         "allies": [
             "UN",
@@ -1215,7 +1398,7 @@ export const blocData = [
         "name": "BRICS+",
         "group": "Global Coalitions",
         "color": "bg-amber-700",
-        "briefing": "BRICS+ is a grouping of major emerging economies (Brazil, Russia, India, China, South Africa, and expanded members) establishing a multi-polar world order and alternative financial architectures to increase the voice of the Global South.",
+        "briefing": "Major emerging economies establishing a multi-polar world order and alternative financial architectures to increase the voice of the Global South.",
         "objectives": [
             "Multi-polar order",
             "Alternative finance",
@@ -1231,7 +1414,7 @@ export const blocData = [
             "Iran"
         ],
         "adversaries": [
-            "Unipolar architectures"
+            "Unipolar security architectures"
         ],
         "negotiation_tip": "Emphasize sovereign equality and the NDB framework.",
         "members": [
@@ -1254,10 +1437,10 @@ export const blocData = [
         "name": "NATO",
         "group": "Security Blocs",
         "color": "bg-blue-900",
-        "briefing": "The North Atlantic Treaty Organization is a collective defense alliance ensuring the security of its 32 member states via the principle of mutual assistance (Article 5), focusing on counter-terrorism and maritime stability in the Levant.",
+        "briefing": "Intergovernmental military alliance based on the North Atlantic Treaty, ensuring the collective defense and security of member states via Article 5.",
         "objectives": [
-            "Collective defense",
-            "Maritime security",
+            "360-degree collective defense",
+            "Levant maritime security",
             "Anti-terrorism"
         ],
         "red_lines": [
@@ -1271,9 +1454,10 @@ export const blocData = [
             "Israel"
         ],
         "adversaries": [
-            "IRGC-QF"
+            "IRGC-QF",
+            "Militant actors"
         ],
-        "negotiation_tip": "Prioritize Transatlantic unity and the protection of sea-lanes.",
+        "negotiation_tip": "Prioritize Transatlantic unity and the protection of Mediterranean sea-lanes.",
         "members": [
             "USA",
             "UK",
@@ -1297,15 +1481,15 @@ export const blocData = [
         "name": "European Union",
         "group": "Security Blocs",
         "color": "bg-blue-700",
-        "briefing": "The EU is an economic and political union of 27 countries, acting as a global leader in humanitarian aid and de-escalation diplomacy, while promoting the two-state solution in the Middle East.",
+        "briefing": "Unique economic and political union of 27 European countries, acting as a global leader in humanitarian aid and de-escalation diplomacy.",
         "objectives": [
             "IHL enforcement",
             "Refugee containment",
-            "Two-state solution"
+            "Two-state solution promotion"
         ],
         "red_lines": [
             "Mediterranean instability",
-            "Targeting of aid convoys"
+            "Targeting of civilian convoys"
         ],
         "allies": [
             "USA",
@@ -1322,6 +1506,7 @@ export const blocData = [
             "Bulgaria",
             "France",
             "Germany",
+            "Greece",
             "Italy",
             "Spain",
             "Sweden",
@@ -1336,13 +1521,14 @@ export const blocData = [
         "name": "African Union",
         "group": "Regional Blocs",
         "color": "bg-green-600",
-        "briefing": "Continental body consisting of 55 member states, focused on socio-economic integration and regional security de-escalation within Africa and its immediate neighborhood.",
+        "briefing": "Continental body of 55 member states focused on socio-economic integration and regional security de-escalation.",
         "objectives": [
             "Peace operations",
+            "Anti-mercenary frameworks",
             "Continental de-escalation"
         ],
         "red_lines": [
-            "Foreign base expansion",
+            "Foreign military bases expansion",
             "Uncontrolled migration"
         ],
         "allies": [
@@ -1353,7 +1539,7 @@ export const blocData = [
         "adversaries": [
             "Insurgent networks"
         ],
-        "negotiation_tip": "Focus on Pan-African solidarity and 'Silencing the Guns'.",
+        "negotiation_tip": "Focus on solidarity and 'Silencing the Guns'.",
         "members": [
             "Algeria",
             "Egypt",
@@ -1373,10 +1559,11 @@ export const blocData = [
         "name": "GCC",
         "group": "Regional Blocs",
         "color": "bg-emerald-700",
-        "briefing": "The Gulf Cooperation Council is a political and economic union of six Arab states, serving as the framework for Gulf security coordination and the protection of regional energy exports.",
+        "briefing": "Political and economic union of six Arab states, serving as the primary framework for Gulf security and energy export protection.",
         "objectives": [
             "Unified Gulf security",
-            "Protection of energy chokepoints"
+            "Protection of energy chokepoints",
+            "Financial hub stability"
         ],
         "red_lines": [
             "Iranian naval incursion",
@@ -1385,6 +1572,7 @@ export const blocData = [
         "allies": [
             "Saudi Arabia",
             "USA",
+            "Egypt",
             "UK"
         ],
         "adversaries": [
@@ -1408,7 +1596,7 @@ export const blocData = [
         "name": "Arab League",
         "group": "Regional Blocs",
         "color": "bg-green-800",
-        "briefing": "Regional organization of Arab states in North Africa and the Middle East coordinating collaboration to safeguard independence and promote collective Arab security.",
+        "briefing": "Regional organization of Arab states coordinating relations to safeguard independence and promote Palestinian sovereignty.",
         "objectives": [
             "Arab security",
             "Palestinian statehood",
@@ -1421,33 +1609,23 @@ export const blocData = [
         "allies": [
             "Palestine",
             "Egypt",
+            "Jordan",
             "Saudi Arabia"
         ],
         "adversaries": [
             "Normalization without statehood"
         ],
-        "negotiation_tip": "Prioritize the 2002 Arab Peace Initiative and collective sovereignty.",
+        "negotiation_tip": "Prioritize the 2002 Arab Peace Initiative and collective regional sovereignty.",
         "members": [
             "Algeria",
-            "Bahrain",
-            "Comoros",
-            "Djibouti",
             "Egypt",
             "Iraq",
             "Jordan",
-            "Kuwait",
             "Lebanon",
-            "Libya",
-            "Mauritania",
-            "Morocco",
-            "Oman",
             "Palestine",
             "Qatar",
             "Saudi Arabia",
-            "Somalia",
-            "Sudan",
             "Syria",
-            "Tunisia",
             "UAE",
             "Yemen"
         ],
@@ -1455,22 +1633,61 @@ export const blocData = [
         "website": "http://www.lasportal.org/"
     },
     {
+        "id": "saarc",
+        "name": "SAARC",
+        "group": "Regional Blocs",
+        "color": "bg-teal-600",
+        "briefing": "Union of states in South Asia promoting economic and regional integration through trade liberalization and connectivity.",
+        "objectives": [
+            "South Asian integration",
+            "Connectivity projects",
+            "Disaster management"
+        ],
+        "red_lines": [
+            "Cross-border terrorism",
+            "Humanitarian crises spillover"
+        ],
+        "allies": [
+            "OIC",
+            "ASEAN",
+            "BRICS+"
+        ],
+        "adversaries": [
+            "None"
+        ],
+        "negotiation_tip": "Emphasize regional connectivity and trade liberalization.",
+        "members": [
+            "Afghanistan",
+            "Bangladesh",
+            "Bhutan",
+            "India",
+            "Maldives",
+            "Nepal",
+            "Pakistan",
+            "Sri Lanka"
+        ],
+        "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/SAARC_Logo.svg/800px-SAARC_Logo.svg.png",
+        "website": "https://www.saarc-sec.org/"
+    },
+    {
         "id": "oic",
-        "name": "OIC (Org. of Islamic Cooperation)",
+        "name": "OIC",
         "group": "Regional Blocs",
         "color": "bg-emerald-800",
-        "briefing": "The second largest intergovernmental organization after the UN, with 57 member states aiming to safeguard the interests of the Muslim world in international peace.",
+        "briefing": "International organization aiming to safeguard and protect the interests of the Muslim world in international peace.",
         "objectives": [
             "Islamic solidarity",
-            "Humanitarian assistance"
+            "Humanitarian assistance",
+            "Protection of holy sites"
         ],
         "red_lines": [
             "Holy site desecration",
-            "External interference"
+            "External interference in Islamic states"
         ],
         "allies": [
             "Arab League",
-            "OPEC"
+            "OPEC",
+            "AU"
         ],
         "adversaries": [
             "None"
@@ -1495,10 +1712,11 @@ export const blocData = [
         "name": "OPEC",
         "group": "Global Coalitions",
         "color": "bg-blue-900",
-        "briefing": "Permanent intergovernmental organization of oil-exporting nations coordinating petroleum policies to ensure market stability and efficient supply to consumers.",
+        "briefing": "Organization of oil-exporting nations coordinating petroleum policies to ensure market stabilization and efficient supply.",
         "objectives": [
             "Energy market stability",
-            "Price coordination"
+            "Price coordination",
+            "Investment in clean energy"
         ],
         "red_lines": [
             "Forced production spikes",
@@ -1506,12 +1724,14 @@ export const blocData = [
         ],
         "allies": [
             "Russia (OPEC+)",
-            "OIC"
+            "OIC",
+            "BRICS+"
         ],
         "adversaries": [
-            "IEA"
+            "IEA",
+            "OECD Energy Consumers"
         ],
-        "negotiation_tip": "Focus on market predictability and the rejection of energy sanctions.",
+        "negotiation_tip": "Focus on market predictability and the rejection of politicized energy sanctions.",
         "members": [
             "Algeria",
             "Iran",
@@ -1521,29 +1741,30 @@ export const blocData = [
             "Nigeria",
             "Saudi Arabia",
             "UAE",
-            "Venezuela",
-            "Gabon"
+            "Venezuela"
         ],
         "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/OPEC_Logo.svg/1200px-OPEC_Logo.svg.png",
         "website": "https://www.opec.org/"
     },
     {
         "id": "sco",
-        "name": "SCO (Shanghai Cooperation Org.)",
+        "name": "SCO",
         "group": "Security Blocs",
         "color": "bg-blue-800",
-        "briefing": "Eurasian security and defense organization focusing on counter-terrorism and the protection of internal security against external 'color revolutions.'",
+        "briefing": "Eurasian security and defense organization focusing on internal security, counter-terrorism, and Eurasian integration.",
         "objectives": [
             "Eurasian security",
-            "Counter-terrorism (RATS)"
+            "Counter-terrorism (RATS)",
+            "Infrastructure security"
         ],
         "red_lines": [
             "Western military expansion",
-            "Regime change"
+            "Regime change through color revolutions"
         ],
         "allies": [
             "Russia",
             "China",
+            "India",
             "Iran"
         ],
         "adversaries": [
@@ -1568,18 +1789,20 @@ export const blocData = [
         "name": "ASEAN",
         "group": "Regional Blocs",
         "color": "bg-blue-600",
-        "briefing": "Regional union of 10 Southeast Asian states facilitating integration and peaceful dispute resolution via the 'ASEAN Way' of non-interference.",
+        "briefing": "Union of member states in Southeast Asia facilitating economic, political, and security integration among its members.",
         "objectives": [
             "Economic integration",
-            "Maritime trade freedom"
+            "Maritime trade freedom",
+            "Peaceful dispute resolution"
         ],
         "red_lines": [
             "South China Sea escalation",
-            "Conflict spillover"
+            "Conflict spillover into SE Asia"
         ],
         "allies": [
             "China",
             "USA",
+            "India",
             "Japan"
         ],
         "adversaries": [
@@ -1606,10 +1829,11 @@ export const blocData = [
         "name": "INTERPOL",
         "group": "Security Blocs",
         "color": "bg-sky-700",
-        "briefing": "Global organization facilitating worldwide police cooperation and crime control, providing technical expertise to combat transnational criminal networks.",
+        "briefing": "International organization facilitating worldwide police cooperation and crime control to combat transnational crime.",
         "objectives": [
             "Police cooperation",
-            "Counter-terrorism"
+            "Counter-terrorism",
+            "Cyber-crime intelligence"
         ],
         "red_lines": [
             "Political misuse of Red Notices",
@@ -1620,9 +1844,9 @@ export const blocData = [
             "Europol"
         ],
         "adversaries": [
-            "Criminal networks"
+            "Transnational criminal networks"
         ],
-        "negotiation_tip": "Frame all requests within the Rule of Law and technical mandates.",
+        "negotiation_tip": "Frame all requests within the Rule of Law and technical requirements.",
         "members": [
             "196 Member States (Global)"
         ],
@@ -1634,14 +1858,15 @@ export const blocData = [
         "name": "AUKUS",
         "group": "Security Blocs",
         "color": "bg-navy-900",
-        "briefing": "Trilateral security partnership sharing advanced military technology (submarines, AI) to ensure regional deterrence in the Indo-Pacific.",
+        "briefing": "Trilateral security partnership sharing advanced military technology to ensure Indo-Pacific regional deterrence.",
         "objectives": [
+            "Indo-Pacific security",
             "Advanced tech sharing",
             "Integrated deterrence"
         ],
         "red_lines": [
             "Weapons proliferation",
-            "Interference in tech transfer"
+            "Tech transfer interference"
         ],
         "allies": [
             "USA",
@@ -1650,7 +1875,8 @@ export const blocData = [
             "Japan"
         ],
         "adversaries": [
-            "China"
+            "China",
+            "Regional destabilizers"
         ],
         "negotiation_tip": "Focus on the integrated deterrence framework and undersea security.",
         "members": [

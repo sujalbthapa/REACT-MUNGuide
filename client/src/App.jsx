@@ -15,7 +15,17 @@ import RulesLibrary from './components/RulesLibrary';
 import ConstitutionLibrary from './components/ConstitutionLibrary';
 import DiplomaticBlocs from './components/DiplomaticBlocs';
 import CommitteeMatrix from './components/CommitteeMatrix';
-import { frontData, qarmas } from './data/mockData';
+import { frontData, qarmas, flagMapping } from './data/mockData';
+
+const getFlagUrl = (name) => {
+  if (!name) return null;
+  let iso = flagMapping[name];
+  if (!iso) {
+    const key = Object.keys(flagMapping).find(k => name.includes(k) || k.includes(name));
+    if (key) iso = flagMapping[key];
+  }
+  return iso ? `/flags/${iso.toLowerCase()}.svg` : null;
+};
 
 const SectionWrapper = ({ children }) => (
   <motion.div
@@ -282,6 +292,20 @@ export default function App() {
                                       <div className="space-y-3">
                                          <h4 className="text-[10px] font-black uppercase text-[#009EDB] tracking-widest border-b border-slate-100 pb-1 italic">Intelligence Context</h4>
                                          <p className="text-[13px] text-slate-600 font-bold leading-relaxed uppercase italic opacity-80">{frontData[activeFront].context}</p>
+                                      </div>
+                                      <div className="space-y-3">
+                                         <h4 className="text-[10px] font-black uppercase text-slate-400 tracking-widest border-b border-slate-100 pb-1 italic">Nations Involved</h4>
+                                         <div className="flex flex-wrap gap-2 pt-1">
+                                            {(frontData[activeFront].involvedNations || []).map(nation => {
+                                              const flag = getFlagUrl(nation);
+                                              return (
+                                                <div key={nation} className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 shadow-sm">
+                                                  {flag ? <img src={flag} alt="" className="w-4 h-2.5 object-cover" /> : <Globe className="w-3 h-3 text-slate-300" />}
+                                                  <span className="text-[8px] font-black uppercase text-navy-900 italic">{nation}</span>
+                                                </div>
+                                              );
+                                            })}
+                                         </div>
                                       </div>
                                       <div className="space-y-3">
                                          <h4 className="text-[10px] font-black uppercase text-slate-400 tracking-widest border-b border-slate-100 pb-1 italic">Binding Resolutions</h4>

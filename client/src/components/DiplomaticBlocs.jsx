@@ -20,7 +20,7 @@ const getFlagUrl = (name) => {
     if (key) iso = flagMapping[key];
   }
   
-  return iso ? `https://flagsapi.com/${iso.toUpperCase()}/flat/64.png` : null;
+  return iso ? `/flags/${iso.toLowerCase()}.svg` : null;
 };
 
 export default function DiplomaticBlocs() {
