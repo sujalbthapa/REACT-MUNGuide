@@ -196,6 +196,7 @@ export default function StudyGuidelines() {
           </div>
 
           {/* Call to Action */}
+          {/*
           <div className="p-10 bg-[#001E3D] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-xl border border-white/10 relative overflow-hidden">
              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
              <div className="flex items-center gap-6 relative z-10">
@@ -215,6 +216,7 @@ export default function StudyGuidelines() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
              </button>
           </div>
+          */}
 
         </div>
       </div>

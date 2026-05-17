@@ -52,7 +52,7 @@ app.post('/api/chat', async (req, res) => {
 
 const HF_API_URL = "https://router.huggingface.co/v1/chat/completions";
 const HF_API_KEY = process.env.HF_API_KEY;
-const NEWS_API_KEY = process.env.NEWS_API_KEY;
+
 
 // --- AI RESEARCH ENDPOINT ---
 app.post('/api/analyze', async (req, res) => {
@@ -118,105 +118,7 @@ app.post('/api/analyze', async (req, res) => {
     }
 });
 
-// --- MULTI-SOURCE LIVE NEWS ENDPOINT ---
-app.get('/api/news', async (req, res) => {
-    try {
-        const allArticles = [];
-        const seenTitles = new Set();
-        
-        // 1. Agenda Keywords (Strategic Search)
-        const agendaTerms = [
-            "Middle East", "UNSC", "Gaza", "Israel", "Iran", 
-            "Lebanon", "Hezbollah"
-        ];
-        // Use a more focused query
-        const query = agendaTerms.join(' OR ');
 
-        // Construct URLs
-        const SEARCH_URL = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&sortBy=relevancy&language=en&pageSize=20&apiKey=${NEWS_API_KEY}`;
-        const BBC_URL = "https://bbc-news-api.vercel.app/latest?lang=english";
-
-        // Parallel Fetch
-        const [searchRes, bbcRes] = await Promise.all([
-            fetch(SEARCH_URL, {
-                headers: { 'User-Agent': 'Mozilla/5.0' }
-            }).catch(() => null),
-            fetch(BBC_URL).catch(() => null)
-        ]);
-
-        // Process Agenda-Specific Search (Relevancy-based)
-        if (searchRes && searchRes.ok) {
-            const data = await searchRes.json();
-            (data.articles || []).forEach(art => {
-                if (art.title && !seenTitles.has(art.title)) {
-                    const titleLower = art.title.toLowerCase();
-                    const isRelevant = agendaTerms.some(term => titleLower.includes(term.toLowerCase()));
-
-                    if (isRelevant) {
-                        seenTitles.add(art.title);
-                        allArticles.push({
-                            id: `search-${art.url}`,
-                            type: "AGENDA",
-                            source: art.source.name || "Agency",
-                            content: art.title,
-                            time: new Date(art.publishedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                            url: art.url,
-                            priority: 1
-                        });
-                    }
-                }
-            });
-        }
- else {
-            console.error('[NewsAPI] Failed or empty response. Status:', searchRes ? searchRes.status : 'No response');
-        }
-
-        // Process BBC News
-        if (bbcRes && bbcRes.ok) {
-            const data = await bbcRes.json();
-            // The API returns an object with category keys (e.g., "Weekend reads") containing arrays of articles.
-            Object.keys(data).forEach(category => {
-                const articles = data[category];
-                if (Array.isArray(articles)) {
-                    articles.forEach(art => {
-                        // The structure uses news_link instead of link.
-                        const link = art.news_link || art.link;
-                        const title = art.title;
-                        
-                        if (title && !seenTitles.has(title)) {
-                            const isAgenda = agendaTerms.some(term => 
-                                title.toLowerCase().includes(term.toLowerCase())
-                            );
-                            
-                            if (isAgenda) {
-                                seenTitles.add(title);
-                                allArticles.push({
-                                    id: `bbc-${link}`,
-                                    type: "AGENDA",
-                                    source: "BBC News",
-                                    content: title,
-                                    time: "Recent",
-                                    url: link,
-                                    priority: 1
-                                });
-                            }
-                        }
-                    });
-                }
-            });
-        } else {
-            console.error('[News] BBC API failed or returned invalid response');
-        }
-
-        // Final sorting: Agenda first, then Premium World news, then general
-        const sorted = allArticles.sort((a, b) => a.priority - b.priority);
-        res.json(sorted.slice(0, 30));
-
-    } catch (error) {
-        console.error('[Server] Aggregated News Error:', error);
-        res.status(500).json({ error: "Failed to fetch aggregated news stream" });
-    }
-});
 
 app.listen(PORT, () => {
     console.log(`[Server] Aggregated Research Server active on port ${PORT}`);

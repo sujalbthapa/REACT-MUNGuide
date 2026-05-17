@@ -38,7 +38,6 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
     { id: 'home', icon: LayoutDashboard, label: 'Overview', to: '/' },
     { id: 'wars', icon: Swords, label: 'Active Conflicts', to: '/conflicts' },
     { id: 'matrix', icon: LayoutGrid, label: 'Committee Matrix', to: '/matrix' },
-    { id: 'advisor', icon: Brain, label: 'AI Research Advisor', to: '/advisor' },
     { id: 'law', icon: Scale, label: 'International Law', to: '/law' },
     { id: 'constitutions', icon: Landmark, label: 'Constitutions', to: '/constitutions' },
     { id: 'blocs', icon: Globe2, label: 'Global Blocs', to: '/blocs' },

@@ -452,7 +452,6 @@ export default function App() {
               } />
 
               <Route path="/matrix" element={<SectionWrapper><CommitteeMatrix /></SectionWrapper>} />
-              <Route path="/advisor" element={<SectionWrapper><IntelligenceCenter /></SectionWrapper>} />
               <Route path="/law" element={<SectionWrapper><div className="p-8 lg:p-12"><RulesLibrary /></div></SectionWrapper>} />
               <Route path="/constitutions" element={<SectionWrapper><div className="p-8 lg:p-12"><ConstitutionLibrary /></div></SectionWrapper>} />
               <Route path="/blocs" element={<SectionWrapper><DiplomaticBlocs /></SectionWrapper>} />
@@ -461,13 +460,7 @@ export default function App() {
           </AnimatePresence>
         </div>
 
-        <aside className={`${isHome ? 'w-[400px] hidden xl:flex' : 'hidden'} flex-col bg-white border-l border-slate-100 h-screen overflow-y-auto custom-scrollbar p-8 shadow-sm`}>
-             <div className="mb-10 flex items-center gap-4">
-                <Globe className="w-4 h-4 text-[#009EDB]" />
-                <h4 className="font-black text-[9px] uppercase tracking-[0.4em] text-navy-900 italic leading-none">Security_Stream</h4>
-             </div>
-             <LiveFeed />
-          </aside>
+
       </main>
 
       <style>{`
