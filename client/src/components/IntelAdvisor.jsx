@@ -24,6 +24,7 @@ GUIDELINES:
 2. Be professional, neutral, and helpful.
 3. If news is provided, use it to give "Situation Reports" (SITREPs).
 4. Do not use technical computer or coding language.
+5. Be concise. 1-3 sentences unless asked for more detail.
 `;
 
 export default function IntelAdvisor() {
@@ -74,7 +75,7 @@ export default function IntelAdvisor() {
             ...messages.map(msg => ({ role: msg.role === 'assistant' ? 'assistant' : 'user', content: msg.content })),
             { role: "user", content: input }
           ],
-          max_tokens: 800,
+          max_tokens: 400,
           temperature: 0.7,
         }),
       });

@@ -98,17 +98,10 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
           </nav>
 
           <div className="p-6 bg-black/20 border-t border-white/5">
-            <div className="p-5 border border-white/5 relative bg-[#001E3D]/50">
-              <div className="space-y-3 text-center">
-                <div className="flex justify-between text-[8px] font-black uppercase tracking-tighter">
-                  <span className="text-slate-500">System Link</span>
-                  <span className="text-[#009EDB]">CONNECTED</span>
-                </div>
-                <div className="w-full bg-white/5 h-1">
-                  <div className="w-[100%] h-full bg-[#009EDB]" />
-                </div>
-                <p className="text-slate-500 text-[8px] font-black uppercase">Official Study Guide</p>
-              </div>
+            <div className="text-center text-slate-400 text-[10px] font-medium leading-relaxed">
+              <p>Biratnagar Rotaract MUN 2026</p>
+              <p>United Nations Security Council</p>
+              <p className="font-bold text-white mt-2">Sujal Bikram Thapa</p>
             </div>
           </div>
         </div>
