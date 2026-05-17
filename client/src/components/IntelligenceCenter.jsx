@@ -1,261 +1,271 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Sparkles, Send, Loader2, Book, 
-  ChevronRight, Search, Globe, Shield, 
-  Info, AlertCircle, MessageSquare, BookOpen,
-  Brain, FileSearch, HelpCircle, Scale, Gavel
+  Brain, Send, Loader2, Sparkles, 
+  History, Info, ChevronRight, Target, Activity, 
+  Globe, X, ShieldCheck, Landmark, MessageSquare, Search
 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
-const SERVER_URL = "http://localhost:5000/api/analyze";
-
-const SUGGESTED_INQUIRIES = [
-  "What is ICCPR Article 17?",
-  "Explain Principle of Proportionality",
-  "Define 'Non-interference' in UN Charter",
-  "What does GC IV Article 33 mean?",
-  "Explain 'Responsibility to Protect'",
-  "Define Sovereignty in 2026 context"
-];
+const ANALYZE_URL = "http://localhost:5000/api/analyze";
+const HEALTH_URL = "http://localhost:5000/api/health";
 
 export default function IntelligenceCenter() {
-  const [query, setSearchQuery] = useState('');
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState('');
-  const [activeTab, setActiveFront] = useState('legal'); // 'legal' or 'dictionary'
-  const [definition, setDefinition] = useState(null);
-  const [isSearchingTerm, setIsSearchingTerm] = useState(false);
-  
+  const [query, setQuery] = useState('');
+  const [chatHistory, setChatHistory] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isOnline, setIsHomeOnline] = useState(true);
   const scrollRef = useRef(null);
 
   useEffect(() => {
+    checkHealth();
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [analysisResult]);
+  }, [chatHistory]);
 
-  const handleAnalysis = async (inputQuery) => {
-    const finalQuery = inputQuery || query;
-    if (!finalQuery.trim() || isAnalyzing) return;
-
-    setIsAnalyzing(true);
-    setAnalysisResult('');
-    setSearchQuery(finalQuery);
-    
+  const checkHealth = async () => {
     try {
-      const response = await fetch(SERVER_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: finalQuery }),
+      const res = await fetch(HEALTH_URL);
+      setIsHomeOnline(res.ok);
+    } catch {
+      setIsHomeOnline(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!query.trim() || loading) return;
+
+    const userMessage = { role: 'user', content: query };
+    setChatHistory(prev => [...prev, userMessage]);
+    setQuery('');
+    setLoading(true);
+
+    try {
+      const response = await fetch(ANALYZE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
       });
+
+      if (!response.ok) throw new Error("Connection Failure");
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
+      let aiResponse = { role: 'assistant', content: '' };
+      
+      setChatHistory(prev => [...prev, aiResponse]);
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
-        const chunk = decoder.decode(value);
-        const lines = chunk.split('\n');
-        
-        for (const line of lines) {
-          if (line.startsWith('data: ')) {
-            try {
-              const data = JSON.parse(line.slice(6));
-              const content = data.choices[0]?.delta?.content || '';
-              setAnalysisResult(prev => prev + content);
-            } catch (err) {}
-          }
-        }
+        const chunk = decoder.decode(value, { stream: true });
+        aiResponse.content += chunk;
+        setChatHistory(prev => {
+          const last = [...prev];
+          last[last.length - 1] = { ...aiResponse };
+          return last;
+        });
       }
     } catch (err) {
-      setAnalysisResult("Error: Failed to connect to research server.");
+      setChatHistory(prev => [...prev, { 
+        role: 'assistant', 
+        content: "**ERROR:** System connection lost. Please verify local research server status." 
+      }]);
     } finally {
-      setIsAnalyzing(false);
-    }
-  };
-
-  const handleTermSearch = async (term) => {
-    const finalTerm = term || query;
-    if (!finalTerm.trim() || isSearchingTerm) return;
-
-    setIsSearchingTerm(true);
-    setSearchQuery(finalTerm);
-    try {
-      const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${finalTerm.toLowerCase()}`);
-      const data = await res.json();
-      if (Array.isArray(data)) {
-        setDefinition(data[0]);
-      } else {
-        setDefinition({ word: finalTerm, meanings: [{ partOfSpeech: "n/a", definitions: [{ definition: "No technical definition found. Please use the AI Research tab for contextual explanation." }] }] });
-      }
-    } catch (err) {
-      setDefinition(null);
-    } finally {
-      setIsSearchingTerm(false);
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col h-full bg-white neo-flat overflow-hidden border-l-8 border-navy-900">
+    <div className="h-screen flex flex-col bg-white overflow-hidden">
+      
       {/* --- HEADER --- */}
-      <div className="p-8 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-        <div className="flex items-center gap-5">
-          <div className="p-3 neo-button bg-navy-900 text-white border-none shadow-lg">
-            <Scale className="w-6 h-6" />
-          </div>
-          <div>
-            <h3 className="font-black text-2xl uppercase tracking-tighter text-navy-900 leading-none italic">Legal & Concept Research</h3>
-            <p className="text-[10px] font-black uppercase text-slate-500 tracking-[0.3em] mt-2">Definitions, Provisions & Diplomatic Explanations</p>
-          </div>
+      <div className="bg-white p-5 border-b border-slate-100 flex items-center justify-between px-8 shrink-0 shadow-sm">
+        <div className="flex items-center gap-6">
+           <div className="flex items-center gap-3">
+              <div className="p-2 bg-slate-50 border border-slate-100 shadow-sm">
+                 <Brain className="w-4 h-4 text-[#009EDB]" />
+              </div>
+              <h3 className="font-black text-lg uppercase tracking-tighter text-[#001E3D] italic leading-none">
+                 Research<span className="text-[#009EDB]">_Advisor</span>
+              </h3>
+           </div>
+           <div className="h-6 w-[1px] bg-slate-200 mx-4" />
+           <p className="text-[8px] font-black uppercase text-slate-400 tracking-[0.3em] italic hidden md:block">
+              Institutional Intelligence & Situational Analysis
+           </p>
         </div>
-        
-        <div className="flex gap-2 p-1 neo-pressed bg-white border border-black/5">
-          <button 
-            onClick={() => setActiveFront('legal')}
-            className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 ${activeTab === 'legal' ? 'bg-navy-900 text-white shadow-lg' : 'text-slate-400 hover:text-navy-900'}`}
-          >
-            <Gavel className="w-3.5 h-3.5" /> Legal Explainer
-          </button>
-          <button 
-            onClick={() => setActiveFront('dictionary')}
-            className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 ${activeTab === 'dictionary' ? 'bg-navy-900 text-white shadow-lg' : 'text-slate-400 hover:text-navy-900'}`}
-          >
-            <Book className="w-3.5 h-3.5" /> Dictionary
-          </button>
+        <div className="flex items-center gap-6">
+           <div className="text-right hidden md:block">
+              <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">System Link</p>
+              <div className={`text-[9px] font-black uppercase tracking-widest flex items-center gap-2 justify-end italic ${isOnline ? 'text-green-600' : 'text-red-500'}`}>
+                 <div className={`w-1 h-1 rounded-full ${isOnline ? 'bg-green-500 animate-pulse' : 'bg-red-50'}`} />
+                 {isOnline ? 'Active' : 'Offline'}
+              </div>
+           </div>
+           <div className="w-8 h-8 bg-white p-1 border border-slate-100 shadow-sm">
+              <img src="https://www.un.org/sites/un2.un.org/files/un_logo.png" className="w-full h-full object-contain" />
+           </div>
         </div>
       </div>
 
-      {/* --- MAIN INTERFACE --- */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden min-h-0 bg-slate-50/50">
         
-        {/* LEFT: SEARCH & SUGGESTIONS */}
-        <div className="w-1/3 border-r border-slate-100 flex flex-col bg-slate-50/30 overflow-y-auto custom-scrollbar">
-          <div className="p-10 space-y-12">
-             <div className="space-y-4">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Search Inquiry</label>
-                <form onSubmit={(e) => { e.preventDefault(); activeTab === 'legal' ? handleAnalysis() : handleTermSearch(); }} className="relative">
-                   <textarea 
-                     value={query}
-                     onChange={(e) => setSearchQuery(e.target.value)}
-                     placeholder={activeTab === 'legal' ? "e.g., Explain ICCPR Article 17..." : "e.g., Sovereignty..."}
-                     className="w-full h-32 neo-pressed bg-white p-6 text-[13px] font-bold uppercase tracking-tight leading-relaxed outline-none focus:ring-2 focus:ring-blue-600/20 transition-all border border-black/5 resize-none"
-                   />
-                   <button 
-                     type="submit"
-                     disabled={isAnalyzing || isSearchingTerm || !query.trim()}
-                     className="absolute bottom-4 right-4 p-3 neo-button bg-navy-900 text-white border-none hover:bg-blue-700 disabled:opacity-50 transition-all"
-                   >
-                     {isAnalyzing || isSearchingTerm ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
-                   </button>
-                </form>
-             </div>
+        {/* --- GUIDELINES SIDEBAR --- */}
+        <aside className="w-[300px] hidden xl:flex flex-col bg-white border-r border-slate-100 shrink-0 overflow-hidden shadow-sm">
+           <div className="p-6 bg-slate-50/50 border-b border-slate-100">
+              <p className="text-[9px] font-black text-[#009EDB] uppercase tracking-[0.3em] italic">Operational Protocol</p>
+           </div>
+           <div className="p-6 space-y-10 overflow-y-auto custom-scrollbar">
+              <div className="space-y-4">
+                 <div className="flex items-center gap-3">
+                    <Target className="w-4 h-4 text-[#009EDB]" />
+                    <h4 className="text-[10px] font-black text-[#001E3D] uppercase tracking-widest italic">Research Focus</h4>
+                 </div>
+                 <p className="text-[11px] text-slate-500 leading-relaxed font-bold uppercase italic opacity-80">
+                    Restricted to the 2026 Middle East simulation. Analyze state interests, legal frameworks, and conflict dynamics.
+                 </p>
+              </div>
+              <div className="space-y-4 border-t border-slate-50 pt-8">
+                 <div className="flex items-center gap-3">
+                    <History className="w-4 h-4 text-slate-400" />
+                    <h4 className="text-[10px] font-black text-[#001E3D] uppercase tracking-widest italic">Methodology</h4>
+                 </div>
+                 <p className="text-[11px] text-slate-500 leading-relaxed font-bold uppercase italic opacity-80">
+                    Challenge assumptions. Propose multi-lateral solutions based on established UN resolutions and treaties.
+                 </p>
+              </div>
+              <div className="p-5 bg-slate-50 border border-slate-100 space-y-3">
+                 <div className="flex items-center gap-2">
+                    <Sparkles className="w-3 h-3 text-amber-500" />
+                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Base_Model_v1</span>
+                 </div>
+                 <div className="w-full bg-slate-200 h-1">
+                    <div className="w-[100%] h-full bg-[#009EDB]" />
+                 </div>
+              </div>
+           </div>
+        </aside>
 
-             <div className="space-y-6">
-                <div className="flex items-center gap-2 mb-2">
-                   <Search className="w-3.5 h-3.5 text-blue-600" />
-                   <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Suggested Inquiries</label>
-                </div>
-                <div className="flex flex-col gap-3">
-                   {SUGGESTED_INQUIRIES.map((item, i) => (
-                     <button 
-                       key={i} 
-                       onClick={() => activeTab === 'legal' ? handleAnalysis(item) : handleTermSearch(item)}
-                       className="text-left p-4 neo-button bg-white text-[11px] font-black uppercase text-navy-900 tracking-widest border-none hover:text-blue-600 transition-all shadow-sm"
-                     >
-                        {item}
-                     </button>
-                   ))}
-                </div>
-             </div>
-          </div>
-        </div>
+        {/* --- CHAT INTERFACE --- */}
+        <main className="flex-1 flex flex-col overflow-hidden relative">
+           
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none">
+              <img src="https://www.un.org/sites/un2.un.org/files/un_logo.png" className="w-[600px] h-[600px] object-contain" />
+           </div>
 
-        {/* RIGHT: RESEARCH OUTPUT */}
-        <div className="flex-1 flex flex-col bg-white overflow-hidden relative">
-          
-          <div className="flex-1 overflow-y-auto p-12 custom-scrollbar" ref={scrollRef}>
-            <AnimatePresence mode="wait">
-              {activeTab === 'legal' ? (
-                <motion.div 
-                  key="analysis"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="space-y-8"
-                >
-                  {!analysisResult && !isAnalyzing ? (
-                    <div className="h-full flex flex-col items-center justify-center py-20 text-center opacity-30">
-                       <FileSearch className="w-20 h-20 text-slate-300 mb-6" />
-                       <p className="text-[12px] font-black text-slate-400 uppercase tracking-[0.4em]">Awaiting Legal Inquiry</p>
-                    </div>
-                  ) : (
-                    <div className="prose prose-slate max-w-none">
-                       <div className="flex items-center gap-4 mb-8">
-                          <Brain className="w-5 h-5 text-blue-600" />
-                          <span className="text-[10px] font-black uppercase text-blue-600 tracking-[0.4em]">Conceptual Explanation</span>
-                       </div>
-                       <div className="text-[16px] text-navy-900 font-bold uppercase leading-relaxed tracking-tight whitespace-pre-wrap border-l-8 border-slate-100 pl-10 py-4">
-                          {analysisResult}
-                          {isAnalyzing && <span className="inline-block w-2 h-5 bg-blue-600 animate-pulse ml-2 align-middle" />}
-                       </div>
-                    </div>
-                  )}
-                </motion.div>
-              ) : (
-                <motion.div 
-                  key="term"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="space-y-8"
-                >
-                   <div className="flex items-center gap-4 mb-8">
-                      <BookOpen className="w-5 h-5 text-blue-600" />
-                      <span className="text-[10px] font-black uppercase text-blue-600 tracking-[0.4em]">Terminology Quick-Lookup</span>
+           {/* FEED */}
+           <div 
+             ref={scrollRef}
+             className="flex-1 overflow-y-auto custom-scrollbar p-8 lg:p-16 space-y-12 relative z-10"
+           >
+              {chatHistory.length === 0 && (
+                <div className="h-full flex flex-col items-center justify-center text-center max-w-xl mx-auto space-y-10">
+                   <div className="w-20 h-20 bg-white border border-slate-100 shadow-xl flex items-center justify-center group hover:border-[#009EDB] transition-colors">
+                      <MessageSquare className="w-8 h-8 text-[#009EDB]" />
                    </div>
-                   {definition ? (
-                     <div className="space-y-8">
-                        <div className="p-8 neo-pressed bg-slate-50 border-l-8 border-navy-900">
-                           <h4 className="text-4xl font-black text-navy-900 uppercase tracking-tighter mb-2">{definition.word}</h4>
-                           <p className="text-[11px] font-black text-blue-600 uppercase tracking-widest">{definition.phonetic || '/technical-term/'}</p>
-                        </div>
-                        <div className="space-y-6">
-                           {definition.meanings.map((m, i) => (
-                             <div key={i} className="p-8 neo-card bg-white border border-black/5 space-y-4">
-                                <span className="text-[9px] font-black uppercase bg-blue-50 text-blue-700 px-3 py-1 rounded tracking-widest">{m.partOfSpeech}</span>
-                                <p className="text-[15px] text-navy-900 font-bold uppercase leading-relaxed tracking-tight italic">
-                                   "{m.definitions[0].definition}"
-                                </p>
-                             </div>
-                           ))}
-                        </div>
-                     </div>
-                   ) : (
-                     <div className="h-full flex flex-col items-center justify-center py-20 text-center opacity-30">
-                        <HelpCircle className="w-20 h-20 text-slate-300 mb-6" />
-                        <p className="text-[12px] font-black text-slate-400 uppercase tracking-[0.4em]">Search Dictionary</p>
-                     </div>
-                   )}
-                </motion.div>
+                   <div className="space-y-3">
+                      <h2 className="text-3xl font-black text-[#001E3D] uppercase tracking-tighter italic">Initiate Research</h2>
+                      <p className="text-[12px] text-slate-500 font-bold uppercase tracking-[0.2em] italic">
+                         Standing by for analytical inquiries regarding the 2026 regional landscape.
+                      </p>
+                   </div>
+                   <div className="grid grid-cols-1 gap-3 w-full pt-8 border-t border-slate-100">
+                      {[
+                        "Explain Resolution 1701's current failure.",
+                        "What is Iran's strategic vector in 2026?"
+                      ].map(suggestion => (
+                        <button 
+                          key={suggestion}
+                          onClick={() => { setQuery(suggestion); }}
+                          className="p-4 bg-white border border-slate-100 text-[9px] font-black uppercase text-slate-500 hover:border-[#009EDB] hover:text-[#009EDB] transition-all text-left flex items-center justify-between shadow-sm italic"
+                        >
+                           {suggestion}
+                           <ChevronRight className="w-3 h-3" />
+                        </button>
+                      ))}
+                   </div>
+                </div>
               )}
-            </AnimatePresence>
-          </div>
 
-          {/* FOOTER */}
-          <div className="p-8 border-t border-slate-100 bg-slate-50/50 flex justify-between items-center">
-             <div className="flex items-center gap-3">
-                <Shield className="w-4 h-4 text-slate-300" />
-                <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest italic tracking-tighter">Information Gain Center // Educational Purpose Only</span>
-             </div>
-             <div className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-blue-600 opacity-20" />
-                <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Global Framework Sync</span>
-             </div>
-          </div>
-        </div>
+              {chatHistory.map((msg, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div className={`max-w-4xl w-full p-8 lg:p-10 border shadow-sm relative ${
+                    msg.role === 'user' 
+                    ? 'bg-slate-50 border-slate-200 text-[#001E3D]' 
+                    : 'bg-white border-slate-100 text-[#001E3D] border-l-4 border-l-[#009EDB]'
+                  }`}>
+                    <div className="flex items-center gap-4 mb-6">
+                       <div className={`p-2 border ${msg.role === 'user' ? 'bg-white border-slate-200' : 'bg-slate-50 border-slate-100'}`}>
+                          {msg.role === 'user' ? <Users className="w-3 h-3 text-slate-400" /> : <Brain className="w-3 h-3 text-[#009EDB]" />}
+                       </div>
+                       <span className={`text-[8px] font-black uppercase tracking-[0.3em] italic ${msg.role === 'user' ? 'text-slate-400' : 'text-[#009EDB]'}`}>
+                          {msg.role === 'user' ? 'OFFICIAL_INQUIRY' : 'INSTITUTIONAL_ANALYSIS'}
+                       </span>
+                    </div>
+                    <div className={`prose max-w-none prose-sm ${msg.role === 'user' ? 'opacity-80' : ''}`}>
+                       <ReactMarkdown className="markdown-content">{msg.content}</ReactMarkdown>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+              
+              {loading && (
+                <div className="flex justify-start">
+                   <div className="p-6 bg-white border border-slate-100 border-l-4 border-l-[#009EDB] flex items-center gap-4 shadow-sm italic">
+                      <Loader2 className="w-4 h-4 text-[#009EDB] animate-spin" />
+                      <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest italic">Processing Intelligence...</span>
+                   </div>
+                </div>
+              )}
+           </div>
 
+           {/* INPUT */}
+           <div className="p-8 lg:p-12 bg-white border-t border-slate-100 relative z-20">
+              <form onSubmit={handleSubmit} className="max-w-4xl mx-auto flex gap-4">
+                 <div className="relative flex-1 group">
+                    <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-[#009EDB] transition-colors" />
+                    <input 
+                      type="text"
+                      value={query}
+                      onChange={(e) => setQuery(e.target.value)}
+                      placeholder="ENTER RESEARCH PARAMETERS..."
+                      className="w-full bg-slate-50 border border-slate-100 pl-14 pr-6 py-5 text-[12px] font-black uppercase tracking-widest outline-none text-[#001E3D] placeholder:text-slate-300 focus:bg-white transition-all shadow-inner"
+                    />
+                 </div>
+                 <button 
+                   disabled={loading || !query.trim()}
+                   className="px-10 bg-[#001E3D] text-white flex items-center justify-center gap-3 hover:bg-[#009EDB] transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-lg italic active:scale-95"
+                 >
+                    <span className="font-black text-[11px] uppercase tracking-widest">Process</span>
+                    <Send className="w-4 h-4" />
+                 </button>
+              </form>
+           </div>
+
+        </main>
       </div>
+      
+      <style>{`
+        .markdown-content h1, .markdown-content h2, .markdown-content h3 { font-weight: 900; text-transform: uppercase; color: #001E3D; margin-top: 1.5rem; margin-bottom: 1rem; font-style: italic; border-bottom: 2px solid #009EDB22; display: inline-block; width: 100%; }
+        .markdown-content p { font-weight: 500; line-height: 1.6; margin-bottom: 1rem; text-transform: uppercase; font-size: 12px; }
+        .markdown-content strong { color: #009EDB; font-weight: 900; }
+        .markdown-content ul { list-style: none; padding-left: 0; }
+        .markdown-content li { position: relative; padding-left: 1.25rem; margin-bottom: 0.5rem; font-weight: 700; font-size: 11px; }
+        .markdown-content li::before { content: ""; position: absolute; left: 0; top: 0.45rem; width: 0.4rem; height: 0.4rem; background: #009EDB; border-radius: 9999px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+      `}</style>
+
     </div>
   );
 }

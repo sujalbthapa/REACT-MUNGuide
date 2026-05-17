@@ -1,97 +1,117 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RefreshCw, Radio, Terminal, ExternalLink, History, Zap, Bell } from 'lucide-react';
-import { mockNews, historicalNews } from '../data/mockData';
+import { AlertCircle, Clock, ExternalLink, RefreshCw, Loader2, Newspaper } from 'lucide-react';
 
-const getStatusColor = (type) => {
-  switch (type) {
-    case 'ALERT': return 'bg-red-700';
-    case 'URGENT': return 'bg-amber-600';
-    case 'CRISIS': return 'bg-red-900';
-    case 'FLASH': return 'bg-purple-800';
-    case 'HISTORICAL': return 'bg-navy-900';
-    default: return 'bg-blue-700';
-  }
-};
+const NEWS_ENDPOINT = "http://localhost:5000/api/news";
 
 export default function LiveFeed() {
-  const [activeTab, setActiveTab] = useState('latest');
   const [news, setNews] = useState([]);
-  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
-  const fetchRealNews = useCallback(async () => {
-    setIsRefreshing(true);
-    setError(null);
-    const feeds = [
-      { name: 'Al Jazeera', url: 'https://www.aljazeera.com/xml/rss/all.xml' },
-      { name: 'BBC News', url: 'https://feeds.bbci.co.uk/news/world/middle_east/rss.xml' },
-      { name: 'CNBC', url: 'https://search.cnbc.com/rs/search/all/view.xml?partnerId=2000&keywords=middle%20east' },
-      { name: 'France24', url: 'https://www.france24.com/en/middle-east/rss' },
-      { name: 'The Guardian', url: 'https://www.theguardian.com/world/middleeast/rss' }
-    ];
-    const keywords = ['iran', 'israel', 'lebanon', 'gaza', 'palestine', 'red sea', 'hormuz', 'hezbollah', 'houthi', 'unsc', 'middle east', 'yemen', 'syria', 'iraq', 'jerusalem', 'beirut', 'tehran', 'tel aviv', 'idf', 'hamas', 'maritime', 'blockade', 'strike', 'ceasefire', 'unifil', 'refugee'];
+  const fetchLiveNews = async (silent = false) => {
+    if (!silent) setLoading(true);
+    else setIsRefreshing(true);
+    
     try {
-      const results = await Promise.all(feeds.map(async (feed) => {
-        try {
-          const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}`);
-          const data = await res.json();
-          if (data.status !== 'ok') return [];
-          return data.items.map(item => ({ id: item.guid || item.link, type: 'UPDATE', source: feed.name, content: item.title, time: new Date(item.pubDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), url: item.link, date: new Date(item.pubDate) }));
-        } catch (e) { return []; }
-      }));
-      const combinedNews = results.flat().filter(item => { const lowerContent = item.content.toLowerCase(); return keywords.some(kw => lowerContent.includes(kw)); }).sort((a, b) => b.date - a.date).slice(0, 15);
-      if (combinedNews.length === 0) setNews(mockNews);
-      else setNews(combinedNews);
-    } catch (err) { setError('Unable to reach live news.'); setNews(mockNews); }
-    finally { setIsRefreshing(false); }
+      const response = await fetch(NEWS_ENDPOINT);
+      if (!response.ok) throw new Error("News stream unavailable");
+      const data = await response.json();
+      setNews(data);
+      setError(null);
+    } catch (err) {
+      console.error("LiveFeed Error:", err);
+      setError("Unable to sync live stream. Using cached intelligence.");
+    } finally {
+      setLoading(false);
+      setIsRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchLiveNews();
+    // Refresh every 10 minutes
+    const interval = setInterval(() => fetchLiveNews(true), 600000);
+    return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => { fetchRealNews(); const interval = setInterval(fetchRealNews, 300000); return () => clearInterval(interval); }, [fetchRealNews]);
-  const displayNews = activeTab === 'latest' ? news : historicalNews;
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 gap-4 opacity-50">
+        <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
+        <p className="text-[10px] font-black uppercase tracking-[0.3em]">Connecting to NewsAPI...</p>
+      </div>
+    );
+  }
 
   return (
-    <aside className="w-full lg:w-96 neo-sidebar border-l border-black/10 flex flex-col h-screen overflow-hidden bg-[#f1f5f9]">
-      <div className="bg-inherit border-b border-black/10">
-        <div className="p-6 pb-2 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <Bell className="w-3 h-3 text-red-700" />
-            <h3 className="font-black text-[10px] uppercase tracking-[0.2em] text-navy-900">Intelligence Center</h3>
-          </div>
-          <button onClick={fetchRealNews} disabled={isRefreshing} className={`neo-button p-2 bg-white ${isRefreshing ? 'opacity-50' : ''}`}>
-            <RefreshCw className={`w-3.5 h-3.5 text-navy-900 ${isRefreshing ? 'animate-spin' : ''}`} />
-          </button>
-        </div>
-        <div className="flex p-4 gap-4">
-          <button onClick={() => setActiveTab('latest')} className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'latest' ? 'neo-pressed text-blue-800 bg-slate-100' : 'neo-button text-slate-500 bg-white'}`}><Zap className="w-3 h-3" /> Recent</button>
-          <button onClick={() => setActiveTab('important')} className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'important' ? 'neo-pressed text-navy-900 bg-slate-100' : 'neo-button text-slate-500 bg-white'}`}><History className="w-3 h-3" /> Key Events</button>
-        </div>
-      </div>
-      <div className="flex-1 overflow-y-auto p-6 space-y-8 custom-scrollbar">
-        {error && activeTab === 'latest' && <div className="neo-pressed p-3 border border-amber-200 text-[10px] text-amber-800 font-black uppercase tracking-tight text-center bg-amber-50">{error}</div>}
-        <AnimatePresence mode="popLayout">
-          {displayNews.map((item, index) => (
-            <motion.div key={item.id} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ delay: index * 0.05, duration: 0.3 }} className="neo-card p-6 group relative overflow-hidden bg-white border border-black/5">
-              <div className="flex justify-between items-start mb-5">
-                <div className="flex flex-col gap-2">
-                  <span className={`w-fit text-[9px] font-black px-2.5 py-1 text-white tracking-widest ${getStatusColor(item.type)}`}>{item.type === 'HISTORICAL' ? 'ARCHIVE' : item.type}</span>
-                  <span className="text-[10px] font-black text-navy-900 uppercase opacity-70 tracking-tight">Source: {item.source}</span>
-                </div>
-                <span className="text-[10px] text-slate-500 font-bold">{item.time}</span>
-              </div>
-              <p className="text-[12px] text-navy-900 leading-relaxed font-bold mb-5 uppercase tracking-tight">{item.content}</p>
-              {item.url && <a href={item.url} target="_blank" rel="noopener noreferrer" className="neo-button inline-flex items-center gap-2.5 px-4 py-2 text-[9px] font-black text-blue-800 hover:text-blue-900 transition-colors uppercase tracking-widest bg-slate-50">View Report <ExternalLink className="w-3 h-3" /></a>}
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
-      <div className="p-4 border-t border-black/10 bg-navy-900 text-white text-[9px] flex justify-between items-center">
+    <div className="space-y-6">
+      {/* Refresh Tool */}
+      <div className="flex justify-between items-center px-2">
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-          <span className="opacity-80 uppercase tracking-tighter font-bold">{activeTab === 'latest' ? 'Live Intelligence' : 'Archives Active'}</span>
+           <Newspaper className="w-3 h-3 text-slate-400" />
+           <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest italic">Global Data Sync</span>
         </div>
-        <span className="opacity-50 font-bold uppercase">{new Date().toISOString().substring(11, 16)} UTC</span>
+        <button 
+          onClick={() => fetchLiveNews(true)}
+          disabled={isRefreshing}
+          className="p-1.5 neo-button bg-white text-slate-400 hover:text-blue-600 transition-all border-none"
+        >
+          <RefreshCw className={`w-3 h-3 ${isRefreshing ? 'animate-spin' : ''}`} />
+        </button>
       </div>
-    </aside>
+
+      {error && (
+        <div className="p-4 bg-amber-50 border-l-4 border-amber-500 flex items-center gap-3">
+          <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+          <p className="text-[9px] font-black text-amber-800 uppercase leading-tight">{error}</p>
+        </div>
+      )}
+
+      <div className="space-y-4">
+        {news.map((item, idx) => (
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: idx * 0.05 }}
+            className="group relative"
+          >
+            <a 
+              href={item.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block p-5 bg-white neo-pressed hover:bg-slate-50 transition-all border-l-4 border-blue-600 group-hover:translate-x-1"
+            >
+              <div className="flex justify-between items-center mb-3">
+                <span className="px-2 py-0.5 bg-blue-50 text-blue-700 text-[8px] font-black uppercase rounded tracking-widest border border-blue-100">
+                  {item.type}
+                </span>
+                <div className="flex items-center gap-2 text-[8px] font-black text-slate-400 uppercase">
+                  <Clock className="w-2.5 h-2.5" />
+                  {item.time}
+                </div>
+              </div>
+              
+              <p className="text-[11px] text-navy-900 font-bold leading-relaxed uppercase tracking-tight mb-3">
+                {item.content}
+              </p>
+              
+              <div className="flex justify-between items-center">
+                <span className="text-[9px] font-black text-blue-600 uppercase tracking-widest opacity-60">
+                  {item.source}
+                </span>
+                <ExternalLink className="w-3 h-3 text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            </a>
+          </motion.div>
+        ))}
+      </div>
+      
+      <div className="pt-6 border-t border-black/5 text-center">
+         <p className="text-[8px] font-black text-slate-300 uppercase tracking-[0.4em]">End of Live Stream</p>
+      </div>
+    </div>
   );
 }
