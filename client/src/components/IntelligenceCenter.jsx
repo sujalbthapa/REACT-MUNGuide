@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Brain, Send, Loader2, Sparkles, 
   History, Info, ChevronRight, Target, Activity, 
-  Globe, X, ShieldCheck, Landmark, MessageSquare, Search
+  Globe, X, ShieldCheck, Landmark, MessageSquare, Search, Users,
+  TrendingUp, Lightbulb
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
@@ -14,11 +15,14 @@ export default function IntelligenceCenter() {
   const [query, setQuery] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isOnline, setIsHomeOnline] = useState(true);
+  const [isOnline, setIsOnline] = useState(true);
   const scrollRef = useRef(null);
 
   useEffect(() => {
     checkHealth();
+  }, []);
+
+  useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
@@ -27,9 +31,9 @@ export default function IntelligenceCenter() {
   const checkHealth = async () => {
     try {
       const res = await fetch(HEALTH_URL);
-      setIsHomeOnline(res.ok);
+      setIsOnline(res.ok);
     } catch {
-      setIsHomeOnline(false);
+      setIsOnline(false);
     }
   };
 
@@ -39,6 +43,7 @@ export default function IntelligenceCenter() {
 
     const userMessage = { role: 'user', content: query };
     setChatHistory(prev => [...prev, userMessage]);
+    const currentQuery = query;
     setQuery('');
     setLoading(true);
 
@@ -46,32 +51,50 @@ export default function IntelligenceCenter() {
       const response = await fetch(ANALYZE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ query: currentQuery }),
       });
 
       if (!response.ok) throw new Error("Connection Failure");
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
-      let aiResponse = { role: 'assistant', content: '' };
+      let aiResponseContent = '';
       
-      setChatHistory(prev => [...prev, aiResponse]);
+      // Initialize the assistant message in history
+      setChatHistory(prev => [...prev, { role: 'assistant', content: '' }]);
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
+        
         const chunk = decoder.decode(value, { stream: true });
-        aiResponse.content += chunk;
-        setChatHistory(prev => {
-          const last = [...prev];
-          last[last.length - 1] = { ...aiResponse };
-          return last;
-        });
+        const lines = chunk.split('\n');
+        
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const dataStr = line.slice(6).trim();
+            if (dataStr === '[DONE]') break;
+            try {
+              const data = JSON.parse(dataStr);
+              const text = data.choices[0]?.delta?.content || "";
+              if (text) {
+                aiResponseContent += text;
+                setChatHistory(prev => {
+                  const updated = [...prev];
+                  updated[updated.length - 1] = { role: 'assistant', content: aiResponseContent };
+                  return updated;
+                });
+              }
+            } catch (err) {
+              // Ignore partial JSON chunks
+            }
+          }
+        }
       }
     } catch (err) {
       setChatHistory(prev => [...prev, { 
         role: 'assistant', 
-        content: "**ERROR:** System connection lost. Please verify local research server status." 
+        content: "**ERROR:** System connection lost. Please verify local research server status and API configuration." 
       }]);
     } finally {
       setLoading(false);
@@ -79,7 +102,7 @@ export default function IntelligenceCenter() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-white overflow-hidden">
+    <div className="h-screen flex flex-col bg-white overflow-hidden selection:bg-[#009EDB]/10">
       
       {/* --- HEADER --- */}
       <div className="bg-white p-5 border-b border-slate-100 flex items-center justify-between px-8 shrink-0 shadow-sm">
@@ -134,15 +157,15 @@ export default function IntelligenceCenter() {
                     <h4 className="text-[10px] font-black text-[#001E3D] uppercase tracking-widest italic">Methodology</h4>
                  </div>
                  <p className="text-[11px] text-slate-500 leading-relaxed font-bold uppercase italic opacity-80">
-                    Challenge assumptions. Propose multi-lateral solutions based on established UN resolutions and treaties.
+                    Challenge assumptions. Propose multi-lateral de-escalation based on established UN resolutions and treaties.
                  </p>
               </div>
-              <div className="p-5 bg-slate-50 border border-slate-100 space-y-3">
+              <div className="p-5 bg-[#001E3D] shadow-xl space-y-3">
                  <div className="flex items-center gap-2">
                     <Sparkles className="w-3 h-3 text-amber-500" />
-                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Base_Model_v1</span>
+                    <span className="text-[8px] font-black text-white uppercase tracking-widest">Base_Model_v1</span>
                  </div>
-                 <div className="w-full bg-slate-200 h-1">
+                 <div className="w-full bg-white/10 h-1">
                     <div className="w-[100%] h-full bg-[#009EDB]" />
                  </div>
               </div>
@@ -210,8 +233,8 @@ export default function IntelligenceCenter() {
                           {msg.role === 'user' ? 'OFFICIAL_INQUIRY' : 'INSTITUTIONAL_ANALYSIS'}
                        </span>
                     </div>
-                    <div className={`prose max-w-none prose-sm ${msg.role === 'user' ? 'opacity-80' : ''}`}>
-                       <ReactMarkdown className="markdown-content">{msg.content}</ReactMarkdown>
+                    <div className={`prose max-w-none prose-sm markdown-content ${msg.role === 'user' ? 'opacity-80' : ''}`}>
+                       <ReactMarkdown>{msg.content}</ReactMarkdown>
                     </div>
                   </div>
                 </motion.div>
