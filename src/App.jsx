@@ -4,7 +4,7 @@ import {
   Menu, X, ChevronRight, AlertTriangle, BookOpen, 
   Target, Info, MapPin, Check, FileText, HeartPulse, 
   Anchor, Lock, ArrowRight, ShieldCheck, HelpCircle,
-  History, Zap, Globe
+  History, Zap, Globe, Brain
 } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import LiveFeed from './components/LiveFeed';
@@ -92,7 +92,7 @@ export default function App() {
 
       <main className="flex-1 flex flex-col lg:flex-row h-screen overflow-hidden">
         {/* Main Research Content */}
-        <div className={`flex-1 ${activeSection === 'advisor' ? 'overflow-hidden' : 'overflow-y-auto'} custom-scrollbar p-6 lg:p-12 space-y-12 bg-[#f1f5f9]`}>
+        <div className="flex-1 overflow-y-auto custom-scrollbar p-6 lg:p-12 space-y-12 bg-[#f1f5f9]">
           
           <div className="lg:hidden flex justify-between items-center mb-8">
             <button onClick={() => setIsSidebarOpen(true)} className="neo-button p-3">
@@ -317,6 +317,14 @@ export default function App() {
               </SectionWrapper>
             )}
 
+            {activeSection === 'advisor' && (
+              <SectionWrapper key="advisor" id="advisor" active={activeSection}>
+                <div className="h-[calc(100vh-140px)] flex flex-col">
+                  <IntelligenceCenter />
+                </div>
+              </SectionWrapper>
+            )}
+
             {activeSection === 'wars' && (
               <SectionWrapper key="wars" id="wars" active={activeSection}>
                 <div className="mb-12">
@@ -422,14 +430,6 @@ export default function App() {
               </SectionWrapper>
             )}
 
-            {activeSection === 'advisor' && (
-              <SectionWrapper key="advisor" id="advisor" active={activeSection}>
-                <div className="h-[calc(100vh-140px)] flex flex-col">
-                  <IntelligenceCenter />
-                </div>
-              </SectionWrapper>
-            )}
-
             {activeSection === 'law' && (
               <SectionWrapper key="law" id="law" active={activeSection}>
                 <div className="mb-12">
@@ -462,7 +462,7 @@ export default function App() {
                   <h2 className="text-4xl font-black tracking-tighter uppercase mb-2 text-navy-900">Delegate Toolkit</h2>
                   <p className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Checklist for council success.</p>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div className="grid grid-cols-1 gap-12">
                   <Card className="bg-white">
                     <h3 className="font-black text-xs uppercase tracking-[0.3em] mb-12 text-navy-900 flex items-center gap-3">
                       <Check className="w-5 h-5 text-green-600" />

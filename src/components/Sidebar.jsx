@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, Swords, Scale, Users, Briefcase, Globe, Shield, Search, Sparkles, Book, Landmark } from 'lucide-react';
+import { LayoutDashboard, Swords, Scale, Users, Briefcase, Globe, Shield, Search, Sparkles, Book, Landmark, Brain } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -41,7 +41,7 @@ export default function Sidebar({ activeSection, setActiveSection, isOpen, toggl
   const menuItems = [
     { id: 'home', icon: LayoutDashboard, label: 'Overview' },
     { id: 'wars', icon: Swords, label: 'Active Conflicts' },
-    { id: 'advisor', icon: Sparkles, label: 'AI Research Advisor' },
+    { id: 'advisor', icon: Brain, label: 'Legal & Concept Research' },
     { id: 'law', icon: Scale, label: 'International Law' },
     { id: 'constitutions', icon: Landmark, label: 'Constitutions' },
     { id: 'blocs', icon: Users, label: 'Global Actors' },
