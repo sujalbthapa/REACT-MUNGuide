@@ -1,9 +1,40 @@
-node_modules
-client/node_modules
-server/node_modules
-client/.env
-server/.env
-dist
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment variables
 .env
-backend/.env
-frontend/.env
+.env.*
+!.env.example
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+
+# IDE and OS files
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.DS_Store
+*.sw?
+
+# Logs
+logs/
+*.log
+
+# Local files
+*.local

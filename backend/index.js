@@ -14,6 +14,42 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'online' });
 });
 
+app.post('/api/chat', async (req, res) => {
+    const { messages, system_prompt } = req.body;
+
+    if (!messages) {
+        return res.status(400).json({ error: 'messages are required' });
+    }
+
+    try {
+        const response = await fetch(HF_API_URL, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${HF_API_KEY}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                model: "Qwen/Qwen2.5-72B-Instruct",
+                messages: messages,
+                max_tokens: 400,
+                temperature: 0.7,
+            }),
+        });
+
+        if (!response.ok) {
+            console.error('Hugging Face API Error:', await response.text());
+            return res.status(response.status).json({ error: "Upstream API error" });
+        }
+
+        const data = await response.json();
+        res.json(data);
+
+    } catch (error) {
+        console.error('Internal Server Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 const HF_API_URL = "https://router.huggingface.co/v1/chat/completions";
 const HF_API_KEY = process.env.HF_API_KEY;
 const NEWS_API_KEY = process.env.NEWS_API_KEY;
