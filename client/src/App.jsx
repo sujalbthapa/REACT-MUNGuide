@@ -15,6 +15,7 @@ import RulesLibrary from './components/RulesLibrary';
 import ConstitutionLibrary from './components/ConstitutionLibrary';
 import DiplomaticBlocs from './components/DiplomaticBlocs';
 import CommitteeMatrix from './components/CommitteeMatrix';
+import StudyGuidelines from './components/StudyGuidelines';
 import { frontData, qarmas, flagMapping } from './data/mockData';
 
 const getFlagUrl = (name) => {
@@ -26,6 +27,22 @@ const getFlagUrl = (name) => {
   }
   return iso ? `/flags/${iso.toLowerCase()}.svg` : null;
 };
+
+const renderListWithFlags = (text, textColor) => (
+  <div className={`text-[13px] font-black uppercase flex flex-wrap gap-x-4 gap-y-2 mt-1 ${textColor}`}>
+    {text.split(',').map((item, index) => {
+      const rawName = item.trim();
+      const queryName = rawName.replace(/\s*\(.*?\)\s*/g, '').trim();
+      const flag = getFlagUrl(queryName);
+      return (
+        <div key={index} className="flex items-center gap-1.5">
+          {flag ? <img src={flag} alt="" className="w-4 h-2.5 object-cover" /> : <Globe className="w-3 h-3 opacity-50" />}
+          <span>{rawName}</span>
+        </div>
+      );
+    })}
+  </div>
+);
 
 const SectionWrapper = ({ children }) => (
   <motion.div
@@ -264,7 +281,27 @@ export default function App() {
                                   <Target className="w-4 h-4" />
                                   <span className="font-black text-[9px] uppercase tracking-[0.2em] italic opacity-60">Situational Analysis Report</span>
                                 </div>
-                                <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-navy-900 mb-1 italic leading-tight">{frontData[activeFront].title}</h3>
+                                <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 mb-1">
+                                  <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-navy-900 italic leading-tight">{frontData[activeFront].title}</h3>
+                                  <div className="flex items-center gap-2">
+                                    {({
+                                      iran: ['Israel', 'Iran', 'USA'],
+                                      lebanon: ['Israel', 'Lebanon', 'Iran'],
+                                      gaza: ['Israel', 'Palestine'],
+                                      proxy: ['USA', 'UK', 'Yemen', 'Iran'],
+                                      syria: ['Syria', 'Russia', 'Iran', 'Israel'],
+                                      westbank: ['Israel', 'Palestine']
+                                    }[activeFront] || []).map(actor => {
+                                      const flag = getFlagUrl(actor);
+                                      return flag ? (
+                                        <div key={actor} className="relative group cursor-help">
+                                          <img src={flag} alt={actor} className="w-10 h-7 object-cover border border-slate-200 shadow-sm" />
+                                          <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-2 py-1 bg-[#001E3D] text-white text-[8px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none">{actor}</span>
+                                        </div>
+                                      ) : null;
+                                    })}
+                                  </div>
+                                </div>
                                 <p className="text-sm font-black text-[#009EDB] uppercase tracking-widest mb-8 italic opacity-80">{frontData[activeFront].subtitle}</p>
                                 
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
@@ -373,11 +410,11 @@ export default function App() {
                                     <div className="space-y-6">
                                       <div className="p-5 bg-slate-50 border border-slate-100 italic">
                                         <p className="text-[8px] font-black text-slate-400 uppercase mb-2">Direct Allies & Support</p>
-                                        <p className="text-[13px] font-black text-[#001E3D] uppercase">{frontData[activeFront].detailed.allies}</p>
+                                        {renderListWithFlags(frontData[activeFront].detailed.allies, "text-[#001E3D]")}
                                       </div>
                                       <div className="p-5 bg-slate-50 border border-slate-100 italic">
                                         <p className="text-[8px] font-black text-slate-400 uppercase mb-2">Operational Adversaries</p>
-                                        <p className="text-[13px] font-black text-red-700 uppercase">{frontData[activeFront].detailed.adversaries}</p>
+                                        {renderListWithFlags(frontData[activeFront].detailed.adversaries, "text-red-700")}
                                       </div>
                                     </div>
                                   </div>
@@ -414,75 +451,7 @@ export default function App() {
               <Route path="/law" element={<SectionWrapper><div className="p-8 lg:p-12"><RulesLibrary /></div></SectionWrapper>} />
               <Route path="/constitutions" element={<SectionWrapper><div className="p-8 lg:p-12"><ConstitutionLibrary /></div></SectionWrapper>} />
               <Route path="/blocs" element={<SectionWrapper><DiplomaticBlocs /></SectionWrapper>} />
-              <Route path="/study" element={
-                <SectionWrapper>
-                  <div className="h-screen flex flex-col bg-white overflow-hidden">
-                    {/* --- HEADER --- */}
-                    <div className="bg-white p-4 border-b border-slate-100 flex items-center justify-between px-8 shrink-0 shadow-sm">
-                      <div className="flex items-center gap-5">
-                         <div className="flex items-center gap-3">
-                            <div className="p-1.5 bg-slate-50 border border-slate-100 shadow-sm">
-                               <Briefcase className="w-4 h-4 text-[#009EDB]" />
-                            </div>
-                            <h3 className="font-black text-base uppercase tracking-tighter text-[#001E3D] italic leading-none">
-                               Study<span className="text-[#009EDB]">_Guidelines</span>
-                            </h3>
-                         </div>
-                         <div className="h-6 w-[1px] bg-slate-200 mx-4" />
-                         <p className="text-[8px] font-black uppercase text-slate-400 tracking-[0.3em] mt-0.5 italic">
-                            Research Methodology & Protocol Roadmap
-                         </p>
-                      </div>
-                      <div className="flex items-center gap-4">
-                         <div className="w-7 h-7 bg-white p-1 border border-slate-100 shadow-sm">
-                            <img src="https://www.un.org/sites/un2.un.org/files/un_logo.png" className="w-full h-full object-contain" />
-                         </div>
-                      </div>
-                    </div>
-
-                    <div className="flex-1 overflow-y-auto custom-scrollbar bg-slate-50/20">
-                      <div className="p-8 lg:p-12 space-y-12">
-                        <div className="space-y-8">
-                          <div className="flex items-center gap-4 border-b border-slate-100 pb-4">
-                             <Layers className="w-5 h-5 text-[#009EDB]" />
-                             <h3 className="text-xl font-black uppercase tracking-tighter text-navy-900 italic">Master Research Protocol</h3>
-                          </div>
-
-                          <div className="grid grid-cols-1 gap-3">
-                             {[
-                               { step: "01", title: "Immersion", task: "Overview Briefings.", goal: "Map timeline." },
-                               { step: "02", title: "Front Audit", task: "Conflict status nodes.", goal: "Identify threats." },
-                               { step: "03", title: "Legal Frame", task: "International Law archive.", goal: "Verify laws." },
-                               { step: "04", title: "Positioning", task: "Committee Matrix dossiers.", goal: "Define stance." },
-                               { step: "05", title: "Alignment", task: "Global Blocs dossiers.", goal: "Bloc consensus." },
-                               { step: "06", title: "Testing", task: "AI Advisor analysis.", goal: "Debate points." }
-                             ].map((item, i) => (
-                               <div key={i} className="p-6 bg-white border border-slate-100 flex flex-col md:flex-row gap-8 items-center group shadow-sm hover:border-[#009EDB] transition-all">
-                                  <div className="text-3xl font-black text-slate-100 group-hover:text-[#009EDB] transition-colors italic leading-none">{item.step}</div>
-                                  <div className="space-y-1 flex-1">
-                                     <h4 className="text-[12px] font-black uppercase tracking-tight text-navy-900 italic leading-none">{item.title}</h4>
-                                     <div className="flex flex-col lg:flex-row lg:items-center gap-4 opacity-70">
-                                        <p className="text-[10px] font-bold uppercase tracking-tight"><span className="text-[#009EDB] italic">Method:</span> {item.task}</p>
-                                        <p className="text-[10px] font-bold uppercase tracking-tight"><span className="text-emerald-600 italic">Goal:</span> {item.goal}</p>
-                                     </div>
-                                  </div>
-                               </div>
-                             ))}
-                          </div>
-                        </div>
-
-                        <div className="p-10 bg-[#001E3D] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-xl border border-white/5 italic">
-                           <div className="flex items-center gap-5">
-                              <Info className="w-8 h-8 text-[#009EDB]" />
-                              <h4 className="text-lg font-black uppercase tracking-widest">Research Support Standing By</h4>
-                           </div>
-                           <button onClick={() => navigate('/advisor')} className="px-10 py-4 bg-[#009EDB] text-white text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-navy-900 transition-all shadow-lg italic active:scale-95">Open AI Advisor</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </SectionWrapper>
-              } />
+              <Route path="/study" element={<SectionWrapper><StudyGuidelines /></SectionWrapper>} />
             </Routes>
           </AnimatePresence>
         </div>

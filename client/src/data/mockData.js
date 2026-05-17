@@ -193,7 +193,23 @@ export const flagMapping = {
     "United Kingdom of Great Britain and Northern Ireland": "GB",
     "United Mexican States": "MX",
     "United Republic of Tanzania": "TZ",
-    "United States of America": "US"
+    "United States of America": "US",
+    "USA": "US",
+    "UK": "GB",
+    "Russia": "RU",
+    "China": "CN",
+    "France": "FR",
+    "Germany": "DE",
+    "Israel": "IL",
+    "Iran": "IR",
+    "Turkey": "TR",
+    "Egypt": "EG",
+    "Saudi Arabia": "SA",
+    "UAE": "AE",
+    "Palestine": "PS",
+    "Syria": "SY",
+    "Lebanon": "LB",
+    "Yemen": "YE"
 };
 
 
@@ -215,35 +231,67 @@ export const frontData = {
         "damages": "Natanz facility 60% disabled; major Israeli industrial hubs damaged; regional energy exports down 40%; catastrophic damage to IRGC command hubs.",
         "study_note": "Analyze the legality of preemptive strikes on nuclear facilities under Article 51, and evaluate the environmental obligations under IHL.",
         "study_links": [
-            {
-                "label": "UNSC Resolution 2231 (Full Text)",
-                "url": "https://undocs.org/en/S/RES/2231(2015)"
-            },
-            {
-                "label": "UNSC Resolution 1540 (Full Text)",
-                "url": "https://undocs.org/en/S/RES/1540(2004)"
-            },
-            {
-                "label": "IAEA: Iran Safeguards Report 2026",
-                "url": "https://www.iaea.org/newscenter/focus/iran"
-            },
-            {
-                "label": "CFR: Israel-Iran Conflict Deep-Dive",
-                "url": "https://www.cfr.org/backgrounder/israel-iran-conflict-direct-warfare"
-            },
-            {
-                "label": "Reuters: Maritime Energy Security Maps",
-                "url": "https://www.reuters.com/graphics/IRAN-OIL/HORMUZ/lbvgnzngvpq/"
-            },
-            {
-                "label": "IISS: Iran's Ballistic Missile Arsenal",
-                "url": "https://www.iiss.org/research-paper/2021/01/iran-missile-programme/"
-            },
-            {
-                "label": "MEI: Regional Strategic Balance 2026",
-                "url": "https://www.mei.edu/publications/israel-and-iran-shadow-war-direct-confrontation"
-            }
-        ],
+          {
+                    "label": "UNSC Resolution 2231 (Full Text)",
+                    "url": "https://undocs.org/en/S/RES/2231(2015)"
+          },
+          {
+                    "label": "UNSC Resolution 1540 (Full Text)",
+                    "url": "https://undocs.org/en/S/RES/1540(2004)"
+          },
+          {
+                    "label": "IAEA: Iran Safeguards Report 2026",
+                    "url": "https://www.iaea.org/newscenter/focus/iran"
+          },
+          {
+                    "label": "CFR: Israel-Iran Conflict Deep-Dive",
+                    "url": "https://www.cfr.org/backgrounder/israel-iran-conflict-direct-warfare"
+          },
+          {
+                    "label": "Reuters: Maritime Energy Security Maps",
+                    "url": "https://www.reuters.com/graphics/IRAN-OIL/HORMUZ/lbvgnzngvpq/"
+          },
+          {
+                    "label": "IISS: Iran's Ballistic Missile Arsenal",
+                    "url": "https://www.iiss.org/research-paper/2021/01/iran-missile-programme/"
+          },
+          {
+                    "label": "MEI: Regional Strategic Balance 2026",
+                    "url": "https://www.mei.edu/publications/israel-and-iran-shadow-war-direct-confrontation"
+          },
+          {
+                    "label": "Arms Control Association: Iran Nuclear Deal",
+                    "url": "https://www.armscontrol.org/factsheets/JCPOA-at-a-glance"
+          },
+          {
+                    "label": "US State Department: Iran Sanctions",
+                    "url": "https://www.state.gov/iran-sanctions/"
+          },
+          {
+                    "label": "SIPRI: Hypersonic Missile Proliferation",
+                    "url": "https://www.sipri.org/"
+          },
+          {
+                    "label": "INSS: The Shadow War Escalation",
+                    "url": "https://www.inss.org.il/"
+          },
+          {
+                    "label": "Al Jazeera: Strait of Hormuz Crisis",
+                    "url": "https://www.aljazeera.com/tag/strait-of-hormuz/"
+          },
+          {
+                    "label": "BBC: Iranian Drone Swarm Capabilities",
+                    "url": "https://www.bbc.com/news/world-middle-east"
+          },
+          {
+                    "label": "ECFR: EU-Iran Policy Assessment",
+                    "url": "https://ecfr.eu/middle-east-and-north-africa/iran/"
+          },
+          {
+                    "label": "Chatham House: Middle East Security Dynamics",
+                    "url": "https://www.chathamhouse.org/topics/middle-east-and-north-africa"
+          }
+],
         "detailed": {
             "allies": "USA, UK, Germany, France",
             "adversaries": "Iran, IRGC, Iraqi Militias (KH)",
@@ -271,31 +319,67 @@ export const frontData = {
         "damages": "1.2M displaced; 200 villages leveled; Haifa industrial port disabled; UNIFIL infrastructure hit multiple times.",
         "study_note": "Study the failure of the 1701 mandate and propose a '1701-Plus' framework with actual enforcement powers.",
         "study_links": [
-            {
-                "label": "UNSC Resolution 1701 (Full Text)",
-                "url": "https://undocs.org/en/S/RES/1701(2006)"
-            },
-            {
-                "label": "UNIFIL: Official Mission & Mandate",
-                "url": "https://unifil.unmissions.org/"
-            },
-            {
-                "label": "Al Jazeera: Southern Front Live Map",
-                "url": "https://www.aljazeera.com/tag/lebanon/"
-            },
-            {
-                "label": "Chatham House: Hezbollah Strategic Shift",
-                "url": "https://www.chathamhouse.org/topics/lebanon"
-            },
-            {
-                "label": "HRW: South Lebanon Humanitarian Report",
-                "url": "https://www.hrw.org/middle-east/north-africa/lebanon"
-            },
-            {
-                "label": "Crisis Group: Avoiding a Wider Lebanon War",
-                "url": "https://www.crisisgroup.org/middle-east-north-africa/east-mediterranean/lebanon"
-            }
-        ],
+          {
+                    "label": "UNSC Resolution 1701 (Full Text)",
+                    "url": "https://undocs.org/en/S/RES/1701(2006)"
+          },
+          {
+                    "label": "UNIFIL: Official Mission & Mandate",
+                    "url": "https://unifil.unmissions.org/"
+          },
+          {
+                    "label": "Al Jazeera: Southern Front Live Map",
+                    "url": "https://www.aljazeera.com/tag/lebanon/"
+          },
+          {
+                    "label": "Chatham House: Hezbollah Strategic Shift",
+                    "url": "https://www.chathamhouse.org/topics/lebanon"
+          },
+          {
+                    "label": "HRW: South Lebanon Humanitarian Report",
+                    "url": "https://www.hrw.org/middle-east/north-africa/lebanon"
+          },
+          {
+                    "label": "Crisis Group: Avoiding a Wider Lebanon War",
+                    "url": "https://www.crisisgroup.org/middle-east-north-africa/east-mediterranean/lebanon"
+          },
+          {
+                    "label": "INSS: Hezbollah's Tunnel Network",
+                    "url": "https://www.inss.org.il/"
+          },
+          {
+                    "label": "Reuters: Lebanon Economic Collapse",
+                    "url": "https://www.reuters.com/world/middle-east/"
+          },
+          {
+                    "label": "Amnesty International: Civilian Casualties in Lebanon",
+                    "url": "https://www.amnesty.org/en/location/middle-east-and-north-africa/lebanon/"
+          },
+          {
+                    "label": "UN OCHA: Lebanon Flash Updates",
+                    "url": "https://www.unocha.org/lebanon"
+          },
+          {
+                    "label": "Washington Institute: IDF Ground Incursion Strategies",
+                    "url": "https://www.washingtoninstitute.org/"
+          },
+          {
+                    "label": "IISS: The Military Balance in the Levant",
+                    "url": "https://www.iiss.org/"
+          },
+          {
+                    "label": "WHO: Healthcare Infrastructure in South Lebanon",
+                    "url": "https://www.emro.who.int/countries/lbn/index.html"
+          },
+          {
+                    "label": "Carnegie Endowment: The Future of Lebanese Politics",
+                    "url": "https://carnegie-mec.org/regions/lebanon"
+          },
+          {
+                    "label": "CFR: Hezbollah's Regional Influence",
+                    "url": "https://www.cfr.org/backgrounder/what-hezbollah"
+          }
+],
         "detailed": {
             "allies": "Israel, USA (Intel)",
             "adversaries": "Hezbollah, Amal, IRGC-QF",
@@ -323,31 +407,67 @@ export const frontData = {
         "damages": "85% housing destroyed; 2.1M at famine risk; collapse of aid systems; sewage and water networks 90% non-functional.",
         "study_note": "Examine the 'Board of Peace' transitional model and the requirements for an 'Occupation by Proxy' under Geneva IV.",
         "study_links": [
-            {
-                "label": "UNSC Resolution 242 (Full Text)",
-                "url": "https://undocs.org/en/S/RES/242(1967)"
-            },
-            {
-                "label": "UN OCHA: Integrated Situation Reports",
-                "url": "https://www.ochaopt.org/"
-            },
-            {
-                "label": "ICJ: South Africa v. Israel Full Case",
-                "url": "https://www.icj-cij.org/case/192"
-            },
-            {
-                "label": "WHO: Gaza Health Sector Breakdown",
-                "url": "https://www.who.int/emergencies/situations/conflict-in-Israel-and-oPt"
-            },
-            {
-                "label": "Amnesty: Human Rights Documentation",
-                "url": "https://www.amnesty.org/en/location/middle-east-and-north-africa/israel-and-occupied-palestinian-territories/"
-            },
-            {
-                "label": "WFP: Famine Risk Assessment 2026",
-                "url": "https://www.wfp.org/countries/palestine"
-            }
-        ],
+          {
+                    "label": "UNSC Resolution 242 (Full Text)",
+                    "url": "https://undocs.org/en/S/RES/242(1967)"
+          },
+          {
+                    "label": "UN OCHA: Integrated Situation Reports",
+                    "url": "https://www.ochaopt.org/"
+          },
+          {
+                    "label": "ICJ: South Africa v. Israel Full Case",
+                    "url": "https://www.icj-cij.org/case/192"
+          },
+          {
+                    "label": "WHO: Gaza Health Sector Breakdown",
+                    "url": "https://www.who.int/emergencies/situations/conflict-in-Israel-and-oPt"
+          },
+          {
+                    "label": "Amnesty: Human Rights Documentation",
+                    "url": "https://www.amnesty.org/en/location/middle-east-and-north-africa/israel-and-occupied-palestinian-territories/"
+          },
+          {
+                    "label": "WFP: Famine Risk Assessment 2026",
+                    "url": "https://www.wfp.org/countries/palestine"
+          },
+          {
+                    "label": "B'Tselem: Gaza Strip Blockade",
+                    "url": "https://www.btselem.org/gaza_strip"
+          },
+          {
+                    "label": "Human Rights Watch: Gaza Siege",
+                    "url": "https://www.hrw.org/middle-east/north-africa/israel/palestine"
+          },
+          {
+                    "label": "UNRWA: Refugee Assistance Reports",
+                    "url": "https://www.unrwa.org/"
+          },
+          {
+                    "label": "Brookings Institution: Post-War Governance in Gaza",
+                    "url": "https://www.brookings.edu/"
+          },
+          {
+                    "label": "Al Mezan: Civilian Infrastructure Damage",
+                    "url": "https://www.mezan.org/en/"
+          },
+          {
+                    "label": "ICC: Arrest Warrants Investigation",
+                    "url": "https://www.icc-cpi.int/palestine"
+          },
+          {
+                    "label": "IPC: Food Security Phase Classification Gaza",
+                    "url": "https://www.ipcinfo.org/"
+          },
+          {
+                    "label": "Reuters: Philadelphi Corridor Control",
+                    "url": "https://www.reuters.com/world/middle-east/"
+          },
+          {
+                    "label": "Haaretz: Domestic Israeli Politics and the War",
+                    "url": "https://www.haaretz.com/"
+          }
+],
         "detailed": {
             "allies": "UNRWA, International NGOs",
             "adversaries": "Israel, Hamas, PIJ",
@@ -375,31 +495,67 @@ export const frontData = {
         "damages": "12 vessels sunk; 15% global shipping inflation; radar systems destroyed; damage to critical port infrastructure.",
         "study_note": "Analyze 'Piracy' vs 'Belligerent Blockade' under UNCLOS and the proportionality of retaliatory strikes.",
         "study_links": [
-            {
-                "label": "UNSC Resolution 2722 (Full Text)",
-                "url": "https://undocs.org/en/S/RES/2722(2024)"
-            },
-            {
-                "label": "UNCLOS: Official Treaty Text",
-                "url": "https://www.un.org/depts/los/convention_agreements/texts/unclos/unclos_e.pdf"
-            },
-            {
-                "label": "IMO: Maritime Security Reports",
-                "url": "https://www.imo.org/en/MediaCentre/HotTopics/Pages/MaritimeSecurity.aspx"
-            },
-            {
-                "label": "CSIS: Maritime Trade Vulnerabilities",
-                "url": "https://www.csis.org/analysis/houthi-attacks-red-sea"
-            },
-            {
-                "label": "Bloomberg: Shipping Cost Index 2026",
-                "url": "https://www.bloomberg.com/search?query=Red%20Sea"
-            },
-            {
-                "label": "MEI: Houthi Asymmetrical Capability",
-                "url": "https://www.mei.edu/publications/houthi-capabilities-and-red-sea-security"
-            }
-        ],
+          {
+                    "label": "UNSC Resolution 2722 (Full Text)",
+                    "url": "https://undocs.org/en/S/RES/2722(2024)"
+          },
+          {
+                    "label": "UNCLOS: Official Treaty Text",
+                    "url": "https://www.un.org/depts/los/convention_agreements/texts/unclos/unclos_e.pdf"
+          },
+          {
+                    "label": "IMO: Maritime Security Reports",
+                    "url": "https://www.imo.org/en/MediaCentre/HotTopics/Pages/MaritimeSecurity.aspx"
+          },
+          {
+                    "label": "CSIS: Maritime Trade Vulnerabilities",
+                    "url": "https://www.csis.org/analysis/houthi-attacks-red-sea"
+          },
+          {
+                    "label": "Bloomberg: Shipping Cost Index 2026",
+                    "url": "https://www.bloomberg.com/search?query=Red%20Sea"
+          },
+          {
+                    "label": "MEI: Houthi Asymmetrical Capability",
+                    "url": "https://www.mei.edu/publications/houthi-capabilities-and-red-sea-security"
+          },
+          {
+                    "label": "US CENTCOM: Operation Prosperity Guardian",
+                    "url": "https://www.centcom.mil/"
+          },
+          {
+                    "label": "EU NAVFOR Aspides: Official Mission Page",
+                    "url": "https://www.eeas.europa.eu/eeas/eunavfor-aspides_en"
+          },
+          {
+                    "label": "Reuters: Suez Canal Transit Data",
+                    "url": "https://www.reuters.com/business/autos-transportation/"
+          },
+          {
+                    "label": "Chatham House: Ansar Allah's Domestic Power",
+                    "url": "https://www.chathamhouse.org/topics/yemen"
+          },
+          {
+                    "label": "World Bank: Global Supply Chain Impact",
+                    "url": "https://www.worldbank.org/en/topic/trade"
+          },
+          {
+                    "label": "INSS: Yemen's Role in the Axis of Resistance",
+                    "url": "https://www.inss.org.il/"
+          },
+          {
+                    "label": "Lloyd's List: Maritime Insurance Risk Rates",
+                    "url": "https://lloydslist.maritimeintelligence.informa.com/"
+          },
+          {
+                    "label": "Washington Institute: Iranian Weapons Smuggling to Yemen",
+                    "url": "https://www.washingtoninstitute.org/"
+          },
+          {
+                    "label": "Maritime Executive: Red Sea Rerouting",
+                    "url": "https://maritime-executive.com/"
+          }
+],
         "detailed": {
             "allies": "US CENTCOM, Royal Navy, EU Aspides",
             "adversaries": "Houthis (Ansar Allah), IRGC-N",
@@ -427,31 +583,67 @@ export const frontData = {
         "damages": "Damascus and Aleppo Airports repeatedly disabled; 40+ logistical hubs destroyed; severe damage to state air defense network.",
         "study_note": "Evaluate sovereignty challenges when state territory is used as a military corridor, and the legality of cross-border strikes.",
         "study_links": [
-            {
-                "label": "UNSC Resolution 2254 (Full Text)",
-                "url": "https://undocs.org/en/S/RES/2254(2015)"
-            },
-            {
-                "label": "SOHR: Conflict Monitoring Site",
-                "url": "https://www.syriahr.com/en/"
-            },
-            {
-                "label": "Etana: Syrian Military Tracking",
-                "url": "https://etanasyria.org/"
-            },
-            {
-                "label": "Foreign Policy: Levant Power Struggles",
-                "url": "https://foreignpolicy.com/category/syria/"
-            },
-            {
-                "label": "Washington Institute: IRGC Land Bridge",
-                "url": "https://www.washingtoninstitute.org/policy-analysis/syria-war-between-wars"
-            },
-            {
-                "label": "Enab Baladi: Independent Syrian Voice",
-                "url": "https://english.enabbaladi.net/"
-            }
-        ],
+          {
+                    "label": "UNSC Resolution 2254 (Full Text)",
+                    "url": "https://undocs.org/en/S/RES/2254(2015)"
+          },
+          {
+                    "label": "SOHR: Conflict Monitoring Site",
+                    "url": "https://www.syriahr.com/en/"
+          },
+          {
+                    "label": "Etana: Syrian Military Tracking",
+                    "url": "https://etanasyria.org/"
+          },
+          {
+                    "label": "Foreign Policy: Levant Power Struggles",
+                    "url": "https://foreignpolicy.com/category/syria/"
+          },
+          {
+                    "label": "Washington Institute: IRGC Land Bridge",
+                    "url": "https://www.washingtoninstitute.org/policy-analysis/syria-war-between-wars"
+          },
+          {
+                    "label": "Enab Baladi: Independent Syrian Voice",
+                    "url": "https://english.enabbaladi.net/"
+          },
+          {
+                    "label": "Carnegie Endowment: Russia's Role in Syria",
+                    "url": "https://carnegie-mec.org/regions/syria"
+          },
+          {
+                    "label": "Crisis Group: Syria's Frozen Conflict",
+                    "url": "https://www.crisisgroup.org/middle-east-north-africa/east-mediterranean/syria"
+          },
+          {
+                    "label": "Human Rights Watch: Chemical Weapons Use in Syria",
+                    "url": "https://www.hrw.org/middle-east/north-africa/syria"
+          },
+          {
+                    "label": "Al Jazeera: Israeli Strikes in Damascus",
+                    "url": "https://www.aljazeera.com/tag/syria/"
+          },
+          {
+                    "label": "UN OCHA: Syria Humanitarian Needs Overview",
+                    "url": "https://www.unocha.org/syria"
+          },
+          {
+                    "label": "MEI: Turkish Military Operations in Northern Syria",
+                    "url": "https://www.mei.edu/"
+          },
+          {
+                    "label": "CSIS: The Re-emergence of ISIS in Syria",
+                    "url": "https://www.csis.org/"
+          },
+          {
+                    "label": "BBC: Syria's Captagon Trade",
+                    "url": "https://www.bbc.com/news/world-middle-east"
+          },
+          {
+                    "label": "Chatham House: The Syrian Economy and Sanctions",
+                    "url": "https://www.chathamhouse.org/topics/syria"
+          }
+],
         "detailed": {
             "allies": "Russia, Iran, SAA",
             "adversaries": "Israel, USA, Turkey",
@@ -479,31 +671,67 @@ export const frontData = {
         "damages": "Jenin refugee camp 60% destroyed; total movement restriction for 3.1M; record levels of civilian and settler violence.",
         "study_note": "Investigate legal implications of 'Authority Collapse' and responsibilities of the occupying power for civil services.",
         "study_links": [
-            {
-                "label": "UNSC Resolution 2334 (Full Text)",
-                "url": "https://undocs.org/en/S/RES/2334(2016)"
-            },
-            {
-                "label": "B'Tselem: Occupation Monitoring",
-                "url": "https://www.btselem.org/"
-            },
-            {
-                "label": "Peace Now: Settlement Expansion Data",
-                "url": "https://peacenow.org.il/en/"
-            },
-            {
-                "label": "Palestinian Authority: Wafa Archive",
-                "url": "https://www.wafanews.ps/en/"
-            },
-            {
-                "label": "Breaking the Silence: IDF Testimonies",
-                "url": "https://www.breakingthesilence.org.il/"
-            },
-            {
-                "label": "OCHA: Settlement Reports",
-                "url": "https://www.ochaopt.org/reports/situation-reports"
-            }
-        ],
+          {
+                    "label": "UNSC Resolution 2334 (Full Text)",
+                    "url": "https://undocs.org/en/S/RES/2334(2016)"
+          },
+          {
+                    "label": "B'Tselem: Occupation Monitoring",
+                    "url": "https://www.btselem.org/"
+          },
+          {
+                    "label": "Peace Now: Settlement Expansion Data",
+                    "url": "https://peacenow.org.il/en/"
+          },
+          {
+                    "label": "Palestinian Authority: Wafa Archive",
+                    "url": "https://www.wafanews.ps/en/"
+          },
+          {
+                    "label": "Breaking the Silence: IDF Testimonies",
+                    "url": "https://www.breakingthesilence.org.il/"
+          },
+          {
+                    "label": "OCHA: Settlement Reports",
+                    "url": "https://www.ochaopt.org/reports/situation-reports"
+          },
+          {
+                    "label": "Amnesty International: Administrative Detention",
+                    "url": "https://www.amnesty.org/en/location/middle-east-and-north-africa/israel-and-occupied-palestinian-territories/"
+          },
+          {
+                    "label": "Human Rights Watch: Settler Violence",
+                    "url": "https://www.hrw.org/middle-east/north-africa/israel/palestine"
+          },
+          {
+                    "label": "Crisis Group: The Collapse of the Palestinian Authority",
+                    "url": "https://www.crisisgroup.org/middle-east-north-africa/east-mediterranean/israelpalestine"
+          },
+          {
+                    "label": "INSS: Jenin and Nablus Insurgency",
+                    "url": "https://www.inss.org.il/"
+          },
+          {
+                    "label": "Al Jazeera: Daily West Bank Raids",
+                    "url": "https://www.aljazeera.com/tag/west-bank/"
+          },
+          {
+                    "label": "UNRWA: West Bank Refugee Camps",
+                    "url": "https://www.unrwa.org/where-we-work/west-bank"
+          },
+          {
+                    "label": "Reuters: Economic Impact of West Bank Closures",
+                    "url": "https://www.reuters.com/world/middle-east/"
+          },
+          {
+                    "label": "CFR: The Future of the Oslo Accords",
+                    "url": "https://www.cfr.org/backgrounder/what-were-oslo-accords"
+          },
+          {
+                    "label": "European Council on Foreign Relations: EU Policy on Settlements",
+                    "url": "https://ecfr.eu/"
+          }
+],
         "detailed": {
             "allies": "UN, EU (Humanitarian)",
             "adversaries": "IDF, Militant Cells",
