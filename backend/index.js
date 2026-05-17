@@ -79,15 +79,24 @@ app.post('/api/analyze', async (req, res) => {
                         STRICT PROHIBITIONS:
                         - DO NOT give technical, programming, or web development advice.
                         - DO NOT advise the user to build tools, websites, or software.
-                        - DO NOT write speeches, opening statements, or draft resolutions.
+                        - ABSOLUTELY NO drafting speeches, opening statements, resolutions, or any form of documents. 
+                        - DO NOT write any prose or content that resembles a speech, outline, or draft document.
+                        - LIMIT your responses strictly to brief, conceptual, high-level analysis and geopolitical facts.
+                        - DO NOT provide "outlines" for speeches or documents.
                         - DO NOT step out of your persona as a high-level research bureau.
                         
-                        ADAPTIVE DEPTH: Use a professional, institutional tone. Structure complex legal answers with bullet points. Always use Markdown.` 
+                        ADAPTIVE DEPTH: Use a professional, institutional tone.
+                        
+                        FORMATTING REQUIREMENTS:
+                        - Structure all responses using bold, clear CATEGORY HEADERS (e.g., **Geopolitical Context**, **Legal Provisions**, **Institutional Role**).
+                        - Under each header, use only 2-3 concise, high-level bullet points.
+                        - ABSOLUTELY NO prose, no documents, no speeches.
+                        - KEEP IT EXTREMELY BRIEF.` 
                     },
                     { role: "user", content: query }
                 ],
                 stream: true,
-                max_tokens: 1000,
+                max_tokens: 500,
             }),
         });
 
@@ -116,95 +125,87 @@ app.get('/api/news', async (req, res) => {
         const seenTitles = new Set();
         
         // 1. Agenda Keywords (Strategic Search)
-        const agendaKeywords = [
-            '"Middle East"', '"UNSC"', '"Security Council"', '"Gaza"', 
-            '"Israel"', '"Iran"', '"Lebanon"', '"Hezbollah"', 
-            '"Houthi"', '"Red Sea"', '"Strait of Hormuz"'
-        ].join(' OR ');
-        const contextKeywords = '(conflict OR diplomatic OR crisis OR resolution OR war OR peace OR humanitarian)';
-        const query = `(${agendaKeywords}) AND ${contextKeywords}`;
-        
-        // 2. High-Credibility Sources (Reuters, AP, Al Jazeera, etc.)
-        const premiumSources = [
-            'reuters', 'associated-press', 'al-jazeera-english', 
-            'msnbc', 'cnn', 'google-news', 'bloomberg', 'axios'
-        ].join(',');
+        const agendaTerms = [
+            "Middle East", "UNSC", "Gaza", "Israel", "Iran", 
+            "Lebanon", "Hezbollah"
+        ];
+        // Use a more focused query
+        const query = agendaTerms.join(' OR ');
 
         // Construct URLs
-        const SEARCH_URL = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&sortBy=publishedAt&language=en&pageSize=15&apiKey=${NEWS_API_KEY}`;
-        const HEADLINES_URL = `https://newsapi.org/v2/top-headlines?sources=${premiumSources}&pageSize=15&apiKey=${NEWS_API_KEY}`;
+        const SEARCH_URL = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&sortBy=relevancy&language=en&pageSize=20&apiKey=${NEWS_API_KEY}`;
         const BBC_URL = "https://bbc-news-api.vercel.app/latest?lang=english";
 
-        // Parallel Fetch from 3 intelligence streams
-        const [searchRes, headlineRes, bbcRes] = await Promise.all([
-            fetch(SEARCH_URL).catch(() => null),
-            fetch(HEADLINES_URL).catch(() => null),
+        // Parallel Fetch
+        const [searchRes, bbcRes] = await Promise.all([
+            fetch(SEARCH_URL, {
+                headers: { 'User-Agent': 'Mozilla/5.0' }
+            }).catch(() => null),
             fetch(BBC_URL).catch(() => null)
         ]);
 
-        // Process Agenda-Specific Search
+        // Process Agenda-Specific Search (Relevancy-based)
         if (searchRes && searchRes.ok) {
             const data = await searchRes.json();
             (data.articles || []).forEach(art => {
-                if (!seenTitles.has(art.title)) {
-                    seenTitles.add(art.title);
-                    allArticles.push({
-                        id: `search-${art.url}`,
-                        type: "AGENDA",
-                        source: art.source.name || "Agency",
-                        content: art.title,
-                        time: new Date(art.publishedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                        url: art.url,
-                        priority: 1
-                    });
+                if (art.title && !seenTitles.has(art.title)) {
+                    const titleLower = art.title.toLowerCase();
+                    const isRelevant = agendaTerms.some(term => titleLower.includes(term.toLowerCase()));
+
+                    if (isRelevant) {
+                        seenTitles.add(art.title);
+                        allArticles.push({
+                            id: `search-${art.url}`,
+                            type: "AGENDA",
+                            source: art.source.name || "Agency",
+                            content: art.title,
+                            time: new Date(art.publishedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                            url: art.url,
+                            priority: 1
+                        });
+                    }
                 }
             });
         }
-
-        // Process Premium Agency Headlines
-        if (headlineRes && headlineRes.ok) {
-            const data = await headlineRes.json();
-            (data.articles || []).forEach(art => {
-                if (!seenTitles.has(art.title)) {
-                    seenTitles.add(art.title);
-                    // Check if headline matches agenda keywords for priority boost
-                    const isAgenda = agendaKeywords.split(' OR ').some(kw => 
-                        art.title.toLowerCase().includes(kw.replace(/"/g, '').toLowerCase())
-                    );
-                    
-                    allArticles.push({
-                        id: `headline-${art.url}`,
-                        type: isAgenda ? "AGENDA" : "WORLD",
-                        source: art.source.name || "Global News",
-                        content: art.title,
-                        time: new Date(art.publishedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                        url: art.url,
-                        priority: isAgenda ? 1 : 2
-                    });
-                }
-            });
+ else {
+            console.error('[NewsAPI] Failed or empty response. Status:', searchRes ? searchRes.status : 'No response');
         }
 
         // Process BBC News
         if (bbcRes && bbcRes.ok) {
             const data = await bbcRes.json();
-            (Array.isArray(data) ? data : []).forEach(art => {
-                if (!seenTitles.has(art.title)) {
-                    seenTitles.add(art.title);
-                    const isAgenda = agendaKeywords.split(' OR ').some(kw => 
-                        art.title.toLowerCase().includes(kw.replace(/"/g, '').toLowerCase())
-                    );
-                    allArticles.push({
-                        id: `bbc-${art.link}`,
-                        type: isAgenda ? "AGENDA" : "WORLD",
-                        source: "BBC News",
-                        content: art.title,
-                        time: art.published ? new Date(art.published).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : "Recent",
-                        url: art.link,
-                        priority: isAgenda ? 1 : 3
+            // The API returns an object with category keys (e.g., "Weekend reads") containing arrays of articles.
+            Object.keys(data).forEach(category => {
+                const articles = data[category];
+                if (Array.isArray(articles)) {
+                    articles.forEach(art => {
+                        // The structure uses news_link instead of link.
+                        const link = art.news_link || art.link;
+                        const title = art.title;
+                        
+                        if (title && !seenTitles.has(title)) {
+                            const isAgenda = agendaTerms.some(term => 
+                                title.toLowerCase().includes(term.toLowerCase())
+                            );
+                            
+                            if (isAgenda) {
+                                seenTitles.add(title);
+                                allArticles.push({
+                                    id: `bbc-${link}`,
+                                    type: "AGENDA",
+                                    source: "BBC News",
+                                    content: title,
+                                    time: "Recent",
+                                    url: link,
+                                    priority: 1
+                                });
+                            }
+                        }
                     });
                 }
             });
+        } else {
+            console.error('[News] BBC API failed or returned invalid response');
         }
 
         // Final sorting: Agenda first, then Premium World news, then general

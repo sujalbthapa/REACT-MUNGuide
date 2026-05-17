@@ -140,15 +140,20 @@ export default function App() {
                     </div>
 
                     <div className="relative z-10">
-                      <div className="flex items-center gap-5 mb-8">
-                         <div className="w-16 h-16 bg-white p-2 border border-slate-100 shadow-sm">
+                      <div className="flex items-center gap-8 mb-10 pb-8 border-b border-slate-100">
+                         <div className="w-24 h-24 bg-white p-3 border border-slate-100 shadow-sm shrink-0">
                             <img src="https://www.un.org/sites/un2.un.org/files/un_logo.png" className="w-full h-full object-contain" />
                          </div>
-                         <div>
+                         <div className="flex flex-col gap-1">
                             <h2 className="text-4xl lg:text-5xl font-black tracking-tighter uppercase text-navy-900 italic leading-none">
                                Welcome, <span className="text-[#009EDB]">Delegate</span>
                             </h2>
-                            <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.3em] mt-2 italic">Official Research & Intelligence Portal</p>
+                            <div className="flex flex-col gap-0.5 mt-4">
+                               <h1 className="text-base font-black uppercase tracking-[0.2em] text-navy-900">United Nations Security Council</h1>
+                               <div className="bg-[#001E3D] text-[#009EDB] py-1 px-3 w-fit">
+                                  <p className="text-[12px] font-black uppercase tracking-[0.2em] italic">Agenda : Situation in the Middle East</p>
+                               </div>
+                            </div>
                          </div>
                       </div>
                       
