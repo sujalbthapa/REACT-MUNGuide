@@ -38,6 +38,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
     { id: 'home', icon: LayoutDashboard, label: 'Overview', to: '/' },
     { id: 'wars', icon: Swords, label: 'Active Conflicts', to: '/conflicts' },
     { id: 'matrix', icon: LayoutGrid, label: 'Committee Matrix', to: '/matrix' },
+    { id: 'una-rules', icon: Book, label: 'UNA-USA Rules', to: '/una-rules' },
     { id: 'law', icon: Scale, label: 'International Law', to: '/law' },
     { id: 'constitutions', icon: Landmark, label: 'Constitutions', to: '/constitutions' },
     { id: 'blocs', icon: Globe2, label: 'Global Blocs', to: '/blocs' },
