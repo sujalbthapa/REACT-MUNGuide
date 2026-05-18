@@ -16,6 +16,7 @@ import ConstitutionLibrary from './components/ConstitutionLibrary';
 import DiplomaticBlocs from './components/DiplomaticBlocs';
 import CommitteeMatrix from './components/CommitteeMatrix';
 import UNAUSARules from './components/UNA-USA-Rules';
+import Documentations from './components/Documentations';
 import StudyGuidelines from './components/StudyGuidelines';
 import { frontData, qarmas, flagMapping } from './data/mockData';
 
@@ -454,6 +455,7 @@ export default function App() {
 
               <Route path="/matrix" element={<SectionWrapper><CommitteeMatrix /></SectionWrapper>} />
               <Route path="/una-rules" element={<SectionWrapper><UNAUSARules /></SectionWrapper>} />
+              <Route path="/documentations" element={<SectionWrapper><Documentations /></SectionWrapper>} />
               <Route path="/law" element={<SectionWrapper><div className="p-8 lg:p-12"><RulesLibrary /></div></SectionWrapper>} />
               <Route path="/constitutions" element={<SectionWrapper><div className="p-8 lg:p-12"><ConstitutionLibrary /></div></SectionWrapper>} />
               <Route path="/blocs" element={<SectionWrapper><DiplomaticBlocs /></SectionWrapper>} />

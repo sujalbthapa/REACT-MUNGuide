@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Swords, Scale, Users, Briefcase, Globe, Shield, Search, Sparkles, Book, Landmark, Brain, LayoutGrid, Globe2, ShieldCheck } from 'lucide-react';
+import { LayoutDashboard, Swords, Scale, Users, Briefcase, Globe, Shield, Search, Sparkles, Book, BookOpen, Landmark, Brain, LayoutGrid, Globe2, ShieldCheck } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -39,6 +39,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
     { id: 'wars', icon: Swords, label: 'Active Conflicts', to: '/conflicts' },
     { id: 'matrix', icon: LayoutGrid, label: 'Committee Matrix', to: '/matrix' },
     { id: 'una-rules', icon: Book, label: 'UNA-USA Rules', to: '/una-rules' },
+    { id: 'documentations', icon: BookOpen, label: 'Documentations', to: '/documentations' },
     { id: 'law', icon: Scale, label: 'International Law', to: '/law' },
     { id: 'constitutions', icon: Landmark, label: 'Constitutions', to: '/constitutions' },
     { id: 'blocs', icon: Globe2, label: 'Global Blocs', to: '/blocs' },

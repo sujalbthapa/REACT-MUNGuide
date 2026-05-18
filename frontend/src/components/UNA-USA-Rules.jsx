@@ -300,7 +300,7 @@ const UNAUSARules = () => {
         icon: ShieldCheck,
         content: (
           <div className="space-y-10">
-            <div className="p-10 bg-red-800 text-white shadow-2xl border-l-[15px] border-[#001E3D]">
+            <div className="p-10 bg-gradient-to-br from-red-500 to-red-700 text-white shadow-2xl border-l-[15px] border-[#001E3D]">
               <SectionTitle>The P5 Mandate</SectionTitle>
               <div className="space-y-6">
                 <div>
@@ -391,81 +391,6 @@ const UNAUSARules = () => {
         ),
       },
     ],
-    'document-types': [
-      {
-        id: 'posPaper',
-        title: 'POSITION PAPERS',
-        icon: FileText,
-        content: (
-          <div className="space-y-6">
-            <SectionTitle>The Delegate's Foundation</SectionTitle>
-            <p className="text-sm font-bold uppercase italic text-navy-900 opacity-70 leading-relaxed mb-6">A strategic document providing an overview of a country's stance. Essential for gauging policy alignments.</p>
-            <div className="grid gap-3">
-               {[
-                 { t: "Country Position", d: "General policy and internal history on the topic." },
-                 { t: "Relation to Topic", d: "Specific impact and international involvement." },
-                 { t: "Policy Proposals", d: "Actionable solutions to be included in resolutions." }
-               ].map((item, i) => (
-                 <div key={i} className="p-4 border border-slate-100 flex gap-6 items-center">
-                    <span className="text-xl font-black text-[#009EDB] italic">0{i+1}</span>
-                    <div className="flex flex-col">
-                       <span className="text-[11px] font-black uppercase text-navy-900 italic tracking-tighter leading-none">{item.t}</span>
-                       <span className="text-[9px] font-bold uppercase text-slate-400 mt-1">{item.d}</span>
-                    </div>
-                 </div>
-               ))}
-            </div>
-            <Cite>cd623d13d7: Page 12</Cite>
-          </div>
-        ),
-      },
-      {
-        id: 'workingPaper',
-        title: 'WORKING PAPERS',
-        icon: BookOpen,
-        content: (
-          <div className="space-y-6">
-            <SectionTitle>Collaborative Drafts</SectionTitle>
-            <div className="p-8 bg-[#001E3D] text-white">
-               <p className="text-xs font-bold uppercase italic opacity-80 leading-relaxed mb-6">Informal documents used to present viewpoints and group solutions. They aid in the eventual creation of a Draft Resolution.</p>
-               <ul className="text-[11px] font-black uppercase text-[#009EDB] space-y-3 italic">
-                 <li>- NO SET FORMAT REQUIRED.</li>
-                 <li>- NO SIGNATORIES/SPONSORS REQUIRED.</li>
-                 <li>- MUST BEAR NAMES OF AUTHORS.</li>
-               </ul>
-            </div>
-            <Cite>cd623d13d7: Page 12</Cite>
-          </div>
-        ),
-      },
-      {
-        id: 'draftRes',
-        title: 'DRAFT RESOLUTIONS',
-        icon: ShieldCheck,
-        content: (
-          <div className="space-y-6">
-            <SectionTitle>Legislative Protocol</SectionTitle>
-            <div className="p-6 border-l-8 border-navy-900 bg-slate-50">
-               <p className="text-xs font-bold uppercase italic text-navy-900 opacity-90 leading-relaxed">The formal document that, if passed, represents the committee's decision. Requires strict formatting and approval.</p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-               <div className="p-6 border border-slate-100 shadow-sm">
-                  <h5 className="text-[9px] font-black text-[#009EDB] uppercase mb-2">SPONSORS</h5>
-                  <p className="text-[10px] font-bold uppercase italic opacity-60">Primary authors. Must vote 'YES' on the resolution.</p>
-               </div>
-               <div className="p-6 border border-slate-100 shadow-sm">
-                  <h5 className="text-[9px] font-black text-[#009EDB] uppercase mb-2">SIGNATORIES</h5>
-                  <p className="text-[10px] font-bold uppercase italic opacity-60">Supporters of debate. No voting obligation.</p>
-               </div>
-            </div>
-            <div className="p-4 bg-red-50 border border-red-100">
-               <p className="text-[10px] font-black text-red-600 uppercase italic">CRITICAL: ONE DELEGATION CANNOT BE BOTH A SPONSOR AND A SIGNATORY.</p>
-            </div>
-            <Cite>cd623d13d7: Page 13</Cite>
-          </div>
-        ),
-      },
-    ],
   };
 
   return (
@@ -516,7 +441,6 @@ const UNAUSARules = () => {
                   {key === 'points-rights' && <Flag className="w-3 h-3" />}
                   {key === 'motions-scripts' && <PenTool className="w-3 h-3" />}
                   {key === 'voting-unsc-rules' && <Landmark className="w-3 h-3" />}
-                  {key === 'document-types' && <FileText className="w-3 h-3" />}
                   {key === 'yields' && <Repeat className="w-3 h-3" />}
                   {key.replace(/-/g, ' ')}
                 </div>
