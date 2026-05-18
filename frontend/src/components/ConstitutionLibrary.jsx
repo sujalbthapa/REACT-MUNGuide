@@ -24,10 +24,6 @@ export default function ConstitutionLibrary() {
   const [htmlContent, setHtmlContent] = useState('');
   const [loadingHtml, setLoadingHtml] = useState(false);
 
-  useEffect(() => {
-    fetchConstitutions();
-  }, []);
-
   const fetchConstitutions = async () => {
     try {
       setLoading(true);
@@ -48,6 +44,10 @@ export default function ConstitutionLibrary() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchConstitutions();
+  }, []);
 
   const fetchConstitutionHtml = async (id) => {
     try {

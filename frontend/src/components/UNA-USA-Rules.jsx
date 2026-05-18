@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { ChevronRight, Info, BookOpen, Scale, Landmark, Hand, Gavel, Users, ShieldCheck, Flag, TriangleAlert, BellRing, X, Globe, ArrowRight, Target, FileText, PenTool, CheckCircle, AlertCircle, HelpCircle, MessageSquare, Repeat, ListOrdered } from 'lucide-react';
+import { Info, Scale, Landmark, Hand, Gavel, Users, ShieldCheck, Flag, BellRing, X, Globe, ArrowRight, Target, PenTool, MessageSquare, Repeat, ListOrdered } from 'lucide-react';
+
+const ArrowLine = () => (
+  <div className="flex flex-col items-center my-1 opacity-60">
+     <div className="w-1 h-8 bg-[#009EDB]"></div>
+     <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-l-transparent border-r-transparent border-t-[#009EDB]"></div>
+  </div>
+);
 
 // Modal Component
 const Modal = ({ isOpen, onClose, title, icon: Icon, content }) => {
@@ -27,6 +34,16 @@ const Modal = ({ isOpen, onClose, title, icon: Icon, content }) => {
   );
 };
 
+const Cite = ({ children }) => (
+  <span className="text-[#009EDB] text-[10px] font-bold ml-1 uppercase">[{children}]</span>
+);
+
+const SectionTitle = ({ children }) => (
+  <h4 className="text-[11px] font-black uppercase text-[#009EDB] tracking-[0.2em] mb-4 italic flex items-center gap-2">
+    <div className="w-2 h-2 bg-[#009EDB]" /> {children}
+  </h4>
+);
+
 const UNAUSARules = () => {
   const [activeTab, setActiveTab] = useState('points-rights');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,16 +57,6 @@ const UNAUSARules = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
-  const Cite = ({ children }) => (
-    <span className="text-[#009EDB] text-[10px] font-bold ml-1 uppercase">[{children}]</span>
-  );
-
-  const SectionTitle = ({ children }) => (
-    <h4 className="text-[11px] font-black uppercase text-[#009EDB] tracking-[0.2em] mb-4 italic flex items-center gap-2">
-      <div className="w-2 h-2 bg-[#009EDB]" /> {children}
-    </h4>
-  );
 
   const tabContentData = {
     'points-rights': [
@@ -429,7 +436,7 @@ const UNAUSARules = () => {
         {/* TABS NAVIGATION */}
         <div className="bg-white border border-slate-100 shadow-2xl rounded-none">
           <div className="flex flex-wrap border-b border-slate-100 bg-slate-50/20">
-            {Object.keys(tabContentData).map((key) => (
+            {[...Object.keys(tabContentData), 'flow-of-debate'].map((key) => (
               <button
                 key={key}
                 onClick={() => setActiveTab(key)}
@@ -442,6 +449,7 @@ const UNAUSARules = () => {
                   {key === 'motions-scripts' && <PenTool className="w-3 h-3" />}
                   {key === 'voting-unsc-rules' && <Landmark className="w-3 h-3" />}
                   {key === 'yields' && <Repeat className="w-3 h-3" />}
+                  {key === 'flow-of-debate' && <Target className="w-3 h-3" />}
                   {key.replace(/-/g, ' ')}
                 </div>
                 {activeTab === key && (
@@ -453,38 +461,132 @@ const UNAUSARules = () => {
           </div>
 
           {/* TAB CONTENT GRID */}
-          <div className="p-8 md:p-12 bg-slate-50/10">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-              {tabContentData[activeTab].map((item) => (
-                <div
-                  key={item.id}
-                  onClick={() => openModal(item.title, item.icon, item.content)}
-                  className="p-10 bg-white border border-slate-100 group hover:border-[#009EDB] transition-all cursor-pointer relative shadow-sm hover:shadow-2xl overflow-hidden flex flex-col justify-between"
-                >
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 -mr-12 -mt-12 rotate-45 group-hover:bg-[#009EDB]/10 transition-colors" />
-                  
-                  <div>
-                    <div className="flex items-center gap-5 mb-8">
-                      <div className="p-3 bg-white text-slate-300 group-hover:text-[#009EDB] group-hover:scale-110 transition-all border border-slate-100 shadow-sm relative z-10">
-                        {item.icon && React.createElement(item.icon, { className: "w-6 h-6" })}
+          {activeTab === 'flow-of-debate' ? (
+            <div className="p-8 md:p-16 bg-slate-50/50 border-t border-slate-100">
+              <div className="max-w-4xl mx-auto flex flex-col items-center">
+                
+                <div className="text-center mb-12">
+                  <h3 className="text-3xl font-black text-navy-900 uppercase tracking-tighter italic mb-4">The Flow of Debate</h3>
+                  <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Standard UN Parliamentary Procedure</p>
+                </div>
+
+                <div className="w-full max-w-2xl bg-white border border-slate-200 shadow-xl p-4 sm:p-8 md:p-12 relative">
+                   {/* Start point */}
+                   <div className="flex flex-col items-center">
+                      <div className="bg-[#001E3D] text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-xl font-black uppercase tracking-widest shadow-md border-l-8 border-[#009EDB] w-full text-center hover:scale-105 transition-transform">
+                         1. Roll Call
                       </div>
-                      <div className="relative z-10">
-                        <div className="h-[1px] w-8 bg-[#009EDB] mb-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <h4 className="text-[11px] font-black uppercase text-navy-900 tracking-[0.2em] italic leading-tight">{item.title}</h4>
+                      <ArrowLine />
+                      
+                      <div className="bg-cyan-700 text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-xl font-black uppercase tracking-widest shadow-md border-l-8 border-cyan-900 w-full text-center hover:scale-105 transition-transform">
+                         2. Set The Agenda
+                      </div>
+                      <ArrowLine />
+                      
+                      <div className="bg-indigo-600 text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-xl font-black uppercase tracking-widest shadow-md border-l-8 border-indigo-900 w-full text-center hover:scale-105 transition-transform">
+                         3. Opening Speeches
+                      </div>
+                      <ArrowLine />
+
+                      <div className="bg-blue-600 text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-xl font-black uppercase tracking-widest shadow-md border-l-8 border-navy-900 w-full text-center hover:scale-105 transition-transform relative z-10">
+                         4. General Speaker's List (GSL)
+                         <p className="text-[9px] sm:text-[10px] font-medium tracking-normal mt-1 sm:mt-2 normal-case opacity-90">The default state of the committee. Speakers are called in order.</p>
+                      </div>
+                   </div>
+
+                   {/* Branching */}
+                   <div className="relative w-full my-6 flex flex-col items-center">
+                      {/* Desktop Horizontal connecting line */}
+                      <div className="absolute top-0 w-3/4 h-[2px] bg-[#009EDB] opacity-50 hidden md:block"></div>
+                      {/* Desktop Vertical lines down */}
+                      <div className="absolute top-0 left-[12.5%] w-[2px] h-6 bg-[#009EDB] opacity-50 hidden md:block"></div>
+                      <div className="absolute top-0 right-[12.5%] w-[2px] h-6 bg-[#009EDB] opacity-50 hidden md:block"></div>
+                      <div className="absolute top-0 left-[12.5%] w-0 h-0 border-l-[4px] border-r-[4px] border-t-[6px] border-l-transparent border-r-transparent border-t-[#009EDB] mt-6 -ml-[3px] opacity-50 hidden md:block"></div>
+                      <div className="absolute top-0 right-[12.5%] w-0 h-0 border-l-[4px] border-r-[4px] border-t-[6px] border-l-transparent border-r-transparent border-t-[#009EDB] mt-6 -mr-[3px] opacity-50 hidden md:block"></div>
+                      
+                      <div className="w-full flex flex-col md:flex-row justify-between pt-4 md:pt-10 gap-4 md:gap-0">
+                         {/* Mobile Arrow for Caucuses */}
+                         <div className="md:hidden flex flex-col items-center opacity-50">
+                            <div className="w-[2px] h-4 bg-[#009EDB]"></div>
+                            <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-t-[6px] border-l-transparent border-r-transparent border-t-[#009EDB]"></div>
+                         </div>
+                         <div className="w-full md:w-[45%] text-center">
+                            <div className="bg-white border-2 border-[#009EDB] text-[#009EDB] px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-black uppercase tracking-widest shadow-sm hover:bg-[#009EDB] hover:text-white transition-colors cursor-pointer">
+                               Moderated Caucus
+                            </div>
+                            <p className="text-[9px] sm:text-[10px] text-slate-500 mt-2 sm:mt-3 font-medium">Formal debate with specific sub-topics and speaking times.</p>
+                         </div>
+                         <div className="w-full md:w-[45%] text-center mt-2 md:mt-0">
+                            <div className="bg-white border-2 border-[#009EDB] text-[#009EDB] px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-black uppercase tracking-widest shadow-sm hover:bg-[#009EDB] hover:text-white transition-colors cursor-pointer">
+                               Unmoderated Caucus
+                            </div>
+                            <p className="text-[9px] sm:text-[10px] text-slate-500 mt-2 sm:mt-3 font-medium">Informal lobbying, bloc forming, and resolution writing.</p>
+                         </div>
+                      </div>
+                   </div>
+
+                   {/* Return loop visual */}
+                   <div className="flex flex-col items-center">
+                      <div className="flex items-center gap-2 sm:gap-3 my-4 sm:my-6 opacity-60">
+                         <Repeat className="w-4 h-4 sm:w-5 sm:h-5 text-[#009EDB]" />
+                         <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#009EDB] text-center">Debate Cycle Continues</p>
+                      </div>
+                      
+                      <ArrowLine />
+
+                      <div className="bg-amber-500 text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-xl font-black uppercase tracking-widest shadow-md border-l-8 border-amber-700 w-full text-center hover:scale-105 transition-transform">
+                         5. Closure of Debate
+                      </div>
+                      <ArrowLine />
+
+                      <div className="bg-green-600 text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-xl font-black uppercase tracking-widest shadow-md border-l-8 border-green-800 w-full text-center hover:scale-105 transition-transform">
+                         6. Voting Procedure
+                         <p className="text-[9px] sm:text-[10px] font-medium tracking-normal mt-1 sm:mt-2 normal-case opacity-90">Substantive voting on Draft Resolutions and Amendments.</p>
+                      </div>
+                      <ArrowLine />
+
+                      <div className="bg-red-600 text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-xl font-black uppercase tracking-widest shadow-md border-l-8 border-red-800 w-full text-center hover:scale-105 transition-transform">
+                         7. Adjournment
+                      </div>
+                   </div>
+                </div>
+                
+              </div>
+            </div>
+          ) : (
+            <div className="p-8 md:p-12 bg-slate-50/10">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                {tabContentData[activeTab]?.map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() => openModal(item.title, item.icon, item.content)}
+                    className="p-10 bg-white border border-slate-100 group hover:border-[#009EDB] transition-all cursor-pointer relative shadow-sm hover:shadow-2xl overflow-hidden flex flex-col justify-between"
+                  >
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 -mr-12 -mt-12 rotate-45 group-hover:bg-[#009EDB]/10 transition-colors" />
+                    
+                    <div>
+                      <div className="flex items-center gap-5 mb-8">
+                        <div className="p-3 bg-white text-slate-300 group-hover:text-[#009EDB] group-hover:scale-110 transition-all border border-slate-100 shadow-sm relative z-10">
+                          {item.icon && React.createElement(item.icon, { className: "w-6 h-6" })}
+                        </div>
+                        <div className="relative z-10">
+                          <div className="h-[1px] w-8 bg-[#009EDB] mb-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <h4 className="text-[11px] font-black uppercase text-navy-900 tracking-[0.2em] italic leading-tight">{item.title}</h4>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="flex items-center justify-between mt-6 relative z-10">
-                     <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Protocol Ref: {item.id.toUpperCase()}</span>
-                     <div className="flex items-center gap-2 text-[#009EDB] text-[9px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0">
-                        ACCESS DIRECTIVE <ArrowRight className="w-3 h-3" />
-                     </div>
+                    <div className="flex items-center justify-between mt-6 relative z-10">
+                       <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Protocol Ref: {item.id.toUpperCase()}</span>
+                       <div className="flex items-center gap-2 text-[#009EDB] text-[9px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0">
+                          ACCESS DIRECTIVE <ArrowRight className="w-3 h-3" />
+                       </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* FOOTER INFO */}

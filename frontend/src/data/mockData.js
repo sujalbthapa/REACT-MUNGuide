@@ -206,7 +206,6 @@ export const flagMapping = {
     "Egypt": "EG",
     "Saudi Arabia": "SA",
     "UAE": "AE",
-    "Palestine": "PS",
     "Syria": "SY",
     "Lebanon": "LB",
     "Yemen": "YE"

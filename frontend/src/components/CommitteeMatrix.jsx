@@ -81,7 +81,7 @@ export default function CommitteeMatrix() {
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0 bg-slate-50/20">
         
         {/* --- ROSTER --- */}
-        <aside className={`${isRosterOpen ? 'fixed inset-0 z-50 pt-20' : 'hidden'} md:block md:w-[300px] flex flex-col bg-white border-b md:border-b-0 md:border-r border-slate-100 shrink-0 overflow-hidden shadow-sm`}>
+        <aside className={`${isRosterOpen ? 'fixed inset-0 z-50 pt-20 flex' : 'hidden'} md:flex md:w-[300px] flex-col bg-white border-b md:border-b-0 md:border-r border-slate-100 shrink-0 overflow-hidden shadow-sm`}>
            <div className="p-4 bg-white border-b border-slate-50 flex items-center justify-between">
               <div className="relative group flex-1">
                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-300 group-focus-within:text-[#009EDB] transition-colors" />

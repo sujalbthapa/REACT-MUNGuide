@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Menu, X, ChevronRight, AlertTriangle, BookOpen, 
-  Target, Info, MapPin, Check, FileText, HeartPulse, 
-  Anchor, Lock, ArrowRight, ShieldCheck, HelpCircle,
-  History, Zap, Globe, Brain, Scale, Calendar, ExternalLink,
-  Layers, Briefcase, Landmark, Activity, Users, LayoutDashboard, LayoutGrid, Swords
+  Menu, X, AlertTriangle, BookOpen, 
+  Target, MapPin, HeartPulse, 
+  Anchor, Lock, ArrowRight,
+  History, Zap, Globe, Scale, Calendar, ExternalLink, Swords
 } from 'lucide-react';
 import Sidebar from './components/Sidebar';
-import LiveFeed from './components/LiveFeed';
-import IntelligenceCenter from './components/IntelligenceCenter';
 import RulesLibrary from './components/RulesLibrary';
 import ConstitutionLibrary from './components/ConstitutionLibrary';
 import DiplomaticBlocs from './components/DiplomaticBlocs';
@@ -18,7 +15,7 @@ import CommitteeMatrix from './components/CommitteeMatrix';
 import UNAUSARules from './components/UNA-USA-Rules';
 import Documentations from './components/Documentations';
 import StudyGuidelines from './components/StudyGuidelines';
-import { frontData, qarmas, flagMapping } from './data/mockData';
+import { frontData, flagMapping } from './data/mockData';
 
 const getFlagUrl = (name) => {
   if (!name) return null;
@@ -55,12 +52,6 @@ const SectionWrapper = ({ children }) => (
   >
     {children}
   </motion.div>
-);
-
-const Card = ({ children, className, pressed }) => (
-  <div className={`${pressed ? 'neo-pressed' : 'neo-card'} p-6 ${className}`}>
-    {children}
-  </div>
 );
 
 const Tooltip = ({ text, children }) => (

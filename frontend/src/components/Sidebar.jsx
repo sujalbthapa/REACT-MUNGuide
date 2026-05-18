@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Swords, Scale, Users, Briefcase, Globe, Shield, Search, Sparkles, Book, BookOpen, Landmark, Brain, LayoutGrid, Globe2, ShieldCheck } from 'lucide-react';
+import { LayoutDashboard, Swords, Scale, Briefcase, Book, BookOpen, Landmark, LayoutGrid, Globe2 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
