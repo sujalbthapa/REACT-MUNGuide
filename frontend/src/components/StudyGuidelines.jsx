@@ -10,6 +10,65 @@ export default function StudyGuidelines() {
 
   const trainingModules = [
     {
+      title: "Strategic Research",
+      icon: Search,
+      subtitle: "Country Policy & Topic Analysis",
+      color: "border-amber-500",
+      textColor: "text-amber-600",
+      bg: "bg-amber-50/50",
+      content: (
+        <div className="space-y-8">
+          <p className="text-slate-600 font-medium leading-relaxed italic border-l-4 border-amber-500 pl-6 py-2">
+             Substance is the fuel of debate. Knowing your rules is essential, but knowing your facts is what wins the room.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+             <div className="p-6 bg-white border border-slate-100 shadow-sm">
+                <SectionHeader title="1. Country Profile" color="text-amber-600" />
+                <ul className="space-y-3 text-[10px] font-bold uppercase text-slate-500">
+                   <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 bg-amber-500 mt-1 shrink-0" /> National Interests & Sovereign Red Lines</li>
+                   <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 bg-amber-500 mt-1 shrink-0" /> Past Voting Record on similar UN Resolutions</li>
+                   <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 bg-amber-500 mt-1 shrink-0" /> Economic & Military Ties to the region in conflict</li>
+                </ul>
+             </div>
+             <div className="p-6 bg-white border border-slate-100 shadow-sm">
+                <SectionHeader title="2. UN Context" color="text-amber-600" />
+                <ul className="space-y-3 text-[10px] font-bold uppercase text-slate-500">
+                   <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 bg-amber-500 mt-1 shrink-0" /> Search for existing UNSC Resolutions on the topic</li>
+                   <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 bg-amber-500 mt-1 shrink-0" /> UN Charter Articles relevant to the agenda</li>
+                   <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 bg-amber-500 mt-1 shrink-0" /> Recent Secretary-General Reports & Statements</li>
+                </ul>
+             </div>
+          </div>
+
+          <div className="p-8 bg-slate-900 text-white relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-4 opacity-5"><Network className="w-20 h-20" /></div>
+             <h6 className="text-[10px] font-black text-amber-400 uppercase mb-4 italic tracking-widest">Identifying Your Bloc</h6>
+             <p className="text-[11px] font-bold uppercase italic opacity-70 leading-relaxed mb-4">
+                Don't work in isolation. Research which countries share your regional, economic, or political interests. 
+             </p>
+             <div className="grid grid-cols-2 gap-4">
+                <div className="p-3 bg-white/5 border border-white/10 rounded">
+                   <p className="text-[8px] font-black text-amber-500 mb-1">NATURAL ALLIES</p>
+                   <p className="text-[8px] font-bold uppercase opacity-60">Regional groups (EU, Arab League, African Union).</p>
+                </div>
+                <div className="p-3 bg-white/5 border border-white/10 rounded">
+                   <p className="text-[8px] font-black text-red-500 mb-1">COMPETITORS</p>
+                   <p className="text-[8px] font-bold uppercase opacity-60">Countries whose interests directly contradict yours.</p>
+                </div>
+             </div>
+          </div>
+
+          <div className="p-6 bg-amber-50 border border-amber-200">
+             <h5 className="text-[10px] font-black text-amber-800 uppercase mb-3 italic tracking-widest">Solution Development (S.M.A.R.T)</h5>
+             <p className="text-[11px] font-bold uppercase text-navy-900 opacity-70 leading-relaxed">
+                Your proposed clauses should be <strong>Specific</strong>, <strong>Measurable</strong>, <strong>Actionable</strong>, <strong>Realistic</strong>, and <strong>Time-bound</strong>. Avoid vague calls for "peace"—instead, demand specific peacekeeping observer missions or targeted financial sanctions.
+             </p>
+          </div>
+        </div>
+      )
+    },
+    {
       title: "Core Protocols",
       icon: Scale,
       subtitle: "Mastering the Flow of Debate",
