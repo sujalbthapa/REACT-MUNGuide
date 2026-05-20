@@ -21,19 +21,19 @@ export default function BRMUNRulesOfProcedure() {
       title: 'MOTIONS & SCRIPTS',
       content: [
         { title: 'HOW TO RAISE A MOTION', desc: '1. Raise your placard when the floor is open. 2. Get recognized by the Chair. 3. State: "The Delegate of [Country Name] would like to raise a motion to..."' },
-        { title: 'MOTION SCRIPTS', desc: 'Examples include: "...set the agenda to [Agenda].", "...establish the General Speaker\'s List.", "...start an unmoderated caucus for total time [time] minutes.", "...start a moderated caucus on the topic [Topic] for total time [time] with each speaker getting [time] seconds.", "...present working paper [Working paper title].", "...suspend the committee for [Lunch / Break / ...].", "...adjourn the committee until the next session."' },
+        { title: 'MOTION SCRIPTS', desc: 'Examples include: "...set the agenda to [Agenda].", "...establish the General Speaker\'s List.", "...start an unmoderated caucus for total time [time] minutes.", "...start a moderated caucus on the topic [Topic] for total time [time] with each speaker getting [time] seconds.", "...introduce the [Type of Document] [Document Number].", "...close debate and move [Document type + Number] into voting.", "...suspend the committee for [Lunch / Break / ...].", "...adjourn the committee until the next session."' },
         { title: 'ORDER OF DISRUPTION', desc: 'When multiple motions are proposed, the Chair votes on them from most disruptive to least disruptive: 1. Extension of a previous caucus, 2. Unmoderated Caucus, 3. Moderated Caucus.' }
       ]
     },
     voting: {
       title: 'VOTING & UNSC RULES',
       content: [
-        { title: 'PRESENT', desc: 'The delegate is present and reserves the right to abstain during substantive votes on draft resolutions.' },
-        { title: 'PRESENT AND VOTING', desc: 'The delegate is present but relinquishes the right to abstain. Must cast a definitive "Yes" or "No" during all substantive votes.' },
-        { title: 'QUORUM', desc: 'UN Committees: The quorum is met when at least one-third (1/3) of all registered delegates are present.' },
-        { title: 'PROCEDURAL VS. SUBSTANTIVE VOTES', desc: 'Procedural Votes: Voting on committee operation (Requires simple majority, no abstentions). Substantive Votes: Voting on real-world impact (Resolutions, Amendments).' },
-        { title: 'VOTING MAJORITIES', desc: 'UNGA: Simple Majority (50% + 1) of those "Present and voting". UNSC: 9 affirmative votes required.' },
-        { title: 'THE P5 VETO (UNSC)', desc: 'An affirmative vote or abstention is required from all five Permanent Members (China, France, Russia, UK, US). A single "No" vote constitutes a veto.' }
+        { title: 'PROCEDURAL VOTING FLOW', desc: '1. Seconds/Objections (Informal). 2. If objection: 2 For/2 Against debate. 3. Placard Vote (Formal). No abstentions for procedural votes.' },
+        { title: 'THREE-ROUND ROLL CALL (RESOLUTIONS)', desc: 'Round 1: Stances & Rights (Yes, No, Abstain, Yes/No with Rights). Round 2: Explanation of Rights. Round 3: Final definitive vote (Yes, No, Abstain).' },
+        { title: 'VOTING RIGHTS RESTRICTION', desc: 'Sponsors and Authors are NOT permitted to vote "With Rights" during Round 1 of a Roll Call vote.' },
+        { title: 'PRESENT vs. PRESENT AND VOTING', desc: 'Present: Can abstain on resolutions. Present and Voting: Must vote Yes or No; no abstentions allowed.' },
+        { title: 'UNSC SUBSTANTIVE VOTING', desc: 'Requires 9 affirmative votes AND no veto from any P5 member (China, France, Russia, UK, US). P5 abstentions are not vetos.' },
+        { title: 'QUORUM', desc: 'UNGA: 1/3 of registered delegates. UNSC: Generally 9 members present.' }
       ]
     }
   };

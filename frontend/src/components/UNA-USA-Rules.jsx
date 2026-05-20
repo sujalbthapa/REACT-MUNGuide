@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Info, Scale, Landmark, Hand, Gavel, Users, ShieldCheck, Flag, BellRing, X, Globe, ArrowRight, Target, PenTool, MessageSquare, Repeat, ListOrdered } from 'lucide-react';
+import { Info, Scale, Landmark, Hand, Gavel, Users, ShieldCheck, Flag, BellRing, X, Globe, ArrowRight, Target, PenTool, MessageSquare, Repeat, ListOrdered, TriangleAlert } from 'lucide-react';
 
 const ArrowLine = () => (
   <div className="flex flex-col items-center my-1 opacity-60">
@@ -175,7 +175,10 @@ const UNAUSARules = () => {
                  { name: "Closure of Debate", type: "Procedural", scripts: "To move into voting procedure" },
                  { name: "Suspension of Meeting", type: "Procedural", scripts: "For lunch/breaks/overnight" },
                  { name: "Adjournment of Meeting", type: "Procedural", scripts: "To end the conference" },
-                 { name: "Resume GSL", type: "Procedural", scripts: "To return to the default state" }
+                 { name: "Resume GSL", type: "Procedural", scripts: "To return to the default state" },
+                 { name: "Introduce Document", type: "Procedural", scripts: "Automatic. No vote required." },
+                 { name: "Withdraw Document", type: "Procedural", scripts: "Authors only. No vote required." },
+                 { name: "Close Debate", type: "Procedural", scripts: "To enter voting procedure" }
                ].map((m, i) => (
                  <div key={i} className="p-4 border border-slate-100 flex justify-between items-center group hover:bg-slate-50 transition-colors">
                     <div>
@@ -186,6 +189,64 @@ const UNAUSARules = () => {
                  </div>
                ))}
             </div>
+          </div>
+        ),
+      },
+      {
+        id: 'votingFlow',
+        title: 'PROCEDURAL VOTING FLOW',
+        icon: Gavel,
+        content: (
+          <div className="space-y-4">
+            <SectionTitle>How Motions are Voted On</SectionTitle>
+             <div className="p-6 bg-white border border-slate-100 shadow-sm border-l-8 border-navy-900">
+                <h6 className="text-[11px] font-black text-navy-900 uppercase italic mb-3">Phase 1: Informal Request (Seconds & Objections)</h6>
+                <p className="text-[10px] font-bold uppercase text-slate-500 mb-4 italic">Immediately after a motion is recognized, the Chair asks for seconds and objections.</p>
+                <div className="p-3 bg-violet-50 border border-violet-100 mb-4">
+                   <p className="text-[9px] font-black text-violet-700 uppercase italic">Exception: Motion to Introduce Document</p>
+                   <p className="text-[8px] font-bold uppercase opacity-70 italic">This motion is done automatically upon recognition. No seconds, objections, or voting required.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   <div className="p-3 bg-slate-50 border border-slate-200">
+                      <p className="text-[9px] font-black text-[#009EDB] uppercase mb-1 italic">Asking for Seconds</p>
+                      <p className="text-[8px] font-bold uppercase opacity-60">The delegate who raised the motion is NOT allowed to second.</p>
+                   </div>
+                   <div className="p-3 bg-slate-50 border border-slate-200">
+                      <p className="text-[9px] font-black text-red-500 uppercase mb-1 italic">Asking for Objections</p>
+                      <p className="text-[8px] font-bold uppercase opacity-60">The delegate who raised the motion is NOT allowed to object.</p>
+                   </div>
+                </div>
+             </div>
+
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <div className="p-4 bg-red-600 text-white">
+                   <h6 className="text-[10px] font-black uppercase mb-1 italic tracking-tighter text-red-100">0 SECONDS</h6>
+                   <p className="text-[11px] font-black uppercase italic">AUTO-FAIL</p>
+                   <p className="text-[8px] font-bold uppercase opacity-60 mt-2">Motion dies immediately.</p>
+                </div>
+                <div className="p-4 bg-green-600 text-white">
+                   <h6 className="text-[10px] font-black uppercase mb-1 italic tracking-tighter text-green-100">0 OBJECTIONS</h6>
+                   <p className="text-[11px] font-black uppercase italic">AUTO-PASS</p>
+                   <p className="text-[8px] font-bold uppercase opacity-60 mt-2">Adopted by Unanimous Consent.</p>
+                </div>
+                <div className="p-4 bg-amber-500 text-white">
+                   <h6 className="text-[10px] font-black uppercase mb-1 italic tracking-tighter text-amber-100">OBJECTION RAISED</h6>
+                   <p className="text-[11px] font-black uppercase italic">FORMAL VOTE</p>
+                   <p className="text-[8px] font-bold uppercase opacity-60 mt-2">Proceed to For/Against vote.</p>
+                </div>
+             </div>
+
+             <div className="p-6 bg-slate-900 text-white border-l-[12px] border-[#009EDB]">
+                <h6 className="text-[10px] font-black text-[#009EDB] uppercase mb-2 italic">Phase 2: Formal Voting (For & Against)</h6>
+                <p className="text-[11px] font-bold uppercase italic opacity-80 leading-relaxed">
+                  If seconds AND objections exist, the Chair moves to a formal placard vote.
+                </p>
+                <ul className="mt-4 space-y-2 text-[9px] font-black uppercase italic opacity-70">
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-[#009EDB]" /> NO ABSTENTIONS ALLOWED FOR PROCEDURAL VOTES.</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-[#009EDB]" /> 2/3 MAJORITY REQUIRED FOR CLOSURE/ADJOURNMENT.</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-[#009EDB]" /> SIMPLE MAJORITY (50% + 1) FOR CAUCUSES/AGENDA.</li>
+                </ul>
+             </div>
           </div>
         ),
       },
@@ -202,11 +263,15 @@ const UNAUSARules = () => {
                  { cmd: "Mod-Caucus", txt: "\"The Delegate of [Country] motions for a moderated caucus on [Topic] for [Total Time] mins with [Individual Time] seconds speaking time.\"" },
                  { cmd: "Unmod", txt: "\"The Delegate of [Country] motions for an unmoderated caucus for a total time of [X] minutes for the purpose of [Lobbying/Writing].\"" },
                  { cmd: "Resume GSL", txt: "\"The Delegate of [Country] motions to resume the General Speaker's List.\"" },
-                 { cmd: "Close Debate", txt: "\"The Delegate of [Country] motions to close debate and move into voting procedure on Draft Resolution [X].\"" }
+                 { cmd: "Close Debate", txt: "\"The Delegate of [Country] motions to close debate and move into voting procedure on Draft Resolution [X].\"" },
+                 { cmd: "Introduce Doc", txt: "\"The delegate of the [Country] motions to introduce the [Type of Document] [Document Number]\"" },
+                 { cmd: "Withdraw Doc", txt: "\"The delegate of [Country], as a sponsor, motions to withdraw Draft Resolution [Number].\"" },
+                 { cmd: "Voting Procedure", txt: "\"The delegate of [Country] motions to close debate and move [Document type + Number] into voting\"" }
                ].map((s, i) => (
                  <div key={i} className="p-6 bg-slate-900 border-l-[10px] border-[#009EDB] text-white">
                     <h6 className="text-[9px] font-black uppercase text-[#009EDB] mb-2 tracking-widest italic">{s.cmd}</h6>
-                    <p className="text-sm font-black uppercase italic opacity-90 leading-tight tracking-tight">{s.txt}</p>
+                    <p className="text-sm font-black uppercase italic opacity-90 leading-tight tracking-tight mb-2">{s.txt}</p>
+                    {s.cmd === "Withdraw Doc" && <p className="text-[8px] font-black uppercase text-amber-500 italic">Note: Requires consensus of all authors. No vote required.</p>}
                  </div>
                ))}
             </div>
@@ -275,6 +340,284 @@ const UNAUSARules = () => {
             <SectionTitle>UNSC Procedural Nuance</SectionTitle>
             <div className="p-6 bg-red-50 border border-red-200">
                <p className="text-xs font-black uppercase text-red-700 italic leading-relaxed">In many UNSC simulations, ABSTENTIONS are NOT allowed for procedural votes, even if the delegate stated "Present" during roll call.</p>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 'amendments',
+        title: 'AMENDMENTS',
+        icon: PenTool,
+        content: (
+          <div className="space-y-10">
+            <SectionTitle>Amendment Types</SectionTitle>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-6 bg-green-50 border-l-4 border-green-600">
+                <h5 className="text-[10px] font-black text-green-700 uppercase mb-2 tracking-widest italic">Friendly Amendment</h5>
+                <p className="text-xs font-bold uppercase text-navy-900 opacity-80 leading-relaxed mb-4">Supported by ALL sponsors of the original resolution. Automatically incorporated without a vote.</p>
+                <div className="px-2 py-1 bg-green-100 text-[8px] font-black text-green-700 uppercase inline-block">AUTO-ADOPT</div>
+              </div>
+              <div className="p-6 bg-red-50 border-l-4 border-red-600">
+                <h5 className="text-[10px] font-black text-red-700 uppercase mb-2 tracking-widest italic">Unfriendly Amendment</h5>
+                <p className="text-xs font-bold uppercase text-navy-900 opacity-80 leading-relaxed mb-4">Not supported by all sponsors. Requires a vote during the voting procedure (after closure of debate).</p>
+                <div className="px-2 py-1 bg-red-100 text-[8px] font-black text-red-700 uppercase inline-block">REQUIRES VOTE</div>
+              </div>
+            </div>
+
+            <SectionTitle>Action Categories</SectionTitle>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+               {[
+                 { name: 'Addition', desc: 'Injecting a completely new operative clause into the text.' },
+                 { name: 'Deletion', desc: 'Removing an entire existing operative clause from the document.' },
+                 { name: 'Modification', desc: 'Changing specific words or phrasing within an existing clause.' }
+               ].map((action, i) => (
+                 <div key={i} className="p-4 bg-slate-900 text-white border-b-4 border-[#009EDB]">
+                    <p className="text-[10px] font-black uppercase italic tracking-widest text-[#009EDB] mb-2">{action.name}</p>
+                    <p className="text-[9px] font-bold uppercase opacity-70 leading-tight">{action.desc}</p>
+                 </div>
+               ))}
+            </div>
+
+            <div className="p-6 bg-amber-50 border border-amber-200">
+               <h5 className="text-[10px] font-black text-amber-800 uppercase mb-2 italic tracking-widest">Amendment Restrictions</h5>
+               <ul className="list-disc list-inside text-[11px] font-bold uppercase text-navy-900 opacity-70 space-y-2">
+                 <li>Amendments to Amendments are strictly OUT OF ORDER.</li>
+                 <li>Must have the required number of signatories (typically 12.5% or as set by Chair).</li>
+                 <li>Preambulatory clauses cannot be amended.</li>
+               </ul>
+            </div>
+
+            <SectionTitle>Formal Introduction Script</SectionTitle>
+            <div className="p-6 bg-slate-900 border-l-[10px] border-[#009EDB] text-white shadow-xl">
+               <h6 className="text-[9px] font-black uppercase text-[#009EDB] mb-2 tracking-widest italic">The Motion</h6>
+               <p className="text-sm font-black uppercase italic opacity-90 leading-tight tracking-tight mb-4">
+                  "The delegate of [Country] motions to introduce an amendment to Draft Resolution [X]."
+               </p>
+               <div className="p-3 bg-white/5 border border-white/10 rounded">
+                  <h6 className="text-[8px] font-black uppercase text-amber-500 mb-1 italic">Dais Protocol Response:</h6>
+                  <p className="text-[10px] font-bold uppercase opacity-70 italic leading-relaxed">
+                     The Chair will immediately turn to the Sponsors/Authors and ask: <br/>
+                     <span className="text-white opacity-100">"Is this amendment Friendly or Unfriendly?"</span>
+                  </p>
+               </div>
+            </div>
+
+            <SectionTitle>Procedural Timeline</SectionTitle>
+            <div className="space-y-4">
+               {[
+                 { stage: "Submission", time: "Anytime", desc: "Written proposal submitted to the Dais after the Draft Resolution is introduced." },
+                 { stage: "Introduction", time: "During Debate", desc: "Formally read to the floor during a GSL speech or Moderated Caucus." },
+                 { stage: "Voting", time: "After Closure", desc: "The very first substantive business handled once debate is closed." }
+               ].map((item, i) => (
+                 <div key={i} className="flex items-center gap-4 p-4 bg-slate-50 border-l-4 border-slate-300 shadow-sm">
+                    <div className="flex-1">
+                       <h6 className="text-[10px] font-black uppercase text-navy-900 mb-1">{item.stage} <span className="text-[#009EDB] ml-2 italic">[{item.time}]</span></h6>
+                       <p className="text-[9px] font-bold uppercase text-slate-500 leading-tight">{item.desc}</p>
+                    </div>
+                 </div>
+               ))}
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 'orderOperations',
+        title: 'ORDER OF OPERATIONS',
+        icon: ListOrdered,
+        content: (
+          <div className="space-y-8">
+            <SectionTitle>Substantive Sequence</SectionTitle>
+            
+            <div className="relative pl-12 space-y-12">
+               {/* Vertical Connecting Track */}
+               <div className="absolute left-[15px] top-4 bottom-4 w-[2px] bg-slate-200"></div>
+
+               {/* Step 1 */}
+               <div className="relative">
+                  <div className="absolute -left-12 top-0 w-8 h-8 rounded-full bg-[#001E3D] border-4 border-white shadow-md flex items-center justify-center z-10">
+                     <span className="text-[10px] font-black text-white italic">01</span>
+                  </div>
+                  <div className="p-5 bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                     <h6 className="text-[11px] font-black text-navy-900 uppercase italic mb-1 tracking-wider">Unfriendly Amendments</h6>
+                     <p className="text-[10px] font-bold uppercase text-slate-500 leading-relaxed italic opacity-80">
+                        The committee must resolve all surgical changes first. Handled in the order of their submission to the Dais.
+                     </p>
+                  </div>
+               </div>
+
+               {/* Step 2 */}
+               <div className="relative">
+                  <div className="absolute -left-12 top-0 w-8 h-8 rounded-full bg-[#001E3D] border-4 border-white shadow-md flex items-center justify-center z-10">
+                     <span className="text-[10px] font-black text-white italic">02</span>
+                  </div>
+                  <div className="p-5 bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                     <h6 className="text-[11px] font-black text-navy-900 uppercase italic mb-1 tracking-wider">Numerical Sequence</h6>
+                     <p className="text-[10px] font-bold uppercase text-slate-500 leading-relaxed italic opacity-80">
+                        Draft Resolutions are voted on one-by-one according to their assigned document number (e.g., DR 1.1 before DR 1.2).
+                     </p>
+                  </div>
+               </div>
+
+               {/* Conflict Warning (Interrupts Timeline) */}
+               <div className="relative py-2">
+                  <div className="absolute -left-12 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-red-600 border-4 border-white shadow-md flex items-center justify-center z-10 animate-pulse">
+                     <TriangleAlert className="w-3 h-3 text-white" />
+                  </div>
+                  <div className="p-6 bg-gradient-to-r from-red-600 to-red-800 text-white shadow-xl transform skew-x-[-2deg]">
+                     <h6 className="text-[10px] font-black uppercase mb-1 tracking-[0.2em] text-red-200">Critical: Conflict Rule</h6>
+                     <p className="text-[11px] font-black uppercase italic leading-tight">
+                        If a Draft Resolution passes, all remaining conflicting documents fail automatically and are NOT put to a vote.
+                     </p>
+                  </div>
+               </div>
+
+               {/* Step 3 */}
+               <div className="relative">
+                  <div className="absolute -left-12 top-0 w-8 h-8 rounded-full bg-green-600 border-4 border-white shadow-md flex items-center justify-center z-10">
+                     <span className="text-[10px] font-black text-white italic">03</span>
+                  </div>
+                  <div className="p-5 bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                     <h6 className="text-[11px] font-black text-green-700 uppercase italic mb-1 tracking-wider">Final Voting Round</h6>
+                     <p className="text-[10px] font-bold uppercase text-slate-500 leading-relaxed italic opacity-80">
+                        The final tally for the current resolution (as amended) using the 3-Round Roll Call procedure.
+                     </p>
+                  </div>
+               </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 'votingProtocols',
+        title: 'VOTING PROTOCOLS',
+        icon: Gavel,
+        content: (
+          <div className="space-y-10">
+            <SectionTitle>Activation: Closing the Debate</SectionTitle>
+            <div className="p-6 bg-amber-50 border-l-8 border-amber-500 shadow-sm">
+              <h5 className="text-[11px] font-black text-amber-800 uppercase mb-2 italic">Motion to Close Debate</h5>
+              <p className="text-xs font-bold uppercase text-navy-900 opacity-70 leading-relaxed">
+                The mandatory "Gate" to enter voting procedure. No substantive vote can occur while the floor is open for debate.
+              </p>
+              <div className="mt-4 p-4 bg-white/60 border border-amber-200 space-y-2">
+                 <p className="text-[9px] font-black text-amber-900 uppercase italic flex items-center gap-2">
+                   <div className="w-1.5 h-1.5 bg-amber-900 rounded-full" /> TRIGGERED BY OBJECTION: 2 FOR / 2 AGAINST SPEECHES
+                 </p>
+                 <p className="text-[9px] font-black text-amber-900 uppercase italic flex items-center gap-2">
+                   <div className="w-1.5 h-1.5 bg-amber-900 rounded-full" /> VOTE REQUIREMENT: 2/3 MAJORITY
+                 </p>
+              </div>
+            </div>
+
+            <SectionTitle>Three-Round Roll Call Procedure</SectionTitle>
+            <div className="grid grid-cols-1 gap-4">
+              <div className="p-6 bg-white border border-slate-100 shadow-sm border-l-8 border-navy-900">
+                <h6 className="text-[11px] font-black text-navy-900 uppercase italic mb-3">Round 01: Initial Stances & Rights</h6>
+                <div className="space-y-2">
+                   <p className="text-[11px] font-bold uppercase text-slate-500 leading-relaxed italic">
+                     Options: <span className="text-navy-900">Yes, No, Abstain</span>
+                   </p>
+                   <p className="text-[11px] font-bold uppercase text-slate-500 leading-relaxed italic">
+                     With Rights: <span className="text-[#009EDB]">Yes with Rights, No with Rights</span>
+                   </p>
+                </div>
+                <div className="mt-4 p-3 bg-red-50 border border-red-100 text-[9px] font-black text-red-600 uppercase italic">
+                  RESTRICTION: Sponsors and Authors are NOT permitted to vote "With Rights".
+                </div>
+              </div>
+
+              <div className="p-6 bg-white border border-slate-100 shadow-sm border-l-8 border-[#009EDB]">
+                <h6 className="text-[11px] font-black text-navy-900 uppercase italic mb-3">Round 02: Explanations of Rights</h6>
+                <p className="text-[11px] font-bold uppercase text-slate-500 leading-relaxed italic">
+                  Delegates with reserved rights explain why their vote deviates from national policy.
+                </p>
+              </div>
+
+              <div className="p-6 bg-white border border-slate-100 shadow-sm border-l-8 border-green-600">
+                <h6 className="text-[11px] font-black text-navy-900 uppercase italic mb-3">Round 03: Final Voting Round</h6>
+                <p className="text-[11px] font-bold uppercase text-slate-500 leading-relaxed italic">
+                  The definitive final tally: <span className="text-green-600">Yes, No, or Abstain</span>.
+                </p>
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 'substantiveVoting',
+        title: 'SUBSTANTIVE VOTE TYPES',
+        icon: Gavel,
+        content: (
+          <div className="space-y-10">
+            <SectionTitle>Methods of Voting</SectionTitle>
+            <div className="grid gap-6">
+              <div className="p-6 border border-slate-100 bg-white shadow-sm border-l-8 border-navy-900">
+                <h5 className="text-[11px] font-black text-navy-900 uppercase mb-2 italic">Entire Document at Once</h5>
+                <p className="text-xs font-bold uppercase text-slate-500 leading-relaxed italic">The default procedure. Resolution is voted on in its entirety after all unfriendly amendments.</p>
+              </div>
+              <div className="p-6 border border-slate-100 bg-white shadow-sm border-l-8 border-[#009EDB]">
+                <h5 className="text-[11px] font-black text-[#009EDB] uppercase mb-2 italic">Clause-by-Clause (Division)</h5>
+                <p className="text-xs font-bold uppercase text-slate-500 leading-relaxed italic">Motion to "Divide the Question" to vote on specific operative clauses individually.</p>
+                <div className="mt-4 p-3 bg-slate-50 text-[9px] font-black uppercase text-navy-900 border border-slate-200 flex items-center gap-2">
+                   <Info className="w-3 h-3 text-[#009EDB]" /> REQUIRED ON OBJECTION: "2 FOR / 2 AGAINST"
+                </div>
+              </div>
+            </div>
+
+            <SectionTitle>Mini-Debate (2 For, 2 Against)</SectionTitle>
+            <div className="p-6 bg-slate-900 text-white border-l-[12px] border-amber-500">
+               <p className="text-[11px] font-bold uppercase italic opacity-80 leading-relaxed mb-4">
+                 Triggered only if there is opposition/objection to high-impact procedural motions (Closure of Debate, Division of the Question). If no objections are raised, the Chair may adopt the motion by Unanimous Consent.
+               </p>
+               <div className="grid grid-cols-2 gap-4">
+                  <div className="p-3 bg-white/5 border border-white/10">
+                     <h6 className="text-[9px] font-black text-amber-500 uppercase mb-1">2 SPEAKERS FOR</h6>
+                     <p className="text-[8px] font-bold uppercase opacity-60">Explaining why the motion should pass immediately.</p>
+                  </div>
+                  <div className="p-3 bg-white/5 border border-white/10">
+                     <h6 className="text-[9px] font-black text-red-500 uppercase mb-1">2 SPEAKERS AGAINST</h6>
+                     <p className="text-[8px] font-bold uppercase opacity-60">Explaining why the motion is premature or harmful.</p>
+                  </div>
+               </div>
+               <p className="text-[9px] font-black uppercase text-amber-500 mt-4 tracking-widest italic">
+                 TIME LIMIT: Usually 30 seconds per speaker. No yields or PoIs allowed.
+               </p>
+            </div>
+
+            <div className="p-8 bg-[#001E3D] text-white shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-10">
+                <ShieldCheck className="w-20 h-20" />
+              </div>
+              <h5 className="text-sm font-black text-[#009EDB] uppercase mb-4 tracking-[0.2em] italic flex items-center gap-2">
+                <div className="w-3 h-3 bg-[#009EDB]" /> UNSC SUBSTANTIVE VOTING
+              </h5>
+              <div className="space-y-4 relative z-10">
+                <div className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-[10px] font-black uppercase text-slate-400 italic">Required Affirmative</span>
+                  <span className="text-xl font-black italic">9 / 15</span>
+                </div>
+                <div className="flex justify-between items-end border-b border-white/10 pb-2">
+                  <span className="text-[10px] font-black uppercase text-slate-400 italic">P5 Concurrence</span>
+                  <span className="text-xl font-black italic text-red-500">NO VETOS</span>
+                </div>
+                <p className="text-[11px] font-bold uppercase italic opacity-70 leading-relaxed mt-4">
+                  A single "No" from any P5 member fails the resolution.
+                </p>
+              </div>
+            </div>
+
+            <div className="p-8 bg-slate-100 border-t-4 border-slate-400">
+              <h5 className="text-[10px] font-black text-slate-500 uppercase mb-4 tracking-widest italic">NORMAL GA COMPARISON</h5>
+              <div className="space-y-4">
+                <div className="flex justify-between items-end border-b border-slate-200 pb-2">
+                  <span className="text-[10px] font-black uppercase text-slate-400">Standard Majority</span>
+                  <span className="text-lg font-black italic text-navy-900">SIMPLE (50% + 1)</span>
+                </div>
+                <div className="flex justify-between items-end border-b border-slate-200 pb-2">
+                  <span className="text-[10px] font-black uppercase text-slate-400">Important Questions</span>
+                  <span className="text-lg font-black italic text-navy-900">TWO-THIRDS (2/3)</span>
+                </div>
+              </div>
             </div>
           </div>
         ),
@@ -526,7 +869,7 @@ const UNAUSARules = () => {
                    </div>
 
                    {/* Return loop visual */}
-                   <div className="flex flex-col items-center">
+                   <div className="flex flex-col items-center w-full">
                       <div className="flex items-center gap-2 sm:gap-3 my-4 sm:my-6 opacity-60">
                          <Repeat className="w-4 h-4 sm:w-5 sm:h-5 text-[#009EDB]" />
                          <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#009EDB] text-center">Debate Cycle Continues</p>
@@ -534,19 +877,79 @@ const UNAUSARules = () => {
                       
                       <ArrowLine />
 
-                      <div className="bg-amber-500 text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-xl font-black uppercase tracking-widest shadow-md border-l-8 border-amber-700 w-full text-center hover:scale-105 transition-transform">
-                         5. Closure of Debate
+                      {/* STEP 5: INTRODUCTION */}
+                      <div className="w-full flex flex-col items-center">
+                         <div className="bg-violet-600 text-white px-4 sm:px-8 py-3 text-xs sm:text-lg font-black uppercase tracking-widest shadow-md border-l-8 border-violet-900 w-full text-center">
+                            5. Introduction of Documents
+                         </div>
+                         
+                         {/* Horizontal Branch for Actions */}
+                         <div className="relative w-full mt-4 flex flex-col items-center">
+                            <div className="absolute top-0 w-3/4 h-[1px] bg-violet-400 opacity-40 hidden md:block"></div>
+                            <div className="w-full flex flex-row justify-between pt-2 gap-2">
+                               {['Addition', 'Deletion', 'Modification'].map(act => (
+                                  <div key={act} className="flex-1 bg-white border border-violet-200 p-2 shadow-sm text-center">
+                                     <p className="text-[8px] font-black uppercase text-violet-600 tracking-tighter">{act}</p>
+                                  </div>
+                               ))}
+                            </div>
+                         </div>
                       </div>
+
                       <ArrowLine />
 
-                      <div className="bg-green-600 text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-xl font-black uppercase tracking-widest shadow-md border-l-8 border-green-800 w-full text-center hover:scale-105 transition-transform">
-                         6. Voting Procedure
-                         <p className="text-[9px] sm:text-[10px] font-medium tracking-normal mt-1 sm:mt-2 normal-case opacity-90">Substantive voting on Draft Resolutions and Amendments.</p>
+                      {/* STEP 6: CLOSURE */}
+                      <div className="w-full flex flex-col items-center">
+                         <div className="bg-amber-500 text-white px-4 sm:px-8 py-3 text-xs sm:text-lg font-black uppercase tracking-widest shadow-md border-l-8 border-amber-700 w-full text-center">
+                            6. Closure of Debate
+                         </div>
+
+                         {/* Branch for Mini-Debate */}
+                         <div className="relative w-full mt-4 flex flex-col items-center">
+                            <div className="absolute top-0 w-1/2 h-[1px] bg-amber-400 opacity-40 hidden md:block"></div>
+                            <div className="w-full flex flex-row justify-center gap-4 pt-2">
+                               <div className="bg-white border border-amber-200 px-4 py-2 shadow-sm text-center min-w-[80px]">
+                                  <p className="text-[8px] font-black text-amber-600">2 FOR</p>
+                               </div>
+                               <div className="bg-white border border-amber-200 px-4 py-2 shadow-sm text-center min-w-[80px]">
+                                  <p className="text-[8px] font-black text-red-500">2 AGAINST</p>
+                               </div>
+                            </div>
+                            <p className="text-[7px] font-bold text-amber-500 uppercase mt-2 italic">Mini-Debate (If Objected)</p>
+                         </div>
                       </div>
+
+                      <ArrowLine />
+
+                      {/* STEP 7: VOTING */}
+                      <div className="w-full flex flex-col items-center">
+                         <div className="bg-green-600 text-white px-4 sm:px-8 py-3 text-xs sm:text-lg font-black uppercase tracking-widest shadow-md border-l-8 border-green-800 w-full text-center">
+                            7. Voting Procedure
+                         </div>
+
+                         {/* Vertical Sequence for Rounds */}
+                         <div className="flex flex-col items-center mt-4 space-y-1 w-full">
+                            {[
+                               { r: "OP", t: "Amendment Voting (Substantive)" },
+                               { r: "R1", t: "Resolution: Initial Stances" },
+                               { r: "R2", t: "Resolution: Explanation" },
+                               { r: "R3", t: "Resolution: Final Vote" }
+                            ].map((round, idx) => (
+                               <div key={idx} className="flex flex-col items-center w-full">
+                                  <div className="w-[1px] h-2 bg-green-200"></div>
+                                  <div className="bg-white border-l-4 border-green-500 w-3/4 p-2 shadow-sm flex items-center justify-between">
+                                     <span className="text-[8px] font-black text-green-700 bg-green-50 px-1.5 py-0.5">{round.r}</span>
+                                     <span className="text-[8px] font-bold uppercase text-slate-500">{round.t}</span>
+                                  </div>
+                               </div>
+                            ))}
+                         </div>
+                      </div>
+
                       <ArrowLine />
 
                       <div className="bg-red-600 text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-xl font-black uppercase tracking-widest shadow-md border-l-8 border-red-800 w-full text-center hover:scale-105 transition-transform">
-                         7. Adjournment
+                         8. Adjournment
                       </div>
                    </div>
                 </div>

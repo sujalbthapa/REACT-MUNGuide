@@ -155,9 +155,8 @@ const RulesOfProcedure = () => {
             <li>"...establish the General Speaker's List."</li>
             <li>"...start an unmoderated caucus for total time [time in mins] minutes." <Cite>[cite: 613]</Cite></li>
             <li>"...start a moderated caucus on the topic [Topic] for total time [time] with each speaker getting [time] seconds." <Cite>[cite: 612]</Cite></li>
-            <li>"...present working paper [Working paper title]." <Cite>[cite: 616]</Cite></li>
-            <li>"...present the draft resolution [Draft resolution title]." <Cite>[cite: 616]</Cite></li>
-            <li>"...put draft resolution [title] to a vote."</li>
+            <li>"...introduce the [Type of Document] [Document Number]."</li>
+            <li>"...close debate and move [Document type + Number] into voting."</li>
             <li>"...suspend the committee for [Lunch / Break / 15 mins / the day]." <Cite>[cite: 607]</Cite></li>
             <li>"...adjourn the committee until the next session." <Cite>[cite: 608]</Cite></li>
           </ul>
@@ -182,6 +181,32 @@ const RulesOfProcedure = () => {
     ],
     'voting-unsc-rules': [
       {
+        id: 'votingFlow',
+        title: 'PROCEDURAL VOTING FLOW',
+        icon: Gavel,
+        content: (
+          <ul className="list-disc list-inside space-y-2 pl-5 text-gray-700">
+            <li><span className="font-semibold">Informal Phase:</span> Chair asks for Seconds and Objections.</li>
+            <li><span className="font-semibold">Auto-Fail:</span> 0 Seconds.</li>
+            <li><span className="font-semibold">Auto-Pass:</span> 0 Objections (Unanimous Consent).</li>
+            <li><span className="font-semibold">Formal Phase:</span> Triggered by Objections. Placard vote (For/Against).</li>
+            <li><span className="font-semibold">Mini-Debate:</span> For Closure of Debate/Division, a "2 For / 2 Against" debate is triggered if there is an objection.</li>
+          </ul>
+        ),
+      },
+      {
+        id: 'rollCallProcedure',
+        title: '3-ROUND ROLL CALL',
+        icon: ListOrdered,
+        content: (
+          <ol className="list-decimal list-inside space-y-2 pl-5 text-gray-700 font-medium italic">
+            <li><span className="font-bold">ROUND 1:</span> Initial Stances (Yes, No, Abstain) and Rights (Yes/No with Rights). Sponsors/Authors cannot vote with rights.</li>
+            <li><span className="font-bold">ROUND 2:</span> Explanation of Rights.</li>
+            <li><span className="font-bold">ROUND 3:</span> Final definitive vote (Yes, No, Abstain).</li>
+          </ol>
+        ),
+      },
+      {
         id: 'votingStances',
         title: 'VOTING STANCES (ROLL CALL)',
         icon: Hand,
@@ -199,6 +224,7 @@ const RulesOfProcedure = () => {
         content: (
           <ul className="list-disc list-inside space-y-1 pl-5 text-gray-700">
             <li><span className="font-semibold">UN Committees:</span> The minimum number of delegates needed to open a session. The quorum is met when at least one-third (1/3) of all registered delegates are present<Cite>[cite: 7, 8]</Cite>.</li>
+            <li><span className="font-semibold">UNSC:</span> Typically requires 9 members present to conduct business.</li>
           </ul>
         ),
       },
@@ -208,20 +234,20 @@ const RulesOfProcedure = () => {
         icon: Gavel,
         content: (
           <ul className="list-disc list-inside space-y-1 pl-5 text-gray-700">
-            <li><span className="font-semibold">Procedural Votes:</span> Voting on how the committee operates (e.g., entering a caucus)<Cite>[cite: 111, 621]</Cite>. Requires a simple majority<Cite>[cite: 116, 227]</Cite>. No abstentions are allowed<Cite>[cite: 112, 623]</Cite>.</li>
-            <li><span className="font-semibold">Substantive Votes:</span> Voting on ideas that have real-world impact (Draft Resolutions, Amendments)<Cite>[cite: 107, 624]</Cite>.</li>
+            <li><span className="font-semibold">Procedural Votes:</span> Voting on committee operation<Cite>[cite: 111, 621]</Cite>. Requires a simple majority<Cite>[cite: 116, 227]</Cite>. No abstentions allowed<Cite>[cite: 112, 623]</Cite>.</li>
+            <li><span className="font-semibold">Substantive Votes:</span> Voting on ideas (Draft Resolutions, Amendments)<Cite>[cite: 107, 624]</Cite>. Requires Simple Majority in GA, or 9 votes in UNSC.</li>
           </ul>
         ),
       },
       {
         id: 'votingMajorities',
-        title: 'VOTING MAJORITIES',
+        title: 'VOTING MAJORITIES & VETO',
         icon: Landmark,
         content: (
           <ul className="list-disc list-inside space-y-1 pl-5 text-gray-700">
-            <li><span className="font-semibold">Standard UN Committees (UNGA):</span> Substantive votes require a Simple Majority (50% + 1) of delegates "Present and voting" to pass<Cite>[cite: 114, 229, 251]</Cite>. A Qualified Majority requires 2/3 of delegates "Present and voting"<Cite>[cite: 115]</Cite>.</li>
-            <li><span className="font-semibold">UN Security Council (UNSC):</span> To pass a resolution or amendment in the Security Council, 9 affirmative votes are required<Cite>[cite: 230, 252]</Cite>.</li>
-            <li><span className="font-semibold">THE P5 VETO (UNSC):</span> In addition to the 9 affirmative votes, an affirmative vote or an abstention is required from all five Permanent Members (China, France, Russia, UK, US)<Cite>[cite: 230, 253]</Cite>. A single "No" vote from a P5 member constitutes a veto and automatically fails the resolution.</li>
+            <li><span className="font-semibold">UNGA:</span> Simple Majority (50% + 1) or 2/3 for important questions.</li>
+            <li><span className="font-semibold">UNSC:</span> 9 affirmative votes required<Cite>[cite: 230, 252]</Cite>.</li>
+            <li><span className="font-semibold">P5 VETO:</span> A single "No" vote from China, France, Russia, UK, or US fails the resolution<Cite>[cite: 230, 253]</Cite>.</li>
           </ul>
         ),
       },
@@ -358,11 +384,11 @@ const RulesOfProcedure = () => {
 
             {/* Column 3: Pass a Resolution */}
             <div className="md:col-start-7 md:col-span-2 md:row-start-4 flex flex-col items-center justify-center space-y-4">
+              <FlowchartNode className="bg-violet-700">Introduction of Document</FlowchartNode>
               <FlowchartNode>Motion To Close Debate</FlowchartNode>
-              <FlowchartNode>Substantive Vote</FlowchartNode>
-              <FlowchartNode>2 Speakers for, 2 Speakers Against</FlowchartNode>
-              <FlowchartNode>Substantive Vote</FlowchartNode>
-              <FlowchartNode>Pass a Resolution</FlowchartNode>
+              <FlowchartNode className="bg-amber-600 text-[10px]">2 Speakers for, 2 Against (if objected)</FlowchartNode>
+              <FlowchartNode>Voting Procedure (3-Rounds)</FlowchartNode>
+              <FlowchartNode className="bg-green-700">Pass a Resolution</FlowchartNode>
             </div>
 
             {/* Column 4: Adjourn */}
