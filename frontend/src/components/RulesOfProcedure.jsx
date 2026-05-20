@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronRight, Info, BookOpen, Scale, Landmark, Hand, Gavel, Users, ShieldCheck, Flag, TriangleAlert, BellRing, X } from 'lucide-react'; // Added X for modal close button
+import { ChevronRight, Info, BookOpen, Scale, Landmark, Hand, Gavel, Users, Shield, Flag, AlertTriangle, BellRing, X } from 'lucide-react'; // Added X for modal close button
 
 // Re-using the basic FlowchartNode and FlowchartPointsNode from earlier CSS attempts
 const FlowchartNode = ({ children, className = "" }) => (
@@ -197,7 +197,7 @@ const RulesOfProcedure = () => {
       {
         id: 'rollCallProcedure',
         title: '3-ROUND ROLL CALL',
-        icon: ListOrdered,
+        icon: List,
         content: (
           <ol className="list-decimal list-inside space-y-2 pl-5 text-gray-700 font-medium italic">
             <li><span className="font-bold">ROUND 1:</span> Initial Stances (Yes, No, Abstain) and Rights (Yes/No with Rights). Sponsors/Authors cannot vote with rights.</li>

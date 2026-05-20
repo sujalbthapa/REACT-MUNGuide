@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Info, Scale, Landmark, Hand, Gavel, Users, ShieldCheck, Flag, BellRing, X, Globe, ArrowRight, Target, PenTool, MessageSquare, Repeat, ListOrdered, TriangleAlert } from 'lucide-react';
+import { Info, Scale, Landmark, Hand, Gavel, Users, Shield, Flag, BellRing, X, Globe, ArrowRight, Target, PenTool, MessageSquare, Repeat, List, AlertTriangle } from 'lucide-react';
 
 const ArrowLine = () => (
   <div className="flex flex-col items-center my-1 opacity-60">
@@ -39,9 +39,9 @@ const Cite = ({ children }) => (
 );
 
 const SectionTitle = ({ children }) => (
-  <h4 className="text-[11px] font-black uppercase text-[#009EDB] tracking-[0.2em] mb-4 italic flex items-center gap-2">
+  <div className="text-[11px] font-black uppercase text-[#009EDB] tracking-[0.2em] mb-4 italic flex items-center gap-2">
     <div className="w-2 h-2 bg-[#009EDB]" /> {children}
-  </h4>
+  </div>
 );
 
 const UNAUSARules = () => {
@@ -161,7 +161,7 @@ const UNAUSARules = () => {
       {
         id: 'listMotions',
         title: 'LIST OF MOTIONS',
-        icon: ListOrdered,
+        icon: List,
         content: (
           <div className="space-y-8">
             <SectionTitle>Comprehensive Motion Catalog</SectionTitle>
@@ -423,7 +423,7 @@ const UNAUSARules = () => {
       {
         id: 'orderOperations',
         title: 'ORDER OF OPERATIONS',
-        icon: ListOrdered,
+        icon: List,
         content: (
           <div className="space-y-8">
             <SectionTitle>Substantive Sequence</SectionTitle>
@@ -461,7 +461,7 @@ const UNAUSARules = () => {
                {/* Conflict Warning (Interrupts Timeline) */}
                <div className="relative py-2">
                   <div className="absolute -left-12 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-red-600 border-4 border-white shadow-md flex items-center justify-center z-10 animate-pulse">
-                     <TriangleAlert className="w-3 h-3 text-white" />
+                     <AlertTriangle className="w-3 h-3 text-white" />
                   </div>
                   <div className="p-6 bg-gradient-to-r from-red-600 to-red-800 text-white shadow-xl transform skew-x-[-2deg]">
                      <h6 className="text-[10px] font-black uppercase mb-1 tracking-[0.2em] text-red-200">Critical: Conflict Rule</h6>
@@ -500,12 +500,12 @@ const UNAUSARules = () => {
                 The mandatory "Gate" to enter voting procedure. No substantive vote can occur while the floor is open for debate.
               </p>
               <div className="mt-4 p-4 bg-white/60 border border-amber-200 space-y-2">
-                 <p className="text-[9px] font-black text-amber-900 uppercase italic flex items-center gap-2">
+                 <div className="text-[9px] font-black text-amber-900 uppercase italic flex items-center gap-2">
                    <div className="w-1.5 h-1.5 bg-amber-900 rounded-full" /> TRIGGERED BY OBJECTION: 2 FOR / 2 AGAINST SPEECHES
-                 </p>
-                 <p className="text-[9px] font-black text-amber-900 uppercase italic flex items-center gap-2">
+                 </div>
+                 <div className="text-[9px] font-black text-amber-900 uppercase italic flex items-center gap-2">
                    <div className="w-1.5 h-1.5 bg-amber-900 rounded-full" /> VOTE REQUIREMENT: 2/3 MAJORITY
-                 </p>
+                 </div>
               </div>
             </div>
 
@@ -586,11 +586,11 @@ const UNAUSARules = () => {
 
             <div className="p-8 bg-[#001E3D] text-white shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 p-4 opacity-10">
-                <ShieldCheck className="w-20 h-20" />
+                <Shield className="w-20 h-20" />
               </div>
-              <h5 className="text-sm font-black text-[#009EDB] uppercase mb-4 tracking-[0.2em] italic flex items-center gap-2">
+              <div className="text-sm font-black text-[#009EDB] uppercase mb-4 tracking-[0.2em] italic flex items-center gap-2">
                 <div className="w-3 h-3 bg-[#009EDB]" /> UNSC SUBSTANTIVE VOTING
-              </h5>
+              </div>
               <div className="space-y-4 relative z-10">
                 <div className="flex justify-between items-end border-b border-white/10 pb-2">
                   <span className="text-[10px] font-black uppercase text-slate-400 italic">Required Affirmative</span>
@@ -647,7 +647,7 @@ const UNAUSARules = () => {
       {
         id: 'unscSpecifics',
         title: 'THE UNSC VETO',
-        icon: ShieldCheck,
+        icon: Shield,
         content: (
           <div className="space-y-10">
             <div className="p-10 bg-gradient-to-br from-red-500 to-red-700 text-white shadow-2xl border-l-[15px] border-[#001E3D]">
@@ -1009,7 +1009,7 @@ const UNAUSARules = () => {
               </div>
            </div>
            <div className="flex items-center gap-6">
-              <ShieldCheck className="w-8 h-8 text-[#001E3D]" />
+              <Shield className="w-8 h-8 text-[#001E3D]" />
               <div>
                 <p className="text-[10px] font-black uppercase text-navy-900 italic">Official Resource</p>
                 <p className="text-[9px] font-bold uppercase text-slate-500 mt-1">The primary procedural reference for all BRMUN delegates.</p>
